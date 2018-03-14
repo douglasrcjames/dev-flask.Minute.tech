@@ -1,0 +1,83 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+
+	{% if session.logged_in == 'client' %}
+
+	   <body>
+	      <h2><span uk-icon="icon: user; ratio: 2.5"></span> Change profile picture: </h2>
+	      <hr>   
+			<p> 
+			<div class="uk-card uk-card-default uk-card-body">
+				<img class="uk-border-rounded uk-align-center uk-box-shadow-large" src="{{ session.prof_pic }}" width="200" height="200" alt="">
+				<div class="uk-align-center">
+					<form method="POST" action="{{ url_for('profile_picture_upload')}}" enctype="multipart/form-data">
+					    {{ form.hidden_tag() }}
+					    <div class="uk-margin">
+					        <p>Please choose a new profile picture from your computer below:</p>
+					        <div class="uk-container uk-container-small">
+						        <div uk-form-custom="target: true">
+						            {{ form.prof_pic }}
+						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+						            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>      
+						        </div>
+						        <button type="submit" class="uk-button uk-button-primary">Upload</button>
+						        <p class="uk-text-muted">*max size of 16MB</p>
+						        {% for error in form.prof_pic.errors %}
+						        	<span class="uk-label uk-label-danger">{{ error }}</span>
+						    	{% endfor %}
+						    </div>
+					    </div>
+					    <br>
+					    
+					</form>
+					<a href="{{ url_for('account') }}"><button class="uk-button uk-button-default">Back to Account</button></a>
+				</div>
+			</div>
+			</p>    
+	             
+	   </body> 
+
+	{% elif session.logged_in == 'tech' %}	
+
+		<!-- Display only if technician reaches this page -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as technician </h2>
+		 	<hr>
+		 	<p>
+		 		This page is for client accounts only, try logging out of your technician account and logging into a regular Minute.tech account.
+		 		<br>
+		 		<br>
+		 		<a href="/logout/" uk-icon="icon: user"></a> <a href="/logout/"> Logout </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
+		 		<br>
+		 		<br>
+		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Technician Account</a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+
+	{% else %}
+	
+		<!-- Display only if user reaches this page w/o logging in -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
+		 	<hr>
+		 	<p>
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<br>
+		 		<br>
+		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+		 
+	{% endif %}
+ 
+{% endblock %}
+     

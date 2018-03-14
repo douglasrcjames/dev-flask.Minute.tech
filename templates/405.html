@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+
+ <div class="uk-article uk-padding uk-align-center">
+ 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> I just short-circuited.</h2>
+ 	<hr>
+ 	<p>405 Error /ˈerər/ (n): The page you are trying to push data to is not allowing permissions. You may need to try this process again in a few minutes once things have calmed down. <br>
+ 		<br>
+ 		For comments or concerns, please e-mail <u>help@minute.tech</u>. Email <u>bugs@minute.tech</u> if you think our code encountered a bug.
+ 		{% if error %}
+ 		<p>
+ 			Error:
+			<span class="uk-label uk-label-danger">{{ error }}</span>
+		</p>
+		{% endif %}
+ 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/warning.png')}}" alt="404-error">
+ 	</p> 
+ 	<!-- DEVNOTE: Like with POST & GET requests ! -->
+ </div>
+{% endblock %}

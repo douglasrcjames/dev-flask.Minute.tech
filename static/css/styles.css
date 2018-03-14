@@ -1,0 +1,43 @@
+/*  Main Custom CSS  */
+/* ----------------- */
+
+/*/ 
+Colors:
+Main: 
+Blue: #4EBDE5
+Yellow: #FFD54C
+
+/*/
+
+/*/  FONTS  /*/
+
+@font-face {
+    font-family: "Univers Bold Condensed";
+    src: url(media/fonts/Univers/Univers-CondensedBold.otf);
+}
+@font-face {
+    font-family: "Univers Black";
+    src: url(media/fonts/Univers/Univers-Black.otf);
+}
+@font-face {
+    font-family: "Univers Light Condensed";
+    src: url(media/fonts/Univers/Univers-CondensedLight.otf);
+}
+
+
+.nav_styles{
+	background: #FFFFFF; 
+	padding-top:0.5%;
+	padding-bottom: 0.5%;
+}
+
+/*/  APPLIES TO ALL  /*/
+
+/*  For bigger screens (720px or less) */
+	@media screen and (max-width:720px) {
+
+		
+		
+
+	}
+/*/    END APPLIES TO SOME    /*/

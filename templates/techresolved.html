@@ -1,0 +1,62 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+
+	{% if session.logged_in == 'tech' %}
+
+	<h2><img style="height: 2.5em;" src="{{ url_for('static', filename='flat-icons/007-wrench.png')}}" alt="alert"> Section Under Construction</h2>
+	<hr>
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@s uk-align-center">
+		<img class="uk-align-center" style="height: 5em;" src="{{ url_for('static', filename='flat-icons/008-startup.png')}}" alt="rocket">
+		<p class="uk-text-lead uk-text-center">Interested in being notified when we launch our full site?</p>
+		<form action="/techresolved/" method="post">
+			<input class="uk-button uk-button-primary uk-align-center" type="submit" value="Sign up">
+		</form>
+	</div>
+
+	{% elif session.logged_in == 'client' %}	
+
+		<!-- Display only if client reaches this page -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as client </h2>
+		 	<hr>
+		 	<p>
+		 		This page is for Minute.technician accounts only, try logging out of your client account and logging into a technician account.
+		 		<br>
+		 		<br>
+		 		<a href="/logout/" uk-icon="icon: user"></a> <a href="/logout/"> Logout </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
+		 		<br>
+		 		<br>
+		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Technician Account</a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+
+	{% else %}
+
+		<!-- Display only if user reaches this page w/o logging in -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in as technician  </h2>
+		 	<hr>
+		 	<p>
+		 		This page is for Minute.technician accounts only, try logging out of your client account and logging into a technician account.
+		 		<br>
+		 		<br>
+		 		<a href="/techlogin/" uk-icon="icon: sign-in"></a> <a href="/techlogin/"> Technician Login </a> 
+		 		<br>
+		 		<br>
+		 		<a href="/techregister/" uk-icon="icon: plus"></a> <a href="/techregister/"> Technician Sign up </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+
+	{% endif %}
+ 
+{% endblock %}
+	  

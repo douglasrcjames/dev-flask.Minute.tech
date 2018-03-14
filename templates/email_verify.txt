@@ -1,0 +1,6 @@
+Welcome to Minute.tech {{ first_name }}!
+
+We succesfully registered your account!
+
+Before taking any further steps with your account, please click here to verify your email: {{ link }}
+We just want to make sure you are a real person and not robot-{{ first_name }}

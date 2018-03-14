@@ -1,0 +1,81 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+ 
+	{% if session.logged_in == 'tech' %}
+		<h2><img style="height: 2.5em;" src="{{ url_for('static', filename='flat-icons/014-interface.png')}}" alt="alert"> Become Certified</h2>
+		<hr>
+		<div class="uk-article uk-padding uk-align-center uk-background-muted">
+			<p class="uk-text-lead">Being Your Own Boss</p>
+			<div class="uk-padding-small uk-padding-remove-top">
+			<p>
+				There are many advantages of being a Minute.technician; you can make extra money, control your own schedule, market your tech skills, find new clients, and make another person's day.
+				<br>
+				<br>
+				You are your own business and will be working as an independent contractor for your Clients that you connect with on the Minute.tech platform. You are not an employee of Minute.tech LLC. We do not directly supervise, direct, or control your work-- you are responsible for how you present yourself to Clients.
+				<br>
+				<br>
+				Our <a href="/MinutetechLLC_tos/">Terms of Service</a> govern the use of the Minute.tech platform by all Users. Please read them. We are looking forward to having you join us on the platform solving the troubled tech user.
+				<br>
+				<br>
+				<b><u>By signing my full name below I acknowledge that I have read and understood the Terms of Service, and that I agree to the Terms of Service.</u></b>
+			</p>
+			<form class="uk-grid-small" action="/tech_signature/" method="post" uk-grid>
+				<div class="uk-width-1-2 uk-margin-small">
+					{{ form.signature.label }}
+					{{ form.signature(class_="uk-input") }}
+				</div>
+				{% for error in form.signature.errors %}
+		        	<span class="uk-label uk-label-danger">{{ error }}</span>
+		    	{% endfor %}
+		    	<div class="uk-width-1-1"></div>
+				<div class="uk-width-1-4@s">
+					<input class="uk-button uk-button-primary" type="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+		</div>
+
+	{% elif session.logged_in == 'client' %}	
+
+		<!-- Display only if technician reaches this page -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as client </h2>
+		 	<hr>
+		 	<p>
+		 		This page is for technician accounts only, try logging out of your client account and logging into a Minute.technician account.
+		 		<br>
+		 		<br>
+		 		<a href="/logout/" uk-icon="icon: user"></a> <a href="/logout/"> Logout </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
+		 		<br>
+		 		<br>
+		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Technician Account</a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+
+	{% else %}
+	
+		<!-- Display only if user reaches this page w/o logging in -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
+		 	<hr>
+		 	<p>
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<br>
+		 		<br>
+		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+		 
+	{% endif %}
+ 
+{% endblock %}
+	  

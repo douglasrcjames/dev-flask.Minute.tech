@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+ 
+ <div class="uk-article uk-padding uk-align-center">
+ 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> 500 ERROR </h2>
+ 	<hr>
+ 	<p>The "500 error" is an internal server error usually indicating that something went wrong on the web site's server.<br>
+ 		Try changing the URL, perhaps you mispelled something or something got deleted by accident. If not, just go back to the home page and try to get there again. <br>
+ 		<br>
+ 		For further comments or concerns please send them to <u>help@minute.tech</u> for general comments or <u>bugs@minute.tech</u> for any possible bugs in our website code.
+ 		{% if error %}
+ 		<p>
+ 			Error:
+			<span class="uk-label uk-label-danger">{{ error }}</span>
+		</p>
+		{% endif %}
+ 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/warning.png')}}" alt="404-error">
+ 	</p> 
+ </div>
+{% endblock %}

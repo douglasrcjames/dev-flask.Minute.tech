@@ -1,0 +1,24 @@
+---Minute.tech Notes--
+
+To Do List
+------------------
+-need description of minute.techs on splash
+-Read up on list functionality (https://docs.python.org/2/tutorial/datastructures.html)
+-virtural server for live updates?
+-example of a text based response to a customer solution ??? what?
+-
+
+profiles:
+---------
+-
+
+
+ticketing:
+---------
+-
+
+
+
+
+
+

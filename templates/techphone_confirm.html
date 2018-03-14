@@ -1,0 +1,63 @@
+{% extends "header.html" %}
+ 
+{% block body %}
+
+	{% if session.logged_in == 'tech' %}
+
+		<div class="uk-height-1-1">
+			<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
+				<div class="uk-width-1-2@s uk-padding uk-background-muted uk-margin-large">
+					<form action="" method="post">
+						<h2><span uk-icon="icon: lock; ratio: 2.5"></span>Authenticate</h2>
+						<hr>
+						<div class="uk-margin">
+							<div class="uk-inline uk-width-1-1">
+								<span class="uk-form-icon" uk-icon="icon: mail"></span>
+								<input class="uk-input" required placeholder="Email" type="text" name="techemail" value="{{ request.form.techemail }}">
+							</div>
+						</div>
+						<div class="uk-margin">
+							<div class="uk-inline uk-width-1-1">
+								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+								<input class="uk-input" required placeholder="Password" type="password" name="techpassword" value="{{ request.form.techpassword }}">
+							</div>
+						</div>
+						<!--<div class="uk-margin">
+							<label><input class="uk-checkbox" type="checkbox"> Keep me logged in</label>
+						</div>-->
+						<div class="uk-margin">
+							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1" value="Login">Authenticate</button>
+						</div>
+					</form>
+					
+					{% if error %}
+						<span class="uk-label uk-label-danger">{{ error }}</span></p>
+					{% endif %}
+					
+				</div>
+			</div>
+
+	{% else %}
+
+		<!-- Display only if user reaches this page w/o logging in -->
+		<div class="uk-article uk-padding uk-align-center">
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
+		 	<hr>
+		 	<p>
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<br>
+		 		<br>
+		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
+		 		<br>
+		 		<br>
+		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
+		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+		 	</p> 
+		 </div>	
+		 	
+	{% endif %}
+ 
+{% endblock %}
+
+
+		

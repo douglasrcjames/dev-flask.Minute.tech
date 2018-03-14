@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Minute.tech - Tech Support</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+	<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+	<link href="{{ url_for('static', filename='css/uikit-3.0.0-beta.30/css/uikit.css')}}" rel="stylesheet">
+	<script src="{{ url_for('static', filename='js/uikit-3.0.0-beta.30/js/uikit.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/uikit-3.0.0-beta.30/js/uikit-icons.min.js')}}"></script>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}">
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+
+<header>
+	<div class="uk-container">
+	    <nav class="uk-navbar uk-navbar-container uk-margin uk-visible@m uk-text-nowrap"  style="background: #FFFFFF; padding-top: 0.5%; padding-bottom: 0.5%;" uk-navbar>
+	        <div class="uk-navbar-left">
+	            <a href="/" class="uk-navbar-item">
+					<img class="uk-logo uk-responsive-height" src="{{ url_for('static', filename='images/Secondary_long.png')}}" alt="Minute.tech Logo">
+				</a>
+	        </div>
+			{% if session.logged_in == 'client' %}
+			<!-- CLIENT NAVBAR -->
+			<div class="uk-navbar-left uk-responsive-height">
+				<ul class="uk-navbar-nav">
+					<li><a href="/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: file-edit"></span> Ask </a></li>
+                    <li><a href="/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
+                    <li><a href="/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
+				</ul>
+			</div>	
+			<div class="uk-navbar-right uk-responsive-height">
+				<ul class="uk-navbar-nav">	    
+					<li>
+		                <a><span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>{{ session.first_name }}&nbsp;<span class="uk-icon uk-margin-small-right" uk-icon="icon: chevron-down"></span></a>
+		                <div class="uk-navbar-dropdown">
+		                    <ul class="uk-nav uk-navbar-dropdown-nav">
+		                    	<li><a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a></li>
+		                        <li><a href="/account/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a></li>
+		                        <li class="uk-nav-divider"></li>
+		                        <li><a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a></li>
+		                    </ul>
+		                </div>
+		            </li>
+				</ul>
+			</div>	
+			{% elif session.logged_in == 'tech' %}
+			<!-- TECH NAVBAR -->
+			<div class="uk-navbar-left uk-responsive-height">
+				<ul class="uk-navbar-nav">
+					<li><a href="/answer/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: warning"></span> Answer </a></li>
+					<li><a href="/techpending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
+					<li><a href="/techresolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
+				</ul>
+			</div>	
+			<div class="uk-navbar-right uk-responsive-height">
+				<ul class="uk-navbar-nav">
+					<li>
+						<a><span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>{{ session.techfirst_name }}&nbsp;<span class="uk-icon uk-margin-small-right" uk-icon="icon: chevron-down"></span></a>
+						<div class="uk-navbar-dropdown">
+						    <ul class="uk-nav uk-navbar-dropdown-nav">
+						        <li><a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a></li>
+						        <li><a href="/techaccount/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a></li>
+						        <li class="uk-nav-divider"></li>
+						        <li><a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a></li>
+						    </ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			{% else %}
+			<!-- NO USER NAVBAR -->
+			<div class="uk-navbar-left uk-responsive-height">
+				<ul class="uk-navbar-nav">
+					<li><a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right uk-responsive-height">
+				<ul class="uk-navbar-nav">
+					<li><a href="/login/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span> Login </a></li>
+					<li><a href="/register/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>Sign up</a></li>
+				</ul>
+			</div>
+			{% endif %}	
+	    </nav>
+	</div>
+	
+	<!-- Displayed only on small screens -->
+	<div class="uk-container">
+		<nav class="uk-navbar uk-navbar-container uk-margin uk-hidden@m" style="background: #FFFFFF; padding-top:5%; padding-bottom: 5%;">
+            <div class="uk-navbar-left">
+				<div class="uk-navbar-item">
+					<a href="/" class="uk-navbar-item">
+						<img class="uk-logo uk-responsive-height uk-responsive-width" src="{{ url_for('static', filename='images/Secondary_long.png')}}" alt="Minute.tech Logo">
+					</a>
+				</div>
+			</div>
+            <div class="uk-navbar-right">
+                <div>
+                    <a class="uk-navbar-toggle uk-navbar-toggle-icon uk-icon" href="#" uk-navbar-toggle-icon=""><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"><rect y="9" width="20" height="2"></rect><rect y="3" width="20" height="2"></rect><rect y="15" width="20" height="2"></rect></svg></a>
+					{% if session.logged_in == 'client' %}
+						<!-- CLIENT NAVBAR -->
+						<div class="uk-navbar-dropdown uk-padding-small" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav; flip: x">
+							<a href="/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: file-edit"></span> Ask </a><br>
+							<a href="/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a><br>
+							<a href="/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending</a><br>
+							<a href="/account/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a><br>
+							<a href="/about/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a><br>
+							<a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a><br>
+						</div>
+					{% elif session.logged_in == 'tech' %}
+						<!-- TECH NAVBAR -->
+						<div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav; flip: x">
+							<a href="/answer/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: warning"></span> Answer </a><br>
+							<a href="/techpending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a><br>
+							<a href="/techresolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a><br>
+							<a href="/techaccount/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a><br>
+							<a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a><br>
+							<a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a><br>
+						</div>
+					{% else %}
+						<!-- NO USER NAVBAR -->
+						<div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav; flip: x">
+							<a href="/login/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span> Login </a><br>
+							<a href="/register/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span> Sign up </a><br>
+							<a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a>
+
+						</div>
+					{% endif %}
+                </div>
+            </div>
+	    </nav>
+	</div>
+</header>
+
+
+<body>
+	<!-- Flashed messages section -->
+	<div class="uk-container-small uk-width-1-4@s uk-position-top-center uk-position-medium uk-position-z-index">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for category, message in messages %}
+							<div uk-alert="animation: uk-animation-scale-up; duration:500" class="uk-alert-{{category}} uk-animation-scale-down" role="alert">
+							    <a class="uk-alert-close" uk-close></a>
+							    <p>{{ message }}</p>
+							</div>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+	</div>
+
+	<!-- Main Body section for page contents -->
+	<div class="uk-container uk-container-small">
+		{% block body %} 
+		
+		{% endblock %}
+	</div>
+	<!-- /END Main Body -->
+</body>
+
+
+<!-- Footer -->
+<footer>
+	<div class="uk-container uk-padding">
+		<p class="uk-text-small uk-text-center">
+			<a uk-icon="icon: twitter"></a> <a class="uk-link" href="https://twitter.com/minutetechtips" target="_blank"> Twitter </a>&nbsp;
+			<a uk-icon="icon: info"></a> <a class="uk-link" href="/about/">Minute.tech LLC </a>
+			<a uk-icon="icon: facebook"></a> <a class="uk-link" href="https://www.facebook.com/Minute.tech" target="_blank"> Facebook</a>
+		</p>
+	</div>
+</footer>
+
+</html>
+

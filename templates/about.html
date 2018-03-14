@@ -1,0 +1,79 @@
+{% extends "header_no_container.html" %}
+
+{% block body %}
+ 
+	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center uk-padding-remove-top" 
+				style="padding-top: 50px; background-image: url({{ url_for('static', filename='images/SF_landing.JPG') }}">
+		<div class="uk-container">
+			<div class="uk-container uk-align-center" uk-scrollspy="cls: uk-animation-scale-up; repeat: true">
+				<div class="uk-text-center">
+					<img class="uk-border-circle" alt="minute.tech-logo" src="{{ url_for('static', filename='images/Icon_1000x1000px.png')}}" style="max-width: 40%; height: auto;" >
+				</div>
+			</div>
+			
+			<div class="uk-container uk-background-muted uk-padding-large uk-align-center">
+				<div class="uk-padding uk-margin-auto" >
+					<h1 class="uk-heading-primary uk-text-center"><b>About Minute.tech </b></h1>
+					<hr>
+					<p class="uk-text-large">Minute.tech is an on-demand, high quality technical support line for the average tech user at home.<br>  We can assist on issues all over the tech spectrum from online accounts, computers, smart phones, software and more. Currently we are going through testing, and taking potential clients. Sign up now to participate!</p>
+					
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- SECTION 2 -->
+
+	<section class="uk-section uk-section-xsmall uk-section-secondary uk-background-cover" style="background-color: #4EBDE5;">
+		<div class="uk-container uk-padding-large">
+			<div class="uk-margin-auto" >
+				
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 5 -->
+
+	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom" 
+			style="background-image: url({{ url_for('static', filename='images/Minute_technician.JPG')}});">
+		<div class="uk-container uk-container-small uk-margin-small">
+			<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-shake; repeat: true"> 
+				<div class="uk-text-center">
+					<h1 class="uk-heading" ><span uk-icon="icon: phone; ratio: 4"></span> Contact</h1>
+				</div>
+				<hr>
+				<div class="uk-container-small">
+					<p>Feel free to contact us below with any questions, comments, or concerns.</p>
+					<form class="uk-grid-small" action="/about/" method="post" uk-grid>
+						<div class="uk-width-1-3@s uk-margin-small">
+							{{ form.email.label }}
+							{% if session.logged_in == 'client' %}
+								{{ form.email(value=session.email, class_="uk-input") }}
+							{% elif session.logged_in == 'tech' %}
+								{{ form.email(value=session.techemail, class_="uk-input") }}
+							{% else %}
+								{{ form.email(placeholder='your-email@email.com', class_="uk-input") }}
+							{% endif %}
+						</div>
+						{% for error in form.message.errors %}
+				        	<span class="uk-label uk-label-danger">{{ error }}</span>
+				    	{% endfor %}
+						<div class="uk-width-1-1 uk-margin-small">
+							{{ form.message.label }}
+							<br>
+							{{ form.message(placeholder="We are open to everything.", rows="10", cols="80", class_="uk-textarea") }}
+						</div>
+						{% for error in form.message.errors %}
+				        	<span class="uk-label uk-label-danger">{{ error }}</span>
+				    	{% endfor %}
+						<div class="uk-width-1-4@s uk-margin-small">
+							<input class="uk-button uk-button-primary" type="submit" value="Ask">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
