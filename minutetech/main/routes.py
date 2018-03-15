@@ -6,15 +6,12 @@
 
 ###### INCLUDED LIBRARIES ######
 import os, sys, os.path
-from flask import Flask, render_template, flash, request, url_for, redirect, session, send_file, send_from_directory
+from flask import Flask, render_template, flash, request, url_for, redirect, session, send_file, send_from_directory, Blueprint
 # WTForms
 from wtforms import Form, BooleanField, TextField, PasswordField, SelectField, RadioField, TextAreaField, DateField, DateTimeField, StringField, validators
 from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired
 # Flask WTF 
-# -different than WTForms!
-# -has reCAPTCHA!
-# -builds ontop of Flask and wtforms
 from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 # For secure file uploads
@@ -31,7 +28,8 @@ from functools import wraps
 from dbconnect import connection
 # UPLOAD_FOLDER = '/var/www/FlaskApp/FlaskApp/static/user_info/prof_pic'
 # ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
+mod = Blueprint('main', __name__, template_folder='templates', static_folder='static')
 # Key cross-referenced from flaskapp.wsgi
 app.config['SECRET_KEY'] = 'quincyisthebestdog11'
 #For Flask Mail
@@ -49,7 +47,7 @@ app.config['TESTING'] = False #turns reacaptcha off/on
 
 #temporary to ask questions on homepage
 #will eventually want a new user to be able to type a question out, but directed to sign up page immediatly, but their question is still saved and placed in database
-@app.route('/test/', methods=['GET','POST'])
+@mod.route('/test/', methods=['GET','POST'])
 def test():
 	error = ''
 	try:
@@ -71,7 +69,7 @@ def test():
 class AskForm(Form):
 	body = TextAreaField('Desciption', [validators.Length(min=10, max=2000)])
 
-@app.route('/', methods=['GET','POST'])
+@mod.route('/', methods=['GET','POST'])
 def homepage():
 	#if user posts a question to the pool
 	form = AskForm(request.form)
@@ -105,7 +103,7 @@ class ContactForm(Form):
 	message = TextAreaField('Message', [validators.Length(min=10, max=2000)])
 	email = TextField('Email', [validators.Optional()])
 
-@app.route('/about/', methods=['GET','POST'])
+@mod.route('/about/', methods=['GET','POST'])
 def about():
 	uid = 0
 	try:
@@ -155,7 +153,7 @@ def internal_server_error(e):
 
 ############## CLIENT SECTION ##########################
 
-@app.route('/ask/', methods=['GET','POST'])
+@mod.route('/ask/', methods=['GET','POST'])
 def ask():
 	error = ''
 	try:
@@ -174,7 +172,7 @@ def ask():
 	except Exception as e:
 		return render_template("500.html", error = e)
 
-@app.route('/resolved/', methods=['GET','POST'])
+@mod.route('/resolved/', methods=['GET','POST'])
 def resolved():
 	error = ''
 	try:
@@ -193,7 +191,7 @@ def resolved():
 	except Exception as e:
 		return render_template("500.html", error = e)
 
-@app.route('/pending/', methods=['GET','POST'])
+@mod.route('/pending/', methods=['GET','POST'])
 def pending():
 	error = ''
 	try:
@@ -215,7 +213,7 @@ def pending():
 ##############  END CLIENT SECTION ##########################
 
 ##############  TECHNICIAN SECTION  ####################
-@app.route('/answer/', methods=['GET','POST'])
+@mod.route('/answer/', methods=['GET','POST'])
 def answer():
 	error = ''
 	try:
@@ -234,7 +232,7 @@ def answer():
 	except Exception as e:
 		return render_template("500.html", error = e)
 
-@app.route('/techresolved/', methods=['GET','POST'])
+@mod.route('/techresolved/', methods=['GET','POST'])
 def techresolved():
 	error = ''
 	try:
@@ -254,7 +252,7 @@ def techresolved():
 		return render_template("500.html", error = e)
 
 
-@app.route('/techroom/?select_q=<select_q>', methods=['GET','POST'])
+@mod.route('/techroom/?select_q=<select_q>', methods=['GET','POST'])
 def techroom(select_q):
 	error = ''
 	try:
@@ -274,7 +272,7 @@ def techroom(select_q):
 		return render_template("500.html", error = e)
 
 
-@app.route('/techpending/', methods=['GET','POST'])
+@mod.route('/techpending/', methods=['GET','POST'])
 def techpending():
 	error = ''
 	try:
@@ -315,7 +313,7 @@ class EditAccountForm(Form):
 	# password = PasswordField('Password', [validators.Required(), validators.EqualTo('techconfirm', message ="Passwords must match.")])
 	# confirm = PasswordField('Repeat Password')
 
-@app.route('/account/', methods=['GET','POST'])
+@mod.route('/account/', methods=['GET','POST'])
 def account():
 	error = ''
 	try:
@@ -428,7 +426,7 @@ def account():
 		return render_template("500.html", error = e)
 
 #PASSWORD CONFIRM
-@app.route('/password_confirm/', methods=['GET','POST'])
+@mod.route('/password_confirm/', methods=['GET','POST'])
 def password_confirm():
 	error = ''
 	try:
@@ -461,7 +459,7 @@ class PasswordResetForm(Form):
 	confirm = PasswordField('Repeat Password')
 
 # PASSWORD RESET
-@app.route('/password_reset/', methods=['GET','POST'])
+@mod.route('/password_reset/', methods=['GET','POST'])
 def password_reset():
 	error = ''
 	try:
@@ -489,7 +487,7 @@ def password_reset():
 		return(str(e))
 
 # EMAIL CONFIRM
-@app.route('/email_confirm/', methods=['GET','POST'])
+@mod.route('/email_confirm/', methods=['GET','POST'])
 def email_confirm():
 	error = ''
 	try:
@@ -522,7 +520,7 @@ class EmailResetForm(Form):
 	confirm = TextField('Repeat Email')
 
 # EMAIL RESET
-@app.route('/email_reset/', methods=['GET','POST'])
+@mod.route('/email_reset/', methods=['GET','POST'])
 def email_reset():
 	error = ''
 	try:
@@ -562,7 +560,7 @@ def email_reset():
 		return(str(e))
 
 # PHONE CONFIRM
-@app.route('/phone_confirm/', methods=['GET','POST'])
+@mod.route('/phone_confirm/', methods=['GET','POST'])
 def phone_confirm():
 	error = ''
 	try:
@@ -595,7 +593,7 @@ class PhoneResetForm(Form):
 	confirm = TextField('Repeat Phone')
 
 # PHONE RESET
-@app.route('/phone_reset/', methods=['GET','POST'])
+@mod.route('/phone_reset/', methods=['GET','POST'])
 def phone_reset():
 	error = ''
 	try:
@@ -646,7 +644,7 @@ def phone_reset():
 # class ProfilePictureForm(FlaskForm):
 # 	prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
 
-# @app.route('/profile_picture_upload/', methods=['GET','POST'])
+# @mod.route('/profile_picture_upload/', methods=['GET','POST'])
 # def profile_picture_upload():
 # 	form = ProfilePictureForm()
 # 	cid = str(session['clientcid'])
@@ -692,7 +690,7 @@ class TechEditAccountForm(Form):
 	techbio = TextAreaField('Personal Description', [validators.Length(min=1, max=2000)], widget=TextArea())
 	# password = PasswordField('Password', [validators.Required(), validators.EqualTo('techconfirm', message ="Passwords must match.")])
 
-@app.route('/techaccount/', methods=['GET','POST'])
+@mod.route('/techaccount/', methods=['GET','POST'])
 def techaccount():
 	error = ''
 	# Using this global variable is tough because each time I redirect, even to the same page, it forgets the value. Make it a session varaible maybe?
@@ -805,14 +803,14 @@ def techaccount():
 	except Exception as e:
 		return render_template("500.html", error = e)
 
-@app.route('/tech_duties/', methods=['GET','POST'])
+@mod.route('/tech_duties/', methods=['GET','POST'])
 def tech_duties():
 	return render_template("tech_duties.html")
 
 class TechSignatureForm(Form):
 	signature = TextField('Signature (Please enter your full name)', [validators.Length(min=2, max=100)])
 
-@app.route('/tech_signature/', methods=['GET','POST'])
+@mod.route('/tech_signature/', methods=['GET','POST'])
 def tech_signature():
 	form = TechSignatureForm(request.form)
 	if request.method == "POST" and form.validate():
@@ -831,7 +829,7 @@ def tech_signature():
 		return render_template("tech_signature.html", form=form)
 
 #PASSWORD CONFIRM
-@app.route('/techpassword_confirm/', methods=['GET','POST'])
+@mod.route('/techpassword_confirm/', methods=['GET','POST'])
 def techpassword_confirm():
 	error = ''
 	try:
@@ -864,7 +862,7 @@ class TechPasswordResetForm(Form):
 	confirm = PasswordField('Repeat Password')
 
 # PASSWORD RESET
-@app.route('/techpassword_reset/', methods=['GET','POST'])
+@mod.route('/techpassword_reset/', methods=['GET','POST'])
 def techpassword_reset():
 	error = ''
 	try:
@@ -892,7 +890,7 @@ def techpassword_reset():
 		return(str(e))
 
 # EMAIL CONFIRM
-@app.route('/techemail_confirm/', methods=['GET','POST'])
+@mod.route('/techemail_confirm/', methods=['GET','POST'])
 def techemail_confirm():
 	error = ''
 	try:
@@ -925,7 +923,7 @@ class TechEmailResetForm(Form):
 	confirm = TextField('Repeat Email')
 
 # EMAIL RESET
-@app.route('/techemail_reset/', methods=['GET','POST'])
+@mod.route('/techemail_reset/', methods=['GET','POST'])
 def techemail_reset():
 	error = ''
 	try:
@@ -965,7 +963,7 @@ def techemail_reset():
 		return(str(e))
 
 # PHONE CONFIRM
-@app.route('/techphone_confirm/', methods=['GET','POST'])
+@mod.route('/techphone_confirm/', methods=['GET','POST'])
 def techphone_confirm():
 	error = ''
 	try:
@@ -998,7 +996,7 @@ class TechPhoneResetForm(Form):
 	confirm = TextField('Repeat Phone')
 
 # PHONE RESET
-@app.route('/techphone_reset/', methods=['GET','POST'])
+@mod.route('/techphone_reset/', methods=['GET','POST'])
 def techphone_reset():
 	error = ''
 	try:
@@ -1050,7 +1048,7 @@ def techphone_reset():
 # class TechProfilePictureForm(FlaskForm):
 # 	techprof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
 
-# @app.route('/tech_profile_picture_upload/', methods=['GET','POST'])
+# @mod.route('/tech_profile_picture_upload/', methods=['GET','POST'])
 # def tech_profile_picture_upload():
 # 	form = TechProfilePictureForm()
 # 	techtid = str(session['techtid'])
@@ -1090,7 +1088,7 @@ def login_required(f):
 			return redirect(url_for('login'))
 	return wrap
 
-@app.route('/logout/', methods=['GET','POST'])
+@mod.route('/logout/', methods=['GET','POST'])
 @login_required
 def logout():
 	session.clear()
@@ -1099,7 +1097,7 @@ def logout():
 
 	
 #CLIENT LOGIN
-@app.route('/login/', methods=['GET','POST'])
+@mod.route('/login/', methods=['GET','POST'])
 def login():
 	error = ''
 	try:
@@ -1130,7 +1128,7 @@ def login():
 		return render_template("login.html", error = error)
 
 #TECH LOGIN
-@app.route('/techlogin/', methods=['GET','POST'])
+@mod.route('/techlogin/', methods=['GET','POST'])
 def tech_login():
 	error = ''
 	try:
@@ -1160,7 +1158,7 @@ def tech_login():
 		error = e
 		return render_template("techlogin.html", error = error)
 
-@app.route('/forgot_password/<token>')
+@mod.route('/forgot_password/<token>')
 def forgot_password(token):
 	try:
 		email = s.loads(token, salt='email-confirm', max_age=3600)
@@ -1182,7 +1180,7 @@ def forgot_password(token):
 		flash(u'The token has expired', 'danger')
 		return redirect(url_for('homepage'))
 
-@app.route('/fforgot_password/')
+@mod.route('/fforgot_password/')
 def fforgot_password():
 	try:
 		# Send confirmation email
@@ -1210,7 +1208,7 @@ class RegistrationForm(Form):
 	confirm = PasswordField('Repeat Password')
 	recaptcha = RecaptchaField()
 
-@app.route('/register/', methods=['GET','POST'])
+@mod.route('/register/', methods=['GET','POST'])
 def register_page():
 	error = ''
 	try:
@@ -1280,7 +1278,7 @@ def register_page():
 	except Exception as e:
 		return(str(e))
 
-@app.route('/email_verify/<token>')
+@mod.route('/email_verify/<token>')
 def email_verify(token):
 	try:
 		c, conn = connection()
@@ -1327,7 +1325,7 @@ class TechRegistrationForm(Form):
 	techconfirm = PasswordField('Repeat Password')
 	recaptcha = RecaptchaField()
 	
-@app.route('/techregister/', methods=['GET','POST'])
+@mod.route('/techregister/', methods=['GET','POST'])
 def tech_register_page():
 	error = ''
 	try:
@@ -1399,36 +1397,36 @@ def tech_register_page():
 
 ## Sending Files ##
 
-@app.route('/MinutetechLLC_tos/')
+@mod.route('/MinutetechLLC_tos/')
 def return_tos():
 	return send_file('static/legal/MinutetechLLC_tos.pdf', attachment_filename='MinutetechLLC_tos.pdf')
 
-@app.route('/Minutetech_Logo/')
+@mod.route('/Minutetech_Logo/')
 def return_logo():
 	return send_file('static/images/Icon_1000x1000px.png', attachment_filename='Icon_1000x1000px.png')
 
-@app.route('/coffee-lady/')
+@mod.route('/coffee-lady/')
 def return_pic1():
 	return send_file('static/images/lady-logo-email-banner.png', attachment_filename='lady-logo-email-banner.png')
 
-@app.route('/Minutetech_Long_Logo/')
+@mod.route('/Minutetech_Long_Logo/')
 def return_logo_long():
 	return send_file('static/images/Secondary_long.png')
 
-@app.route('/Minutetech_rocket_ship/')
+@mod.route('/Minutetech_rocket_ship/')
 def return_tocket_ship():
 	return send_file('static/flat-icons/008-startup.png')
 
 # # Univers Black
-# @app.route('/Minutetech_font_black/')
+# @mod.route('/Minutetech_font_black/')
 # def return_font_black():
 # 	return send_file('static/media/fonts/Univers/Univers-Black.otf')
 # # Univers Light Condensed
-# @app.route('/Minutetech_font_light/')
+# @mod.route('/Minutetech_font_light/')
 # def return_font_light():
 # 	return send_file('static/media/fonts/Univers/Univers-CondensedLight.otf')
 
-@app.route('/file_downloads/')
+@mod.route('/file_downloads/')
 def file_downloads():
     return render_template('downloads.html')
 ############################################ END ACCOUNT SYSTEM #########################################################
