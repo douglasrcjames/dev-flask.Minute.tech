@@ -105,8 +105,6 @@ message TEXT,
 PRIMARY KEY (contact_id));
 
 
-
-
 -->tags will be seperated by commas, just parse through them
 -->"pending", client would decide if question is answered
 -->"room" feature would just be the "ticket room", and would share the qid
