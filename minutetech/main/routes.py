@@ -153,9 +153,8 @@ def about():
 
     except Exception as e:
         return render_template("500.html", error=e)
+
 # CLIENT LOGIN
-
-
 @mod.route('/login/', methods=['GET', 'POST'])
 def login():
     global count
@@ -190,23 +189,7 @@ def login():
         error = "Invalid credentials, try again."
         return render_template("login.html", error=error)
 
-# will remove this once I get the forms.py linked properly
-
-
-# class RegistrationForm(Form):
-#     first_name = TextField('First Name', [validators.Length(min=1, max=50)])
-#     last_name = TextField('Last Name', [validators.Length(min=1, max=50)])
-#     email = TextField('Email Address', [validators.Length(min=6, max=50)])
-#     phone = TextField('Phone Number', [validators.Length(min=10, max=20)])
-#     czip = TextField('ZIP', [validators.Length(min=2, max=16)])
-#     password = PasswordField('Password', [validators.Required(
-#     ), validators.EqualTo('confirm', message="Passwords must match.")])
-#     confirm = PasswordField('Repeat Password')
-#     recaptcha = RecaptchaField()
-
 # CLIENT REGISTER
-
-
 @mod.route('/register/', methods=['GET', 'POST'])
 def register_page():
     error = ''
@@ -367,8 +350,6 @@ def email_verify(token):
 ############################################ CLIENT TICKET SYSTEM ########
 
 ############## CLIENT SECTION ##########################
-
-
 @mod.route('/ask/', methods=['GET', 'POST'])
 def ask():
     error = ''
