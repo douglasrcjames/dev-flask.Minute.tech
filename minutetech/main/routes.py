@@ -92,20 +92,20 @@ def homepage():
         body = form.body.data
         tags = 'Not provided'
         priority = 500
-        clientcid = session['clientcid']
+        cid = session['cid']
 
         c, conn = connection()
         c.execute("INSERT INTO tickets (cid, difficulty, priority, title, tags) VALUES (%s, %s, %s, %s, %s)",
-                  (clientcid, difficulty, priority, title, tags))
+                  (cid, difficulty, priority, title, tags))
         conn.commit()
         # Get qid after the ticket is generated after an initial "ask" page
         # request
         c.execute(
-            "SELECT qid FROM tickets WHERE cid = (%s) AND title = (%s)", (clientcid, title))
+            "SELECT qid FROM tickets WHERE cid = (%s) AND title = (%s)", (cid, title))
         qid = c.fetchone()[0]
         conn.commit()
         c.execute("INSERT INTO threads (qid, cid, body) VALUES (%s, %s, %s)",
-                  (qid, clientcid, body))
+                  (qid, cid, body))
         conn.commit()
         c.close()
         conn.close()
@@ -131,9 +131,9 @@ def about():
             # Get user ID
             if 'logged_in' in session:
                 if session['logged_in'] == 'client':
-                    uid = session['clientcid']
+                    uid = session['cid']
                 if session['logged_in'] == 'tech':
-                    uid = session['techtid']
+                    uid = session['tid']
 
             # Throw data in database
             c, conn = connection()
@@ -237,7 +237,7 @@ def register_page():
                 session['logged_in'] = 'client'
                 # we get the client ID on the first page after it is generated,
                 # dont worry
-                session['clientcid'] = 0
+                session['cid'] = 0
                 session['email'] = email
                 session['phone'] = phone
                 session['rating'] = 500
@@ -277,7 +277,7 @@ def email_verify(token):
         if 'logged_in' in session:
             email = s.loads(token, salt='email-confirm', max_age=3600)
             if session['logged_in'] == 'client':
-                cid = session['clientcid']
+                cid = session['cid']
                 c.execute(
                     "UPDATE cpersonals SET email_verify = 1 WHERE cid = (%s)", (cid,))
                 conn.commit()
@@ -287,7 +287,7 @@ def email_verify(token):
                 return redirect(url_for('main.account'))
 
             elif session['logged_in'] == 'tech':
-                tid = session['techtid']
+                tid = session['tid']
                 c.execute(
                     "UPDATE tpersonals SET email_verify = 1 WHERE tid = (%s)", (tid,))
                 conn.commit()
@@ -355,7 +355,7 @@ def ask():
     try:
         c, conn = connection()
         if request.method == "POST":
-            cid = session['clientcid']
+            cid = session['cid']
             c.execute(
                 "UPDATE cpersonals SET launch_email = 1 WHERE cid = (%s)", (cid,))
             conn.commit()
@@ -376,7 +376,7 @@ def resolved():
     try:
         c, conn = connection()
         if request.method == "POST":
-            cid = session['clientcid']
+            cid = session['cid']
             c.execute(
                 "UPDATE cpersonals SET launch_email = 1 WHERE cid = (%s)", (cid,))
             conn.commit()
@@ -397,7 +397,7 @@ def pending():
     try:
         c, conn = connection()
         if request.method == "POST":
-            cid = session['clientcid']
+            cid = session['cid']
             c.execute(
                 "UPDATE cpersonals SET launch_email = 1 WHERE cid = (%s)", (cid,))
             conn.commit()
@@ -429,50 +429,50 @@ def account():
             c, conn = connection()
             email = session['email']
             c.execute("SELECT cid FROM clients WHERE email = (%s)", (email,))
-            clientcid = c.fetchone()[0]
+            cid = c.fetchone()[0]
             c.execute("SELECT phone FROM clients WHERE email = (%s)", (email,))
             phone = c.fetchone()[0]
             c.execute("SELECT rating FROM clients WHERE email = (%s)", (email,))
             rating = c.fetchone()[0]
             c.execute(
-                "SELECT first_name FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT first_name FROM cpersonals WHERE cid = (%s)", (cid,))
             first_name = c.fetchone()[0]
             c.execute(
-                "SELECT last_name FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT last_name FROM cpersonals WHERE cid = (%s)", (cid,))
             last_name = c.fetchone()[0]
             c.execute(
-                "SELECT address FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT address FROM cpersonals WHERE cid = (%s)", (cid,))
             address = c.fetchone()[0]
             c.execute("SELECT city FROM cpersonals WHERE cid = (%s)",
-                      (clientcid,))
+                      (cid,))
             city = c.fetchone()[0]
             c.execute(
-                "SELECT state FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT state FROM cpersonals WHERE cid = (%s)", (cid,))
             state = c.fetchone()[0]
-            c.execute("SELECT zip FROM cpersonals WHERE cid = (%s)", (clientcid,))
+            c.execute("SELECT zip FROM cpersonals WHERE cid = (%s)", (cid,))
             czip = c.fetchone()[0]
             c.execute(
-                "SELECT birth_month FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT birth_month FROM cpersonals WHERE cid = (%s)", (cid,))
             birth_month = c.fetchone()[0]
             c.execute(
-                "SELECT birth_day FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT birth_day FROM cpersonals WHERE cid = (%s)", (cid,))
             birth_day = c.fetchone()[0]
             c.execute(
-                "SELECT birth_year FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT birth_year FROM cpersonals WHERE cid = (%s)", (cid,))
             birth_year = c.fetchone()[0]
-            c.execute("SELECT bio FROM cpersonals WHERE cid = (%s)", (clientcid,))
+            c.execute("SELECT bio FROM cpersonals WHERE cid = (%s)", (cid,))
             bio = c.fetchone()[0]
             c.execute(
-                "SELECT reg_date FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT reg_date FROM cpersonals WHERE cid = (%s)", (cid,))
             reg_date = c.fetchone()[0]
             # For now, just putting the prof_pic url into the BLOB
             c.execute(
-                "SELECT prof_pic FROM cpersonals WHERE cid = (%s)", (clientcid,))
+                "SELECT prof_pic FROM cpersonals WHERE cid = (%s)", (cid,))
             prof_pic = c.fetchone()[0]
             conn.commit()
             c.close()
             conn.close()
-            session['clientcid'] = clientcid
+            session['cid'] = cid
             session['phone'] = phone
             session['rating'] = rating
             session['first_name'] = first_name
@@ -510,11 +510,11 @@ def account():
                 birth_day = form.birth_day.data
                 birth_year = form.birth_year.data
                 bio = request.form['bio']
-                clientcid = session['clientcid']
+                cid = session['cid']
 
-                # c.execute("UPDATE clients SET email = %s, phone = %s WHERE cid = (%s)", (email, phone, clientcid))
+                # c.execute("UPDATE clients SET email = %s, phone = %s WHERE cid = (%s)", (email, phone, cid))
                 c.execute("UPDATE cpersonals SET first_name = %s, last_name = %s, address = %s, city = %s, state = %s, zip = %s, birth_month = %s, birth_day = %s, birth_year = %s, bio = %s WHERE cid = (%s)", (thwart(
-                    first_name), thwart(last_name), thwart(address), thwart(city), thwart(state), thwart(czip), birth_month, birth_day, birth_year, bio, clientcid))
+                    first_name), thwart(last_name), thwart(address), thwart(city), thwart(state), thwart(czip), birth_month, birth_day, birth_year, bio, cid))
                 conn.commit()
                 c.close()
                 conn.close()
@@ -585,7 +585,7 @@ def password_reset():
         if session['pconfirm'] == 1:
             form = PasswordResetForm(request.form)
             if request.method == "POST" and form.validate():
-                cid = session['clientcid']
+                cid = session['cid']
                 password = sha256_crypt.encrypt((str(form.password.data)))
                 c, conn = connection()
                 c.execute(
@@ -649,7 +649,7 @@ def email_reset():
             form = EmailResetForm(request.form)
             c, conn = connection()
             if request.method == "POST" and form.validate():
-                cid = session['clientcid']
+                cid = session['cid']
                 email = form.email.data
                 # check if form input is different than whats in session, if so, then we want to make sure the form input isnt in the DB
                 # if form input and the session are the same, we dont care,
@@ -729,7 +729,7 @@ def phone_reset():
             form = PhoneResetForm(request.form)
             if request.method == "POST" and form.validate():
                 c, conn = connection()
-                cid = session['clientcid']
+                cid = session['cid']
                 phone = form.phone.data
                 # check if phone number exists first
                 if(phone != session["phone"]):
@@ -780,7 +780,7 @@ def phone_reset():
 # @mod.route('/profile_picture_upload/', methods=['GET','POST'])
 # def profile_picture_upload():
 # 	form = ProfilePictureForm()
-# 	cid = str(session['clientcid'])
+# 	cid = str(session['cid'])
 # 	first_name = session['first_name']
 # 	#default_prof_pic = 'app/uploads/photos/static/user_info/prof_pic/default.jpg'
 # 	#user_prof_pic = cid+'_'+first_name+'_'+'.png'
