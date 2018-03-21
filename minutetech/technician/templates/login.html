@@ -14,7 +14,7 @@
 		 		Try logging out as a client and visiting the Minute.technician sign up page.
 		 		<br>
 		 		<br>
-		 		<a href="/techregister/" uk-icon="icon: nut"></a> <a href="/techregister/"> Minute.technician sign up</a>
+		 		<a href="/technician/register/" uk-icon="icon: nut"></a> <a href="/technician/register/"> Minute.technician sign up</a>
 		 		<br>
 		 		<br>
 		 		<a href="/account/" uk-icon="icon: user"></a> <a href="/account/"> Account</a>
@@ -35,7 +35,7 @@
 		 		Don't worry, we already have you logged in.
 		 		<br>
 		 		<br>
-		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Account</a>
+		 		<a href="/technician/account/" uk-icon="icon: user"></a> <a href="/technician/account/"> Account</a>
 		 		<br>
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
@@ -54,14 +54,14 @@
 						<div class="uk-margin">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon" uk-icon="icon: mail"></span>
-								<input class="uk-input" required placeholder="Email" type="text" name="techemail" value="{{ request.form.techemail }}">
+								<input class="uk-input" required placeholder="Email" type="text" name="email" value="{{ request.form.email }}">
 							</div>
 							
 						</div>
 						<div class="uk-margin">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
-								<input class="uk-input" required placeholder="Password" type="password" name="techpassword" value="{{ request.form.techpassword }}">
+								<input class="uk-input" required placeholder="Password" type="password" name="password" value="{{ request.form.password }}">
 							</div>
 						</div>
 						
@@ -74,8 +74,8 @@
 						<span class="uk-label uk-label-danger">{{ error }}</span></p>
 					{% endif %}
 					<hr>
-					<p><a href="/techregister/" uk-icon="icon: plus"></a> Want to be a Tech? <a href="/techregister/">Register here.</a></p>
-					<p><a href="/login/" uk-icon="icon: sign-in"></a> Not a Minute Technician? <a href="/login/">Login here.</a></p>
+					<p><a href="/technician/register/" uk-icon="icon: plus"></a> Want to be a Technician? <a href="/technician/register/">Register here.</a></p>
+					<p><a href="/login/" uk-icon="icon: sign-in"></a> Looking for Client login? <a href="/login/">Login here.</a></p>
 					
 				</div>
 			</div>

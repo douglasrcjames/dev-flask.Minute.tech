@@ -6,10 +6,15 @@
 
 		<!-- Display only client that is logged_in reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
-		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Already logged in </h2>
+		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as client </h2>
 		 	<hr>
 		 	<p>
-		 		Don't worry, we already have you logged in.
+		 		Minute.tech is always hiring, go sign up to become a Minute.technician and share your tech knowledge with the world!
+		 		<br>
+		 		Try logging out as a client and visiting the Minute.technician sign up page.
+		 		<br>
+		 		<br>
+		 		<a href="/techregister/" uk-icon="icon: nut"></a> <a href="/techregister/"> Minute.technician sign up</a>
 		 		<br>
 		 		<br>
 		 		<a href="/account/" uk-icon="icon: user"></a> <a href="/account/"> Account</a>
@@ -27,10 +32,7 @@
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as a technician </h2>
 		 	<hr>
 		 	<p>
-		 		This page is for client accounts only, try logging out of your technician account and logging into a regular Minute.tech account. 
-		 		<br>
-		 		<br>
-		 		<a href="/logout/" uk-icon="icon: sign-out"></a> <a href="/logout/"> Logout</a>
+		 		Don't worry, we already have you logged in.
 		 		<br>
 		 		<br>
 		 		<a href="/technician/account/" uk-icon="icon: user"></a> <a href="/technician/account/"> Account</a>
@@ -47,13 +49,14 @@
 			<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
 				<div class="uk-width-1-2@s uk-padding uk-background-muted uk-margin-large">
 					<form action="" method="post">
-						<h2><span uk-icon="icon: user; ratio: 2.5"></span>Login</h2>
+						<h3><span uk-icon="icon: nut; ratio: 2.5"></span> Technician Login</h3>
 						<hr>
 						<div class="uk-margin">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon" uk-icon="icon: mail"></span>
 								<input class="uk-input" required placeholder="Email" type="text" name="email" value="{{ request.form.email }}">
 							</div>
+							
 						</div>
 						<div class="uk-margin">
 							<div class="uk-inline uk-width-1-1">
@@ -61,65 +64,25 @@
 								<input class="uk-input" required placeholder="Password" type="password" name="password" value="{{ request.form.password }}">
 							</div>
 						</div>
-						<!--<div class="uk-margin">
-							<label><input class="uk-checkbox" type="checkbox"> Keep me logged in</label>
-						</div>-->
+						
 						<div class="uk-margin">
 							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1" value="Login">LOG IN</button>
 						</div>
-						<div class="uk-text-center">
-							<a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small"><u>Forgot your password?</u></a>
-						</div>
-						<div class="uk-margin-small-top" id="recover" hidden>
-								<form action="  url_for('forgot_password') " method="POST">
-								<div class="uk-margin-small">
-									<div class="uk-inline uk-width-1-1">
-										<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
-										<input class="uk-input" placeholder="you@email.com" required type="text" name="f_email">
-									</div>
-								</div>
-								<div class="uk-margin-small">
-									<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">SEND PASSWORD</button>
-								</div>
-								
-							</form>
-						</div>
-						</form>
+					</form>
 					
 					{% if error %}
 						<span class="uk-label uk-label-danger">{{ error }}</span></p>
 					{% endif %}
 					<hr>
-					<p><a href="/register/" uk-icon="icon: plus"></a> Need an account? <a href="/register/">Register here.</a></p>
-					<p><a href="technician/login/" uk-icon="icon: nut"></a> Minute Technician? <a href="/technician/login/">Login here.</a></p>
+					<p><a href="technician/register/" uk-icon="icon: plus"></a> Want to be a Technician? <a href="/technician/register/">Register here.</a></p>
+					<p><a href="/login/" uk-icon="icon: sign-in"></a> Looking for Client login? <a href="/login/">Login here.</a></p>
 					
-					<!-- forgot password link to email
-					<div>
-						<div class="uk-text-center">
-							<a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small">Forgot your password?</a>
-						</div>
-						<div class="uk-margin-small-top" id="recover" hidden>
-							<form action="">
-								
-								<div class="uk-margin-small">
-									<div class="uk-inline uk-width-1-1">
-										<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
-										<input class="uk-input" placeholder="E-mail" required type="text">
-									</div>
-								</div>
-								<div class="uk-margin-small">
-									<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">SEND PASSWORD</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					-->
 				</div>
 			</div>
-			
+		</div>
+
 	{% endif %}
  
 {% endblock %}
 
 
-		

@@ -51,7 +51,7 @@
 							{% if session.logged_in == 'client' %}
 								{{ form.email(value=session.email, class_="uk-input") }}
 							{% elif session.logged_in == 'tech' %}
-								{{ form.email(value=session.techemail, class_="uk-input") }}
+								{{ form.email(value=session.email, class_="uk-input") }}
 							{% else %}
 								{{ form.email(placeholder='your-email@email.com', class_="uk-input") }}
 							{% endif %}

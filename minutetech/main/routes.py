@@ -13,11 +13,10 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_cl
 from passlib.hash import sha256_crypt  # To encrypt the password
 from MySQLdb import escape_string as thwart  # To prevent SQL injection
 from flask_mail import Mail, Message
-# Email confirmation link that has a short lifespan
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired # Email confirmation link that has a short lifespan
 from functools import wraps  # For login_required
 # Custom f(x)
-from dbconnect import connection
+from ..dbconnect import connection
 from .forms import ContactForm, RegistrationForm, AskForm, EditAccountForm, PasswordResetForm, EmailResetForm, PhoneResetForm
 # Might be able to delete some of these from _ imports, test later for
 # dependencies in files/folders.
@@ -539,7 +538,7 @@ def account():
             # seesion variable called 'logged_in'
             flash(u'Try logging in as a client', 'secondary')
 
-        return render_template("account/account.html", form=form, error=error)
+        return render_template("account/index.html", form=form, error=error)
 
     except Exception as e:
         return render_template("500.html", error=e)
