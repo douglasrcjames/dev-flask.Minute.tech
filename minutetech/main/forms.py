@@ -55,7 +55,6 @@ class PhoneResetForm(Form):
     confirm = TextField('Repeat Phone')
 
 
-
 ############### TECHNICIAN FORMS #####################
 
 class TechRegistrationForm(Form):
