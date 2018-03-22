@@ -1,0 +1,5 @@
+## NOTE ##
+There seems to be a known bug when attempting to render_template, it will choose the main.login instead of technician.login.
+Having the technician folder within the technician folder seems silly, but allows for technician/login to be rendered properly
+
+See: https://stackoverflow.com/questions/7974771/flask-blueprint-template-folder

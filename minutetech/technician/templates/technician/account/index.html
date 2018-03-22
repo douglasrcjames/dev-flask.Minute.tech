@@ -17,88 +17,88 @@
 			<ul class="uk-switcher uk-margin">
 			    <li>
 			    	{% from "_formhelpers.html" import render_field %}
-					<form class="uk-grid-small" action="/techaccount/" method="post" uk-grid>
+					<form class="uk-grid-small" action="technician/account/" method="post" uk-grid>
 						<!-- <div class="uk-width-1">
 					    	<a href="/tech_duties/"><button class="uk-button-large uk-button-secondary" type="button">Become a Certified Minute.technician</button></a>
 					    </div> -->
 						<div class="uk-width-1-2@s">
-							{{ form.techfirst_name.label }}
-							{{ form.techfirst_name(value=session.techfirst_name, class_="uk-input") }}
+							{{ form.first_name.label }}
+							{{ form.first_name(value=session.first_name, class_="uk-input") }}
 							{% for error in form.techfirst_name.errors %}
 						        <span class="uk-label uk-label-danger">{{ error }}</span>
 						    {% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
-							{{ form.techlast_name.label }}
-							{{ form.techlast_name(value=session.techlast_name, class_="uk-input") }}
-							{% for error in form.techlast_name.errors %}
+							{{ form.last_name.label }}
+							{{ form.last_name(value=session.last_name, class_="uk-input") }}
+							{% for error in form.last_name.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
-							<div style="padding:3.5px;"><b>Email</b> <a href="/techemail_confirm/">Change</a></div>
+							<div style="padding:3.5px;"><b>Email</b> <a href="technician/email_confirm/">Change</a></div>
 							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.techemail }}</div>
 						</div>
 						<div class="uk-width-1-2@s">
-							<div style="padding:3.5px;"><b>Phone</b> <a href="/techphone_confirm/">Change</a></div>
+							<div style="padding:3.5px;"><b>Phone</b> <a href="technician/phone_confirm/">Change</a></div>
 							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.techphone }}</div>
 						</div>
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-6@s">
-							{{ form.techbirth_month.label }}
-							{{ form.techbirth_month(value=session.techbirth_month, class_="uk-input") }}
-							{% for error in form.techbirth_month.errors %}
+							{{ form.birth_month.label }}
+							{{ form.birth_month(value=session.birth_month, class_="uk-input") }}
+							{% for error in form.birth_month.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-6@s">
-							{{ form.techbirth_day.label }}
-							{{ form.techbirth_day(value=session.techbirth_day, class_="uk-input") }}
-							{% for error in form.techbirth_day.errors %}
+							{{ form.birth_day.label }}
+							{{ form.birth_day(value=session.birth_day, class_="uk-input") }}
+							{% for error in form.birth_day.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-6@s">
-							{{ form.techbirth_year.label }}
-							{{ form.techbirth_year(value=session.techbirth_year, class_="uk-input") }}
-							{% for error in form.techbirth_year.errors %}
+							{{ form.birth_year.label }}
+							{{ form.birth_year(value=session.birth_year, class_="uk-input") }}
+							{% for error in form.birth_year.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
-							{{ form.techaddress.label }}
-							{{ form.techaddress(value=session.techaddress, class_="uk-input") }}
-							{% for error in form.techaddress.errors %}
+							{{ form.address.label }}
+							{{ form.address(value=session.address, class_="uk-input") }}
+							{% for error in form.address.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
-							{{ form.techcity.label }}
-							{{ form.techcity(value=session.techcity, class_="uk-input") }}
-							{% for error in form.techcity.errors %}
+							{{ form.city.label }}
+							{{ form.city(value=session.city, class_="uk-input") }}
+							{% for error in form.city.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
-							{{ form.techstate.label }}
-							{{ form.techstate(value=session.techstate, class_="uk-input") }}
-							{% for error in form.techstate.errors %}
+							{{ form.state.label }}
+							{{ form.state(value=session.state, class_="uk-input") }}
+							{% for error in form.state.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
-							{{ form.techzip.label }}
-							{{ form.techzip(value=session.techzip, class_="uk-input") }}
-							{% for error in form.techzip.errors %}
+							{{ form.tzip.label }}
+							{{ form.tzip(value=session.tzip, class_="uk-input") }}
+							{% for error in form.tzip.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-2@s">
-							{{ render_field(form.techbio, class_="uk-textarea", rows="10", cols="10") }}
+							{{ render_field(form.bio, class_="uk-textarea", rows="10", cols="10") }}
 						</div>
-						<div class="uk-width-1"><strong>Registration date:</strong> {{ session.techreg_date }}</div>
+						<div class="uk-width-1"><strong>Registration date:</strong> {{ session.reg_date }}</div>
 						<!-- <div class="uk-width-1"><strong>Google:</strong> <u>Connect</u>  </div>
 						<div class="uk-width-1"><strong>Facebook:</strong> <u>Connect</u>  </div>
 						<div class="uk-width-1"><strong>LinkedIn:</strong> <u>Connect</u>  </div>
@@ -110,7 +110,7 @@
 						<div class="uk-width-1">
 					    	<button class="uk-button uk-button-primary" type="submit" href="#">Submit Changes</button>
 					    	&nbsp;&nbsp;&nbsp;&nbsp;
-					    	<a href="/techpassword_confirm/"><button class="uk-button-small uk-button-danger" type="button">Change Password</button></a>
+					    	<a href="technician/password_confirm/"><button class="uk-button-small uk-button-danger" type="button">Change Password</button></a>
 					    	<!-- &nbsp;&nbsp;&nbsp;&nbsp;
 					    	<button class="uk-button-small uk-button-default" type="button" href="#">View Public Profile</button> -->
 
