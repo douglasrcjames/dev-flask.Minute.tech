@@ -327,22 +327,22 @@ def email_verify(token):
 # 		flash(u'The token has expired', 'danger')
 # 		return redirect(url_for('main.homepage'))
 
-# @mod.route('/fforgot_password/')
-# def fforgot_password():
-# 	try:
-# 		# Send confirmation email
-# 		f_email = request.form['f_email']
-# 		token = s.dumps(email, salt='forgot-password')
-# 		msg = Message("Minute.tech - Forgot Password", sender = "admin@minute.tech", recipients=[f_email])
-# 		link = url_for('main.forgot_password', token=token, _external=True)
-# 		msg.body = render_template('forgot_password-email.txt', link=link, first_name=first_name)
-# 		msg.html = render_template('forgot_password-email.html', link=link, first_name=first_name)
-# 		mail.send(msg)
-# 		flash(u'Password reset link sent to email', 'success')
-# 		return redirect(url_for('main.homepage'))
+@mod.route('/fforgot_password/')
+def fforgot_password():
+	try:
+		# Send confirmation email
+		f_email = request.form['f_email']
+		token = s.dumps(email, salt='forgot-password')
+		msg = Message("Minute.tech - Forgot Password", sender = "admin@minute.tech", recipients=[f_email])
+		link = url_for('main.forgot_password', token=token, _external=True)
+		msg.body = render_template('forgot_password-email.txt', link=link, first_name=first_name)
+		msg.html = render_template('forgot_password-email.html', link=link, first_name=first_name)
+		mail.send(msg)
+		flash(u'Password reset link sent to email', 'success')
+		return redirect(url_for('main.homepage'))
 
-# 	except Exception as e:
-# 		return(str(e))
+	except Exception as e:
+		return(str(e))
 
 ############################################ END 1st Layer ###############
 

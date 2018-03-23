@@ -1,5 +1,5 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
 
 	{% if session.logged_in == 'client' %}
@@ -17,17 +17,17 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
+		 	</p>
 		 </div>
 
-	{% elif session.logged_in == 'tech' %}	
+	{% elif session.logged_in == 'tech' %}
 
 		<!-- Display only technician that is logged_in reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Logged in as a technician </h2>
 		 	<hr>
 		 	<p>
-		 		This page is for client accounts only, try logging out of your technician account and logging into a regular Minute.tech account. 
+		 		This page is for client accounts only, try logging out of your technician account and logging into a regular Minute.tech account.
 		 		<br>
 		 		<br>
 		 		<a href="/logout/" uk-icon="icon: sign-out"></a> <a href="/logout/"> Logout</a>
@@ -38,7 +38,7 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
+		 	</p>
 		 </div>
 
 	{% else %}
@@ -70,8 +70,9 @@
 						<div class="uk-text-center">
 							<a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small"><u>Forgot your password?</u></a>
 						</div>
+						</form>
 						<div class="uk-margin-small-top" id="recover" hidden>
-								<form action="  url_for('forgot_password') " method="POST">
+								<form action="{{ url_for('main.fforgot_password') }}" method="POST">
 								<div class="uk-margin-small">
 									<div class="uk-inline uk-width-1-1">
 										<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
@@ -81,18 +82,17 @@
 								<div class="uk-margin-small">
 									<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">SEND PASSWORD</button>
 								</div>
-								
+
 							</form>
 						</div>
-						</form>
-					
+
 					{% if error %}
 						<span class="uk-label uk-label-danger">{{ error }}</span></p>
 					{% endif %}
 					<hr>
 					<p><a href="/register/" uk-icon="icon: plus"></a> Need an account? <a href="/register/">Register here.</a></p>
 					<p><a href="technician/login/" uk-icon="icon: nut"></a> Minute Technician? <a href="/technician/login/">Login here.</a></p>
-					
+
 					<!-- forgot password link to email
 					<div>
 						<div class="uk-text-center">
@@ -100,7 +100,7 @@
 						</div>
 						<div class="uk-margin-small-top" id="recover" hidden>
 							<form action="">
-								
+
 								<div class="uk-margin-small">
 									<div class="uk-inline uk-width-1-1">
 										<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
@@ -116,10 +116,10 @@
 					-->
 				</div>
 			</div>
-			
+
 	{% endif %}
- 
+
 {% endblock %}
 
 
-		
+
