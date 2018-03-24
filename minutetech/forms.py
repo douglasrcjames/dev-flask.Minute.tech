@@ -1,3 +1,4 @@
+from flask import Flask
 from wtforms import Form, BooleanField, TextField, PasswordField, SelectField, RadioField, TextAreaField, DateField, DateTimeField, StringField, validators
 from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired
@@ -6,11 +7,13 @@ from flask_wtf.file import FileField, FileRequired, FileAllowed
 from werkzeug.utils import secure_filename  # For secure file uploads
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 
+app = Flask(__name__)
+
+photos = UploadSet('photos', IMAGES)
 
 class ContactForm(Form):
     message = TextAreaField('Message', [validators.Length(min=10, max=2000)])
     email = TextField('Email', [validators.Optional()])
-
 
 class RegistrationForm(Form):
     first_name = TextField('First Name', [validators.Length(min=1, max=50)])
@@ -22,10 +25,8 @@ class RegistrationForm(Form):
     confirm = PasswordField('Repeat Password')
     recaptcha = RecaptchaField()
 
-
 class AskForm(Form):
     body = TextAreaField('Desciption', [validators.Length(min=10, max=2000)])
-
 
 class EditAccountForm(Form):
     first_name = TextField('First Name', [validators.Length(min=1, max=50)])
@@ -49,12 +50,12 @@ class EmailResetForm(Form):
     email = TextField('Email', [validators.Required(), validators.EqualTo('confirm', message="Emails must match.")])
     confirm = TextField('Repeat Email')
 
-
 class PhoneResetForm(Form):
     phone = TextField('Phone', [validators.Required(), validators.EqualTo('confirm', message="Phone numbers must match.")])
     confirm = TextField('Repeat Phone')
 
-
+class ProfilePictureForm(FlaskForm):
+    prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
 
 ############### TECHNICIAN FORMS #####################
 
@@ -74,7 +75,6 @@ class TechRegistrationForm(Form):
     confirm = PasswordField('Repeat Password')
     recaptcha = RecaptchaField()
 
-
 class TechEditAccountForm(Form):
     first_name = TextField(
         'First Name', [validators.Length(min=1, max=50)])
@@ -90,24 +90,20 @@ class TechEditAccountForm(Form):
     bio = TextAreaField('Personal Description', [
                             validators.Length(min=1, max=2000)], widget=TextArea())
 
-
 class TechPhoneResetForm(Form):
     phone = TextField('Phone', [validators.Required(), validators.EqualTo(
         'confirm', message="Phone numbers must match.")])
     confirm = TextField('Repeat Phone')
-
 
 class TechPasswordResetForm(Form):
     password = PasswordField('Password', [validators.Required(
     ), validators.EqualTo('confirm', message="Passwords must match.")])
     confirm = PasswordField('Repeat Password')
 
-
 class TechEmailResetForm(Form):
     email = TextField('Email', [validators.Required(), validators.EqualTo(
         'confirm', message="Emails must match.")])
     confirm = TextField('Repeat Email')
-
 
 class TechSignatureForm(Form):
     signature = TextField('Signature (Please enter your full name)', [

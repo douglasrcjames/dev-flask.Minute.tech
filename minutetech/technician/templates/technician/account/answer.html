@@ -4,12 +4,12 @@
  
 	{% if session.logged_in == 'tech' %}
 
-		<h2><img style="height: 2.5em;" src="{{ url_for('static', filename='flat-icons/007-wrench.png')}}" alt="alert"> <b>Answer</b> Section Under Construction</h2>
+		<h2><img style="height: 2.5em;" src="{{ url_for('static', filename='flat-icons/007-wrench.png')}}" alt="alert"> Section Under Construction</h2>
 		<hr>
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@s uk-align-center">
 			<img class="uk-align-center" style="height: 5em;" src="{{ url_for('static', filename='flat-icons/008-startup.png')}}" alt="rocket">
 			<p class="uk-text-lead uk-text-center">Interested in being notified when we launch our full site?</p>
-			<form action="/answer/" method="post">
+			<form action="" method="post">
 				<input class="uk-button uk-button-primary uk-align-center" type="submit" value="Sign up">
 			</form>
 		</div>
@@ -45,10 +45,10 @@
 		 		This page is for Minute.technician accounts only, try logging out of your client account and logging into a technician account.
 		 		<br>
 		 		<br>
-		 		<a href="/techlogin/" uk-icon="icon: sign-in"></a> <a href="/techlogin/"> Technician Login </a> 
+		 		<a href="/technician/login/" uk-icon="icon: sign-in"></a> <a href="/technician/login/"> Technician Login </a> 
 		 		<br>
 		 		<br>
-		 		<a href="/techregister/" uk-icon="icon: plus"></a> <a href="/techregister/"> Technician Sign up </a>
+		 		<a href="/technician/register/" uk-icon="icon: plus"></a> <a href="/technician/register/"> Technician Sign up </a>
 		 		<br>
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>

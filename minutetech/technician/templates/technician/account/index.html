@@ -17,14 +17,32 @@
 			<ul class="uk-switcher uk-margin">
 			    <li>
 			    	{% from "_formhelpers.html" import render_field %}
-					<form class="uk-grid-small" action="technician/account/" method="post" uk-grid>
-						<!-- <div class="uk-width-1">
-					    	<a href="/tech_duties/"><button class="uk-button-large uk-button-secondary" type="button">Become a Certified Minute.technician</button></a>
-					    </div> -->
+					<form class="uk-grid-small" action="/technician/account/" method="post" uk-grid>
+						<!-- Alert section -->
+			
+						{% if session.certified == 0 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s uk-align-center">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/support.png')}}" alt="rocket">
+                                <a class="uk-button uk-button-small uk-button-secondary uk-align-center" href="/technician/account/duties/">Get Certified</a>
+							</div>
+						{% elif session.certified == 1 %}
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/sand-clock.png')}}" alt="rocket">
+								<p class="uk-text uk-text-center">Certification in process...</p>
+							</div>
+						{% else %}
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="rocket">
+								<p class="uk-text uk-text-center">Certified!</p>
+							</div>
+						{% endif %}
+						<!-- END Alert section -->
+						<div class="uk-width-1"><hr></div>
+
 						<div class="uk-width-1-2@s">
 							{{ form.first_name.label }}
 							{{ form.first_name(value=session.first_name, class_="uk-input") }}
-							{% for error in form.techfirst_name.errors %}
+							{% for error in form.first_name.errors %}
 						        <span class="uk-label uk-label-danger">{{ error }}</span>
 						    {% endfor %}
 						</div>
@@ -36,12 +54,12 @@
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
-							<div style="padding:3.5px;"><b>Email</b> <a href="technician/email_confirm/">Change</a></div>
-							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.techemail }}</div>
+							<div style="padding:3.5px;"><b>Email</b> <a href="/technician/account/email_confirm/">Change</a></div>
+							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.email }}</div>
 						</div>
 						<div class="uk-width-1-2@s">
-							<div style="padding:3.5px;"><b>Phone</b> <a href="technician/phone_confirm/">Change</a></div>
-							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.techphone }}</div>
+							<div style="padding:3.5px;"><b>Phone</b> <a href="/technician/account/phone_confirm/">Change</a></div>
+							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.phone }}</div>
 						</div>
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-6@s">
@@ -110,7 +128,7 @@
 						<div class="uk-width-1">
 					    	<button class="uk-button uk-button-primary" type="submit" href="#">Submit Changes</button>
 					    	&nbsp;&nbsp;&nbsp;&nbsp;
-					    	<a href="technician/password_confirm/"><button class="uk-button-small uk-button-danger" type="button">Change Password</button></a>
+					    	<a href="/technician/account/password_confirm/"><button class="uk-button-small uk-button-danger" type="button">Change Password</button></a>
 					    	<!-- &nbsp;&nbsp;&nbsp;&nbsp;
 					    	<button class="uk-button-small uk-button-default" type="button" href="#">View Public Profile</button> -->
 
@@ -131,7 +149,7 @@
 				            <div class="uk-width-expand@m">
 				                <ul id="ratings-tab-right" class="uk-switcher">
 				                    <li>
-				                    	Your current <b>Technician Rating</b> is <b>{{ session.techrating }}</b>.
+				                    	Your current <b>Technician Rating</b> is <b>{{ session.rating }}</b>.
 				                    	<br>
 				                    	<br>
 				                    	We will have a breakdown of where that number is derived from in the near future. 

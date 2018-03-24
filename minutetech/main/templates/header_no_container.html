@@ -52,9 +52,9 @@
 			<!-- TECH NAVBAR -->
 			<div class="uk-navbar-left uk-responsive-height">
 				<ul class="uk-navbar-nav">
-					<li><a href="/answer/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: warning"></span> Answer </a></li>
-					<li><a href="/techpending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
-					<li><a href="/techresolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
+					<li><a href="/technician/account/answer/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: warning"></span> Answer </a></li>
+					<li><a href="/technician/account/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
+					<li><a href="/technician/account/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
 				</ul>
 			</div>	
 			<div class="uk-navbar-right uk-responsive-height">
@@ -64,7 +64,7 @@
 						<div class="uk-navbar-dropdown">
 						    <ul class="uk-nav uk-navbar-dropdown-nav">
 						        <li><a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a></li>
-						        <li><a href="/techaccount/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a></li>
+						        <li><a href="/technician/account/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a></li>
 						        <li class="uk-nav-divider"></li>
 						        <li><a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a></li>
 						    </ul>
@@ -116,18 +116,18 @@
 						<!-- TECH NAVBAR -->
 						<div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav; flip: x">
 							<a href="/answer/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: warning"></span> Answer </a><br>
-							<a href="/techpending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a><br>
-							<a href="/techresolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a><br>
-							<a href="/techaccount/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a><br>
+							<a href="/technician/account/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a><br>
+							<a href="/technician/account/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a><br>
+							<a href="/technician/account/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span> Account </a><br>
 							<a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a><br>
 							<a href="/logout/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout </a>
 						</div>
 					{% else %}
 						<!-- NO USER NAVBAR -->
 						<div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav; flip: x">
-							<a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a><br>
 							<a href="/login/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span> Login </a><br>
 							<a href="/register/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span> Sign up </a>
+							<a href="/about/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span> About </a><br>
 						</div>
 					{% endif %}
                 </div>

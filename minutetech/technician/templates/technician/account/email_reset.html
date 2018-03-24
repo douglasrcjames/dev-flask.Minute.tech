@@ -6,21 +6,21 @@
 				
 		<h2><span uk-icon="icon: unlock; ratio: 2.5"></span> Change Email</h2>
 		<hr>
-			<form class="uk-grid-small uk-background-muted uk-padding" method=post action="/techemail_reset/" uk-grid>
-				<h4 class="uk-width-1-1">Please enter a new email below:</h4>
-				<div class="uk-width-1-2@s">{{ form.techemail(placeholder="Email", class_="uk-input") }}</div>
-				<div class="uk-width-1-2@s">{{ form.confirm(placeholder="Repeat Email", class_="uk-input") }}</div><br>
-		    	<div class="uk-width-1-1"></div>
-			<input class="uk-button uk-button-primary uk-width-1-4@s" type=submit value=Reset>
-			<div class="uk-width-1-1"></div>
-			<div class="uk-width-1-2@s">
-					{% for error in form.techemail.errors %}
-			        	<span class="uk-label uk-label-danger">{{ error }}</span>
-			    	{% endfor %}
-		    	</div>
-			</form>
+		<form class="uk-grid-small uk-background-muted uk-padding" method=post action="" uk-grid>
+			<h4 class="uk-width-1-1">Please enter a new email below:</h4>
+			<div class="uk-width-1-2@s">{{ form.email(placeholder="Email", class_="uk-input") }}</div>
+			<div class="uk-width-1-2@s">{{ form.confirm(placeholder="Repeat Email", class_="uk-input") }}</div><br>
+	    	<div class="uk-width-1-1"></div>
+		<input class="uk-button uk-button-primary uk-width-1-4@s" type=submit value=Reset>
+		<div class="uk-width-1-1"></div>
+		<div class="uk-width-1-2@s">
+				{% for error in form.email.errors %}
+		        	<span class="uk-label uk-label-danger">{{ error }}</span>
+		    	{% endfor %}
+	    	</div>
+		</form>
 		<hr>
-		<p><a href="/account/" uk-icon="icon: user"></a> Don't want to change your email? <a href="/techaccount/">Go to account.</a></p>
+		<p><a href="/technician/account/" uk-icon="icon: user"></a> Don't want to change your email? <a href="/technician/account/">Go to account.</a></p>
 
 	{% else %}
 	

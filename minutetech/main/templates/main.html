@@ -6,8 +6,6 @@
 
 	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center" style="background-image: url({{ url_for('static', filename='images/SF_landing_opacity.jpg')}});">
 		<div class="uk-container">
-			<!-- Think Uber, but for technical support.-->
-			<!-- Your personal technician -->
 		
 			{% if session.logged_in == 'client' %}
 				<div class="uk-container-small uk-background-muted uk-padding-large uk-padding-remove-top uk-padding-remove-bottom uk-align-center">
@@ -224,7 +222,7 @@
 					</p>
 					<br>
 				    <div data-uk-margin>
-						<a href="/register/">
+						<a href="/technician/register/">
 							<div class="uk-button uk-button-primary">
 								Sign Up
 							</div>

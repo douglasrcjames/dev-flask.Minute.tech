@@ -27,10 +27,9 @@ s = URLSafeTimedSerializer(app.config['SECRET_KEY'])  # For token
 # Flask Mail
 app.config.from_pyfile('config.cfg')
 mail = Mail(app)
+
 ##############  1st Layer SECTION  ####################
 def login_required(f):
-	#not 100% how this works
-	# logged_in doesnt look like its user anywhere, be sure of these and delete if not anywhere else
 	@wraps(f)
 	def wrap(*args, **kwargs):
 		if ('logged_in') in session:
@@ -48,29 +47,35 @@ def logout():
 	flash(u'You have been logged out!', 'danger')
 	return redirect(url_for('main.homepage'))
 
+count = 1
 @mod.route('/login/', methods=['GET','POST'])
 def login():
+	global count
 	error = ''
 	try:
 		c, conn = connection()
 		if request.method == "POST":
-			c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
-			pdata = c.fetchone()[3]
-				
-			if sha256_crypt.verify(request.form['password'], pdata):
-				email = request.form['email']
-				#putting these close and commit 
-				#functions outside the 'if' will break code
-				conn.commit()
-				c.close()
-				conn.close()
-				session['logged_in'] = ''
-				session['email'] = thwart(email)
-				flash(u'You are now logged in.', 'success')
-				return redirect(url_for('technician.account'))
-			
+			# 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
+			x = c.execute("SELECT * FROM technicians WHERE email = (%s)",(thwart(request.form['email']),))
+			# Prevent login to another account from this stage
+			if int(x) > 0:
+				pdata = c.fetchone()[3]
+				if sha256_crypt.verify(request.form['password'], pdata):
+					email = request.form['email']
+					#putting these close and commit 
+					#functions outside the 'if' will break code
+					conn.commit()
+					c.close()
+					conn.close()
+					session['logged_in'] = 'tech'
+					session['email'] = thwart(email)
+					flash(u'You are now logged in.', 'success')
+					return redirect(url_for('technician.account'))
+				else:
+					error = "Invalid credentials, try again."
 			else:
-				error = "Invalid credentials, try again."
+				error = "Invalid authentication, try again. Tries: {}".format(count) 
+			count += 1
 
 		return render_template('technician/login.html', error = error)
 		
@@ -115,8 +120,7 @@ def register_page():
 				c.close()
 				conn.close()
 
-				session['logged_in'] = ''
-
+				session['logged_in'] = 'tech'
 				#tid will be inputted once generated
 				session['tid'] = 0
 				session['email'] = email
@@ -129,15 +133,15 @@ def register_page():
 				session['state'] = state
 				session['tzip'] = tzip
 				session['reg_date'] = 0
+				session['certified'] = 0
 				session['bio'] = bio
-				#change this when the server goes live to the proper folder
 				session['prof_pic'] = default_prof_pic
 				# Send confirmation email
 				token = s.dumps(email, salt='email-confirm')
-				msg = Message("Minute. - Email Verification", sender = "test@minute.", recipients=[email])
-				link = url_for('technician.email.email_verify', token=token, _external=True)
-				msg.body = render_template('technician/email/verify.txt', link=link, first_name=first_name)
-				msg.html = render_template('technician/email/verify.html', link=link, first_name=first_name)
+				msg = Message("Minute. - Email Verification", sender = "test@minute.tech", recipients=[email])
+				link = url_for('technician.email_verify', token=token, _external=True)
+				msg.body = render_template('technician/email/email_verify.txt', link=link, first_name=first_name)
+				msg.html = render_template('technician/email/email_verify.html', link=link, first_name=first_name)
 				mail.send(msg)
 				return redirect(url_for('technician.account'))
 
@@ -147,8 +151,38 @@ def register_page():
 	except Exception as e:
 		return(str(e))
 
+@mod.route('/email_verify/<token>')
+def email_verify(token):
+	try:
+		c, conn = connection()
+		if 'logged_in' in session:
+			email = s.loads(token, salt='email-confirm', max_age=3600)
+
+			if session['logged_in'] == 'tech':
+				tid = session['tid']
+				c.execute(
+					"UPDATE tpersonals SET email_verify = 1 WHERE tid = (%s)", (tid,))
+				conn.commit()
+				c.close()
+				conn.close()
+				flash(u'Email successfully verified!', 'success')
+				return redirect(url_for('technician.account'))
+				
+			elif session['logged_in'] == 'client':
+				flash(u'Log in as a technician first, then click the link again', 'danger')
+				return redirect(url_for('technician.login'))
+
+		else:
+			flash(u'Log in as a technician first, then click the link again', 'danger')
+			return redirect(url_for('technician.login'))
+
+		render_template("main.html")
+	except SignatureExpired:
+		flash(u'The token has expired', 'danger')
+		return redirect(url_for('main.homepage'))
+
 ##############  2nd Layer SECTION  ####################
-@mod.route('/answer/', methods=['GET','POST'])
+@mod.route('/account/answer/', methods=['GET','POST'])
 def answer():
 	error = ''
 	try:
@@ -162,12 +196,12 @@ def answer():
 			flash(u'Thanks, we got you down!', 'success')
 			return redirect(url_for('technician.answer'))
 
-		return render_template('technician/answer.html', error = error)
+		return render_template('technician/account/answer.html', error = error)
 
 	except Exception as e:
 		return render_template('500.html', error = e)
 
-@mod.route('/resolved/', methods=['GET','POST'])
+@mod.route('/account/resolved/', methods=['GET','POST'])
 def resolved():
 	error = ''
 	try:
@@ -181,33 +215,12 @@ def resolved():
 			flash(u'Thanks, we got you down!', 'success')
 			return redirect(url_for('technician.resolved'))
 
-		return render_template('technician/resolved.html', error = error)
+		return render_template('technician/account/resolved.html', error = error)
 
 	except Exception as e:
 		return render_template('500.html', error = e)
 
-
-@mod.route('/room/?select_q=<select_q>', methods=['GET','POST'])
-def room(select_q):
-	error = ''
-	try:
-		c, conn = connection()
-		if request.method == "POST":
-			tid = session['tid']
-			c.execute("UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
-			conn.commit()
-			c.close()
-			conn.close()
-			flash(u'Thanks, we got you down!', 'success')
-			return redirect(url_for('main.homepage'))
-
-		return render_template('technician/room.html', error = error)
-
-	except Exception as e:
-		return render_template('500.html', error = e)
-
-
-@mod.route('/pending/', methods=['GET','POST'])
+@mod.route('/account/pending/', methods=['GET','POST'])
 def pending():
 	error = ''
 	try:
@@ -221,10 +234,30 @@ def pending():
 			flash(u'Thanks, we got you down!', 'success')
 			return redirect(url_for('technician.pending'))
 
-		return render_template('technician/pending.html', error = error)
+		return render_template('technician/account/pending.html', error = error)
 
 	except Exception as e:
 		return render_template('500.html', error = e)
+
+@mod.route('/account/room/?select_q=<select_q>', methods=['GET','POST'])
+def room(select_q):
+	error = ''
+	try:
+		c, conn = connection()
+		if request.method == "POST":
+			tid = session['tid']
+			c.execute("UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
+			conn.commit()
+			c.close()
+			conn.close()
+			flash(u'Thanks, we got you down!', 'success')
+			return redirect(url_for('main.homepage'))
+
+		return render_template('technician/account/room.html', error = error)
+
+	except Exception as e:
+		return render_template('500.html', error = e)
+
 
 @mod.route('/account/', methods=['GET','POST'])
 def account():
@@ -233,7 +266,7 @@ def account():
 	try:
 		# Declare form early on, so the form is referenced before assignment
 		form = TechEditAccountForm(request.form)
-		if session['logged_in'] == '':
+		if session['logged_in'] == 'tech':
 			#grab all the clients info
 			c, conn = connection()
 			email = session['email']
@@ -265,6 +298,8 @@ def account():
 			bio = c.fetchone()[0]
 			c.execute("SELECT reg_date FROM tpersonals WHERE tid = (%s)", (tid,))
 			reg_date = c.fetchone()[0]
+			c.execute("SELECT certified FROM tpersonals WHERE tid = (%s)", (tid,))
+			certified = c.fetchone()[0]
 			# For now, just putting the prof_pic url into the BLOB
 			c.execute("SELECT prof_pic FROM tpersonals WHERE tid = (%s)", (tid,))
 			prof_pic = c.fetchone()[0]
@@ -286,9 +321,12 @@ def account():
 			session['bio'] = bio
 			session['reg_date'] = reg_date
 			session['prof_pic'] = prof_pic
+			session['certified'] = certified
+			# For change of password, phone, or email
 			session['pconfirm'] = 0
 			session['phconfirm'] = 0
 			session['econfirm'] = 0
+
 			#//END grab all the clients info
 			c, conn = connection()
 			
@@ -325,66 +363,70 @@ def account():
 				return redirect(url_for('technician.account'))
 		else:
 			flash(u'Try logging out and back in again!', 'secondary')
-			return redirect(url_for('homepage'))
+			return redirect(url_for('main.homepage'))
 
-		return render_template('technician/index.html', form=form, error = error)
+		return render_template('technician/account/index.html', form=form, error = error)
 
 	except Exception as e:
 		return render_template('500.html', error = e)
 
-@mod.route('/duties/', methods=['GET','POST'])
-def _duties():
-	return render_template('technician/duties.html')
+@mod.route('/account/duties/', methods=['GET','POST'])
+def duties():
+	return render_template('technician/account/duties.html')
 
-@mod.route('/tech_signature/', methods=['GET','POST'])
-def tech_signature():
+@mod.route('/account/signature/', methods=['GET','POST'])
+def signature():
 	form = TechSignatureForm(request.form)
 	if request.method == "POST" and form.validate():
 		signature = form.signature.data
 		tid = session['tid']
 		c, conn = connection()
-		c.execute("UPDATE tpersonals SET signature = %s WHERE tid = (%s)", (thwart(signature), tid))
+		c.execute("UPDATE tpersonals SET signature = %s, certified = %s WHERE tid = %s", (thwart(signature), 1, tid))
 		conn.commit()
 		c.close()
 		conn.close()
+		session['certified'] = 1
 		flash(u'Submission successful. We will contact you soon.', 'success')
 		return redirect(url_for('technician.account'))
 
 	else:
 		error = "Please enter your name!"
-		return render_template('technician/tech_signature.html', form=form)
+		return render_template('technician/account/signature.html', form=form)
 
 #PASSWORD CONFIRM
-@mod.route('/password_confirm/', methods=['GET','POST'])
+@mod.route('/account/password_confirm/', methods=['GET','POST'])
 def password_confirm():
 	error = ''
 	try:
 		c, conn = connection()
 		if request.method == "POST":
-			c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
-			tpdata = c.fetchone()[3]
+			# 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
+			x = c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
+			# Prevent login to another account from this stage
+			if int(x) > 0  and request.form['email'] == session['email']:
+				pdata = c.fetchone()[3]
+				if sha256_crypt.verify(request.form['password'], pdata):
+					#putting these close and commit 
+					#functions outside the 'if' will break code
+					conn.commit()
+					c.close()
+					conn.close()
+					session['pconfirm'] = 1
+					flash(u'Successfully authorized.', 'success')
+					return redirect(url_for('technician.password_reset'))
 				
-			if sha256_crypt.verify(request.form['password'], tpdata):
-				#putting these close and commit 
-				#functions outside the 'if' will break code
-				conn.commit()
-				c.close()
-				conn.close()
-				session['pconfirm'] = 1
-				flash(u'Successfully authorized.', 'success')
-				return redirect(url_for('technician.password_reset'))
-			
+				else:
+					error = "Invalid credentials, try again."
 			else:
-				error = "Invalid credentials, try again."
-
-		return render_template('technician/password_confirm.html', error = error)
+				error = "Invalid authentication, try again."
+		return render_template('technician/account/password_confirm.html', error = error)
 		
 	except Exception as e:
 		error = e
-		return render_template('technician/password_confirm.html', error = error)
+		return render_template('technician/account/password_confirm.html', error = error)
 
 # PASSWORD RESET
-@mod.route('/password_reset/', methods=['GET','POST'])
+@mod.route('/account/password_reset/', methods=['GET','POST'])
 def password_reset():
 	error = ''
 	try:
@@ -403,7 +445,7 @@ def password_reset():
 				session['pconfirm'] = 0
 				return redirect(url_for('technician.account'))
 
-			return render_template('technician/password_reset.html', form=form)
+			return render_template('technician/account/password_reset.html', form=form)
 		else:
 			flash(u'Not allowed there!', 'danger')
 			return redirect(url_for('main.homepage'))
@@ -412,36 +454,40 @@ def password_reset():
 		return(str(e))
 
 # EMAIL CONFIRM
-@mod.route('/email_confirm/', methods=['GET','POST'])
+@mod.route('/account/email_confirm/', methods=['GET','POST'])
 def email_confirm():
 	error = ''
 	try:
 		c, conn = connection()
 		if request.method == "POST":
-			c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
-			tpdata = c.fetchone()[3]
+			# 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
+			x = c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
+			# Prevent login to another account from this stage
+			if int(x) > 0  and request.form['email'] == session['email']:
+				pdata = c.fetchone()[3]
+				if sha256_crypt.verify(request.form['password'], pdata):
+					#putting these close and commit 
+					#functions outside the 'if' will break code
+					conn.commit()
+					c.close()
+					conn.close()
+					session['econfirm'] = 1
+					flash(u'Successfully authorized.', 'success')
+					return redirect(url_for('technician.email_reset'))
 				
-			if sha256_crypt.verify(request.form['password'], tpdata):
-				#putting these close and commit 
-				#functions outside the 'if' will break code
-				conn.commit()
-				c.close()
-				conn.close()
-				session['econfirm'] = 1
-				flash(u'Successfully authorized.', 'success')
-				return redirect(url_for('technician.email_reset'))
-			
+				else:
+					error = "Invalid credentials, try again."
 			else:
-				error = "Invalid credentials, try again."
+				error = "Invalid authentication, try again."
 
-		return render_template('technician/email_confirm.html', error = error)
+		return render_template('technician/account/email_confirm.html', error = error)
 		
 	except Exception as e:
 		error = e
-		return render_template('technician/email_confirm.html', error = error)
+		return render_template('technician/account/email_confirm.html', error = error)
 
 # EMAIL RESET
-@mod.route('/email_reset/', methods=['GET','POST'])
+@mod.route('/account/email_reset/', methods=['GET','POST'])
 def email_reset():
 	error = ''
 	try:
@@ -454,13 +500,12 @@ def email_reset():
 				#check if form input is different than whats in session, if so, then we want to make sure the form input isnt in the DB
 				# if form input and the session are the same, we dont care, because nothing will change
 				if(email != session["email"]):
-					# too many perethesis, but something is wrong with the the syntax of the intx for statement
 					x = c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(email),))
 					conn.commit()
 					if int(x) > 0:
 						#redirect them if they need to recover an old email from and old account
 						flash(u'That email already has an account, please try a different email.', 'danger')
-						return render_template('technician/email_reset.html', form=form)
+						return render_template('technician/account/email_reset.html', form=form)
 
 				c.execute("UPDATE technicians SET email = %s WHERE tid = (%s)", (thwart(email), tid))
 				conn.commit()
@@ -472,7 +517,7 @@ def email_reset():
 				session['econfirm'] = 0
 				return redirect(url_for('technician.account'))
 
-			return render_template('technician/email_reset.html', form=form)
+			return render_template('technician/account/email_reset.html', form=form)
 		else:
 			flash(u'Not allowed there!', 'danger')
 			return redirect(url_for('main.homepage'))
@@ -481,37 +526,40 @@ def email_reset():
 		return(str(e))
 
 # PHONE CONFIRM
-@mod.route('/phone_confirm/', methods=['GET','POST'])
+@mod.route('/account/phone_confirm/', methods=['GET','POST'])
 def phone_confirm():
 	error = ''
 	try:
 		c, conn = connection()
 		if request.method == "POST":
-			c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
-			tpdata = c.fetchone()[3]
+			# 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
+			x = c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(request.form['email']),))
+			# Prevent login to another account from this stage
+			if int(x) > 0  and request.form['email'] == session['email']:
+				pdata = c.fetchone()[3]
+				if sha256_crypt.verify(request.form['password'], pdata):
+					#putting these close and commit 
+					#functions outside the 'if' will break code
+					conn.commit()
+					c.close()
+					conn.close()
+					session['phconfirm'] = 1
+					flash(u'Successfully authorized.', 'success')
+					return redirect(url_for('technician.phone_reset'))
 				
-			if sha256_crypt.verify(request.form['password'], tpdata):
-				#putting these close and commit 
-				#functions outside the 'if' will break code
-				conn.commit()
-				c.close()
-				conn.close()
-				session['phconfirm'] = 1
-				flash(u'Successfully authorized.', 'success')
-				return redirect(url_for('technician.phone_reset'))
-			
+				else:
+					error = "Invalid credentials, try again."
 			else:
-				error = "Invalid credentials, try again."
-
-		return render_template('technician/phone_confirm.html', error = error)
+				error = "Invalid authentication, try again."
+		return render_template('technician/account/phone_confirm.html', error = error)
 		
 	except Exception as e:
 		error = e
-		return render_template('technician/phone_confirm.html', error = error)
+		return render_template('technician/account/phone_confirm.html', error = error)
 
 
 # PHONE RESET
-@mod.route('/phone_reset/', methods=['GET','POST'])
+@mod.route('/account/phone_reset/', methods=['GET','POST'])
 def phone_reset():
 	error = ''
 	try:
@@ -523,13 +571,12 @@ def phone_reset():
 				phone = form.phone.data
 				c, conn = connection()
 				if(phone != session["phone"]):
-					# too many perethesis, but something is wrong with the the syntax of the intx for statement
 					x = c.execute("SELECT * FROM technicians WHERE phone = (%s)", (thwart(phone),))
 					conn.commit()
 					if int(x) > 0:
 						#redirect them if they need to recover an old email from and old account
 						flash(u'That phone already has an account, please try a different phone.', 'danger')
-						return render_template('technician/phone_reset.html', form=form)
+						return render_template('technician/account/phone_reset.html', form=form)
 
 				c.execute("UPDATE technicians SET phone = %s WHERE tid = (%s)", (thwart(phone), tid))
 				conn.commit()
@@ -540,53 +587,10 @@ def phone_reset():
 				session['phconfirm'] = 0
 				return redirect(url_for('technician.account'))
 
-			return render_template('technician/phone_reset.html', form=form)
+			return render_template('technician/account/phone_reset.html', form=form)
 		else:
 			flash(u'Not allowed there!', 'danger')
 			return redirect(url_for('main.homepage'))
 
 	except Exception as e:
 		return(str(e))
-
-
-
-# #### PROFILE PIC UPLOAD ####
-# # Based after https://gist.github.com/greyli/81d7e5ae6c9baf7f6cdfbf64e8a7c037
-# # For uploading files
-# _PROF_PIC_UPLOAD_FOLDER = 'static/_user_info/prof_pic'
-# ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-# app.config['_UPLOADED_PHOTOS_DEST'] = os.getcwd()
-# photos = UploadSet('photos', IMAGES)
-# configure_uploads(app, photos)
-# patch_request_class(app)  # set maximum file size, default is 16MB
-
-# class ProfilePictureForm(FlaskForm):
-# 	prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
-
-# @mod.route('/_profile_picture_upload/', methods=['GET','POST'])
-# def _profile_picture_upload():
-# 	form = ProfilePictureForm()
-# 	tid = str(session['tid'])
-# 	first_name = session['first_name']
-# 	default_prof_pic = url_for('static', filename='user_info/prof_pic/default.jpg')
-# 	user_prof_pic = tid+'_'+first_name+'_'+'.png'
-# 	if form.validate_on_submit():
-# 		filename = photos.save(form.prof_pic.data, folder=_PROF_PIC_UPLOAD_FOLDER,name=tid+'_'+first_name+'_'+'.png')
-# 		file_url = photos.url(filename)
-# 		# Checks if the prof_pic is set yet. if set, then dont need to delete the old picture on the server
-# 		# if session['prof_pic'] != 'http://138.68.238.112/var/www/FlaskApp/FlaskApp/_uploads/photos/static/_user_info/prof_pic/default.jpg':
-# 		# 	#need to delete or move the old prof_pic if it was set! Prevents users from adding too many pictures
-#flash(u'Submission successful. We will contact you soon.', 'success')
-# 		# 	flash("You already have a file on the server!")
-# 		#If the user_prof_pic is there, then  
-# 		session['prof_pic'] = file_url
-# 		c, conn = connection()
-# 		c.execute("UPDATE tpersonals SET prof_pic = %s WHERE tid = (%s)", (file_url, tid))
-# 		conn.commit()
-# 		c.close()
-# 		conn.close()
-# 	else:
-# 		file_url = None
-
-# 	return render_template('_profile_picture_upload.html', form=form, file_url=file_url)
-##############  END TECHNICIAN SECTION  ####################
