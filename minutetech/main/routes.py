@@ -226,7 +226,7 @@ def register_page():
 				session['bio'] = bio
 				session['prof_pic'] = default_prof_pic
 				# Send confirmation email
-				token = s.dumps(email, salt='email-confirm')
+				token = s.dumps(email, salt='email-verify')
 				msg = Message("Minute.tech - Email Verification",
 							  sender="test@minute.tech", recipients=[email])
 				link = url_for('main.email_verify',
@@ -244,12 +244,12 @@ def register_page():
 		return "Error: {}".format(e)
 
 
-@mod.route('/email_verify/<token>')
+@mod.route('/email/email_verify/<token>')
 def email_verify(token):
 	try:
 		c, conn = connection()
 		if 'logged_in' in session:
-			email = s.loads(token, salt='email-confirm', max_age=3600)
+			email = s.loads(token, salt='email-verify', max_age=3600)
 			if session['logged_in'] == 'client':
 				cid = session['cid']
 				c.execute(
@@ -268,10 +268,10 @@ def email_verify(token):
 			flash(u'Log in as a client first, then click the link again', 'danger')
 			return redirect(url_for('main.login'))
 
-		render_template("main.html")
 	except SignatureExpired:
 		flash(u'The token has expired', 'danger')
 		return redirect(url_for('main.homepage'))
+
 
 # @mod.route('/forgot_password/<token>')
 # def forgot_password(token):
@@ -425,6 +425,9 @@ def account():
 			c.execute(
 				"SELECT reg_date FROM cpersonals WHERE cid = (%s)", (cid,))
 			reg_date = c.fetchone()[0]
+			c.execute(
+				"SELECT email_verify FROM cpersonals WHERE cid = (%s)", (cid,))
+			email_verify = c.fetchone()[0]
 			# For now, just putting the prof_pic url into the BLOB
 			c.execute(
 				"SELECT prof_pic FROM cpersonals WHERE cid = (%s)", (cid,))
@@ -447,6 +450,7 @@ def account():
 			session['bio'] = bio
 			session['reg_date'] = reg_date
 			session['prof_pic'] = prof_pic
+			session['email_verify'] = email_verify
 			session['pconfirm'] = 0
 			session['econfirm'] = 0
 			session['phconfirm'] = 0
@@ -712,6 +716,28 @@ def phone_reset():
 	except Exception as e:
 		return(str(e))
 
+@mod.route('/email/send_email_verify/', methods=['GET', 'POST'])
+def send_email_verify():
+	if 'logged_in' in session and request.method == "GET":
+		email = session['email']
+		first_name = session['first_name']
+		# Send confirmation email
+		token = s.dumps(email, salt='email-verify')
+		msg = Message("Minute.tech - Email Verification",
+					  sender="test@minute.tech", recipients=[email])
+		link = url_for('main.email_verify',
+					   token=token, _external=True)
+		msg.body = render_template(
+			'email/send_email_verify.txt', link=link, first_name=first_name)
+		msg.html = render_template(
+			'email/send_email_verify.html', link=link, first_name=first_name)
+		mail.send(msg)
+		flash(u'Verification email sent', 'success')
+		return redirect(url_for('main.account'))
+	else:
+		flash(u'Log in as a client first, then click the link again', 'danger')
+		return redirect(url_for('main.login'))
+
 #### PROFILE PIC UPLOAD ####
 # Based after https://gist.github.com/greyli/81d7e5ae6c9baf7f6cdfbf64e8a7c037
 # For uploading files
@@ -764,23 +790,19 @@ def method_not_found(e):
 def internal_server_error(e):
 	return render_template("500.html")
 
-
 ## Sending Files (for display on email, probably a better way to do this) ##
 
 @mod.route('/MinutetechLLC_tos/')
 def return_tos():
 	return send_file('static/legal/MinutetechLLC_tos.pdf', attachment_filename='MinutetechLLC_tos.pdf')
 
-
 @mod.route('/Minutetech_Logo/')
 def return_logo():
 	return send_file('static/images/Icon_1000x1000px.png', attachment_filename='Icon_1000x1000px.png')
 
-
 @mod.route('/coffee-lady/')
 def return_pic1():
-	return send_file('static/images/lady-logo-email-banner.png', attachment_filename='lady-logo-email-banner.png')
-
+	return send_file('static/images/lady-logo-email-banner750x500.png', attachment_filename='lady-logo-email-banner750x500.png')
 
 @mod.route('/Minutetech_Long_Logo/')
 def return_logo_long():
@@ -790,7 +812,6 @@ def return_logo_long():
 @mod.route('/Minutetech_rocket_ship/')
 def return_tocket_ship():
 	return send_file('static/flat-icons/008-startup.png')
-
 
 if __name__ == "__main__":
 	app.run(debug=True)

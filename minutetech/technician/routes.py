@@ -112,7 +112,7 @@ def register_page():
 				flash(u'That phone already has an account, please try a new phone or send an email to help@minute.', 'danger')
 				return render_template('technician/register.html', form=form)
 			else:
-				default_prof_pic = url_for('static', filename='_user_info/prof_pic/default.jpg')
+				default_prof_pic = url_for('static', filename='tech_user_info/prof_pic/default.jpg')
 				c.execute("INSERT INTO technicians (email, phone, password) VALUES (%s, %s, %s)", (thwart(email), thwart(phone), thwart(password)))
 				c.execute("INSERT INTO tpersonals (first_name, last_name, address, city, state, zip, bio, prof_pic) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (thwart(first_name), thwart(last_name), thwart(address), thwart(city), state, thwart(tzip), bio, default_prof_pic))
 				conn.commit()
@@ -156,7 +156,7 @@ def email_verify(token):
 	try:
 		c, conn = connection()
 		if 'logged_in' in session:
-			email = s.loads(token, salt='email-confirm', max_age=3600)
+			email = s.loads(token, salt='email-verify', max_age=3600)
 
 			if session['logged_in'] == 'tech':
 				tid = session['tid']
@@ -300,6 +300,8 @@ def account():
 			reg_date = c.fetchone()[0]
 			c.execute("SELECT certified FROM tpersonals WHERE tid = (%s)", (tid,))
 			certified = c.fetchone()[0]
+			c.execute("SELECT email_verify FROM tpersonals WHERE tid = (%s)", (tid,))
+			email_verify = c.fetchone()[0]
 			# For now, just putting the prof_pic url into the BLOB
 			c.execute("SELECT prof_pic FROM tpersonals WHERE tid = (%s)", (tid,))
 			prof_pic = c.fetchone()[0]
@@ -322,6 +324,7 @@ def account():
 			session['reg_date'] = reg_date
 			session['prof_pic'] = prof_pic
 			session['certified'] = certified
+			session['email_verify'] = email_verify
 			# For change of password, phone, or email
 			session['pconfirm'] = 0
 			session['phconfirm'] = 0
@@ -594,3 +597,25 @@ def phone_reset():
 
 	except Exception as e:
 		return(str(e))
+
+@mod.route('/email/send_email_verify/', methods=['GET', 'POST'])
+def send_email_verify():
+	if 'logged_in' in session and request.method == "GET":
+		email = session['email']
+		first_name = session['first_name']
+		# Send confirmation email
+		token = s.dumps(email, salt='email-verify')
+		msg = Message("Minute.tech - Email Verification",
+					  sender="test@minute.tech", recipients=[email])
+		link = url_for('technician.email_verify',
+					   token=token, _external=True)
+		msg.body = render_template(
+			'technician/email/send_email_verify.txt', link=link, first_name=first_name)
+		msg.html = render_template(
+			'technician/email/send_email_verify.html', link=link, first_name=first_name)
+		mail.send(msg)
+		flash(u'Verification email sent', 'success')
+		return redirect(url_for('technician.account'))
+	else:
+		flash(u'Log in as a technician first, then click the link again', 'danger')
+		return redirect(url_for('technician.login'))

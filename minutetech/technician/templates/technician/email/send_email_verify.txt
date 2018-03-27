@@ -1,0 +1,8 @@
+Hello {{ first_name }},
+
+Here is your link to verify you are indeed the owner of this email address: {{ link }}
+
+If you did not request this email, please contact help@minute.tech so we can investigate the issue.
+
+Thanks,
+Minute.tech LLC
