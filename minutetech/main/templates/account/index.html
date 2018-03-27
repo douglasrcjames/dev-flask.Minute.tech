@@ -17,7 +17,23 @@
 			<ul class="uk-switcher uk-margin">
 			    <li>
 			    	{% from "_formhelpers.html" import render_field %}
+<<<<<<< HEAD
 					<form class="uk-grid-small" enctype="multipart/form-data" action="" method="post" uk-grid>
+=======
+					<form class="uk-grid-small" action="" method="post" uk-grid>
+						{% if session.email_verify == 0 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s uk-align-center">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="rocket">
+								<p class="uk-text-center">You haven't verified your email!</p><a class="uk-button uk-button-small uk-button-secondary uk-align-center uk-margin-small" href="/email/send_email_verify/">Send Link</a>
+                                
+							</div>
+						{% else %}
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="rocket">
+								<p class="uk-text uk-text-center">Verified!</p>
+							</div>
+						{% endif %}
+>>>>>>> f630e9b9ac8577f5c975ba4c5e202262bdb71677
 						<div class="uk-width-1-1">
 							<img class="uk-border-rounded uk-box-shadow-small" src="{{ session.prof_pic }}" width="200" height="200" alt="">
 						</div>

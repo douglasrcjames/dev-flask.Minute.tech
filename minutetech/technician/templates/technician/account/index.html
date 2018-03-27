@@ -19,26 +19,46 @@
 			    	{% from "_formhelpers.html" import render_field %}
 					<form class="uk-grid-small" action="/technician/account/" method="post" uk-grid>
 						<!-- Alert section -->
-			
+						{% if session.email_verify == 0 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
+								<p class="uk-text-center">You haven't verified your email!</p>
+								<a class="uk-button uk-button-small uk-button-secondary uk-align-center" href="http://localhost:5000/technician/email/send_email_verify/">Send Link</a>
+							</div>
+						{% else %}
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="shield">
+								<p class="uk-text uk-text-center">Verified!</p>
+							</div>
+						{% endif %}
+
 						{% if session.certified == 0 %}
-							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s uk-align-center">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/support.png')}}" alt="rocket">
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/support.png')}}" alt="technician">
+								<p class="uk-text-center">Looking to become a Minute.technician?</p>
                                 <a class="uk-button uk-button-small uk-button-secondary uk-align-center" href="/technician/account/duties/">Get Certified</a>
 							</div>
 						{% elif session.certified == 1 %}
-							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/sand-clock.png')}}" alt="rocket">
-								<p class="uk-text uk-text-center">Certification in process...</p>
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/sand-clock.png')}}" alt="sand-clock">
+								<p class="uk-text uk-text-center">Certification in process, please give us 48 hours to get back to you.</p>
 							</div>
 						{% else %}
-							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="rocket">
+							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="shield">
 								<p class="uk-text uk-text-center">Certified!</p>
 							</div>
 						{% endif %}
 						<!-- END Alert section -->
 						<div class="uk-width-1"><hr></div>
-
+						<div class="uk-width-1-1">
+							<img class="uk-border-rounded uk-box-shadow-small" src="{{ session.prof_pic }}" width="200" height="200" alt="">
+						</div>
+						<div class="uk-width-1-1">
+							<a href="{{  url_for('main.profile_picture_upload')  }} ">
+								<button class="uk-button-small uk-button-default" type="button">Change picture</button>
+							</a>
+						</div>
 						<div class="uk-width-1-2@s">
 							{{ form.first_name.label }}
 							{{ form.first_name(value=session.first_name, class_="uk-input") }}
