@@ -17,35 +17,58 @@
 			<ul class="uk-switcher uk-margin">
 			    <li>
 			    	{% from "_formhelpers.html" import render_field %}
-					<form class="uk-grid-small" action="/technician/account/" method="post" uk-grid>
+					<form class="uk-grid-small" enctype="multipart/form-data" action="" method="post" uk-grid>
+						<div class="uk-width-1-1">
+							<a class="uk-button uk-button-small uk-button-secondary uk-align-center uk-margin-small" href="/technician/add_mp/">Add MP</a>
+						</div>
 						<!-- Alert section -->
+						{% if session.rating < 250 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/bronze-medal.png')}}" alt="bronze">
+								<p class="uk-text-center">You are ranked <b>Bronze</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+							</div>
+						{% elif session.rating >= 250 and session.rating < 500 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/silver-medal.png')}}" alt="silver">
+								<p class="uk-text-center">You are ranked <b>Silver</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+							</div>
+						{% elif session.rating >= 500 and session.rating < 750 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/gold-medal.png')}}" alt="gold">
+								<p class="uk-text-center">You are ranked <b>Gold</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+							</div>
+						{% elif session.rating >= 750 %}
+							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/diamond.png')}}" alt="diamond">
+								<p class="uk-text-center">You are ranked <b>Diamond</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+							</div>
+						{% endif %}
+						
 						{% if session.email_verify == 0 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-								<p class="uk-text-center">You haven't verified your email!</p>
-								<a class="uk-button uk-button-small uk-button-secondary uk-align-center" href="http://localhost:5000/technician/email/send_email_verify/">Send Link</a>
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="rocket">
+								<!-- Need to get this to link to not just localhost-->
+								<p class="uk-text-center">You haven't verified your email!</p><a class="uk-button uk-button-small uk-button-secondary uk-align-center uk-margin-small" href="http://localhost:5000/technician/email/send_email_verify/">Send Link</a>
 							</div>
 						{% else %}
 							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="shield">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="rocket">
 								<p class="uk-text uk-text-center">Verified!</p>
 							</div>
 						{% endif %}
-
 						{% if session.certified == 0 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/support.png')}}" alt="technician">
-								<p class="uk-text-center">Looking to become a Minute.technician?</p>
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/support.png')}}" alt="rocket">
                                 <a class="uk-button uk-button-small uk-button-secondary uk-align-center" href="/technician/account/duties/">Get Certified</a>
 							</div>
 						{% elif session.certified == 1 %}
 							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/sand-clock.png')}}" alt="sand-clock">
-								<p class="uk-text uk-text-center">Certification in process, please give us 48 hours to get back to you.</p>
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/sand-clock.png')}}" alt="rocket">
+								<p class="uk-text uk-text-center">Certification in process...</p>
 							</div>
 						{% else %}
 							<div class="uk-card-small uk-card-default uk-card-body uk-width-1-4@s">
-								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="shield">
+								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/005-shield.png')}}" alt="rocket">
 								<p class="uk-text uk-text-center">Certified!</p>
 							</div>
 						{% endif %}
@@ -55,9 +78,14 @@
 							<img class="uk-border-rounded uk-box-shadow-small" src="{{ session.prof_pic }}" width="200" height="200" alt="">
 						</div>
 						<div class="uk-width-1-1">
-							<a href="{{  url_for('main.profile_picture_upload')  }} ">
-								<button class="uk-button-small uk-button-default" type="button">Change picture</button>
-							</a>
+							<div uk-form-custom="target: true">
+					            {{ form.prof_pic }}
+					            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+					            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>      
+						    </div>
+							{% for error in form.prof_pic.errors %}
+						        <span class="uk-label uk-label-danger">{{ error }}</span>
+						    {% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
 							{{ form.first_name.label }}

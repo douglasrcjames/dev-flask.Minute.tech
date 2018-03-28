@@ -1,40 +1,27 @@
-##########################################################################
-##########################################################################
-# MINUTE.TECH SOURCE CODE by: Dou
-##########################################################################
-##########################################################################
-# import os
 from flask import Flask, render_template
 from flask_mail import Mail
-
 
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
-
 
 # print app.config
 mail = Mail(app)
 # mail.init_app(app)
 
 from minutetech.main.routes import main
-# from minutetech.technician.routes import technician
+from minutetech.technician.routes import technician
 app.register_blueprint(main)
-# url_prefix allows us to www.minute.tech/api/api.html
-# app.register_blueprint(technician, url_prefix="/technician")
+app.register_blueprint(technician, url_prefix="/technician")
 
 # Error Handlers
-
-
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
 
-
 @app.errorhandler(405)
 def method_not_found(e):
     return render_template("405.html"), 405
-
 
 @app.errorhandler(500)
 def internal_server_error(e):

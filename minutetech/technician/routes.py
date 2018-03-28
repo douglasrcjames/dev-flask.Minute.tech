@@ -1,5 +1,10 @@
-from flask import (render_template, flash, request, url_for,
-                   redirect, session, Blueprint)
+import os
+import os.path
+from flask import (render_template, flash, request,
+                   url_for, redirect, session,
+                   send_file,
+                   Blueprint)
+from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt  # To encrypt the password
 from MySQLdb import escape_string as thwart  # To prevent SQL injection
 from flask_mail import Message
@@ -11,15 +16,17 @@ from minutetech.dbconnect import connection
 from forms import (TechRegistrationForm, TechEditAccountForm,
                    TechPasswordResetForm,
                    TechEmailResetForm, TechPhoneResetForm, TechSignatureForm)
-from minutetech.config import SECRET_KEY
-
+from minutetech.config import SECRET_KEY, UPLOAD_FOLDER
+from minutetech import mail
 
 technician = Blueprint('technician', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
-
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 #  1st Layer SECTION
-
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def login_required(f):
     @wraps(f)
@@ -41,8 +48,6 @@ def logout():
     return redirect(url_for('main.homepage'))
 
 count = 1
-
-
 @technician.route('/login/', methods=['GET', 'POST'])
 def login():
     global count
@@ -83,7 +88,6 @@ def login():
 
 @technician.route('/register/', methods=['GET', 'POST'])
 def register_page():
-<<<<<<< HEAD
     error = ''
     try:
         form = TechRegistrationForm(request.form)
@@ -116,7 +120,7 @@ def register_page():
                 return render_template('technician/register.html', form=form)
             else:
                 default_prof_pic = url_for(
-                    'static', filename='_user_info/prof_pic/default.jpg')
+                    'static', filename='tech_user_info/prof_pic/default.jpg')
                 c.execute("INSERT INTO technicians (email, phone, password) VALUES (%s, %s, %s)", (thwart(
                     email), thwart(phone), thwart(password)))
                 c.execute("INSERT INTO tpersonals (first_name, last_name, address, city, state, zip, bio, prof_pic) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (thwart(
@@ -143,7 +147,7 @@ def register_page():
                 session['bio'] = bio
                 session['prof_pic'] = default_prof_pic
                 # Send confirmation email
-                token = s.dumps(email, salt='email-confirm')
+                token = s.dumps(email, salt='email-verify')
                 msg = Message("Minute. - Email Verification",
                               sender="test@minute.tech", recipients=[email])
                 link = url_for('technician.email_verify',
@@ -166,7 +170,7 @@ def email_verify(token):
     try:
         c, conn = connection()
         if 'logged_in' in session:
-            email = s.loads(token, salt='email-confirm', max_age=3600)
+            email = s.loads(token, salt='email-verify', max_age=3600)
 
             if session['logged_in'] == 'tech':
                 tid = session['tid']
@@ -191,106 +195,8 @@ def email_verify(token):
     except SignatureExpired:
         flash(u'The token has expired', 'danger')
         return redirect(url_for('main.homepage'))
-=======
-	error = ''
-	try:
-		form = TechRegistrationForm(request.form)
-		if request.method == "POST" and form.validate():
-			first_name = form.first_name.data
-			last_name = form.last_name.data
-			email = form.email.data
-			phone = form.phone.data
-			address = form.address.data
-			city = form.city.data
-			state = form.state.data
-			tzip = form.tzip.data
-			bio = "Not provided"
-			password = sha256_crypt.encrypt((str(form.password.data)))
-			c, conn = connection()
-
-			#check if already exists
-			x = c.execute("SELECT * FROM technicians WHERE email = (%s)", (thwart(email),))
-			y = c.execute("SELECT * FROM technicians WHERE phone = (%s)", (thwart(phone),))
-
-			if int(x) > 0:
-				flash(u'That email already has an account, please try a new email or send an email to help@minute.', 'danger')
-				return render_template('technician/register.html', form=form)
-			elif int(y) > 0:
-				flash(u'That phone already has an account, please try a new phone or send an email to help@minute.', 'danger')
-				return render_template('technician/register.html', form=form)
-			else:
-				default_prof_pic = url_for('static', filename='tech_user_info/prof_pic/default.jpg')
-				c.execute("INSERT INTO technicians (email, phone, password) VALUES (%s, %s, %s)", (thwart(email), thwart(phone), thwart(password)))
-				c.execute("INSERT INTO tpersonals (first_name, last_name, address, city, state, zip, bio, prof_pic) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (thwart(first_name), thwart(last_name), thwart(address), thwart(city), state, thwart(tzip), bio, default_prof_pic))
-				conn.commit()
-				flash(u'Thanks for registering!', 'success')
-				c.close()
-				conn.close()
-
-				session['logged_in'] = 'tech'
-				#tid will be inputted once generated
-				session['tid'] = 0
-				session['email'] = email
-				session['phone'] = phone
-				session['rating'] = 0
-				session['first_name'] = first_name
-				session['last_name'] = last_name
-				session['address'] = address
-				session['city'] = city
-				session['state'] = state
-				session['tzip'] = tzip
-				session['reg_date'] = 0
-				session['certified'] = 0
-				session['bio'] = bio
-				session['prof_pic'] = default_prof_pic
-				# Send confirmation email
-				token = s.dumps(email, salt='email-confirm')
-				msg = Message("Minute. - Email Verification", sender = "test@minute.tech", recipients=[email])
-				link = url_for('technician.email_verify', token=token, _external=True)
-				msg.body = render_template('technician/email/email_verify.txt', link=link, first_name=first_name)
-				msg.html = render_template('technician/email/email_verify.html', link=link, first_name=first_name)
-				mail.send(msg)
-				return redirect(url_for('technician.account'))
-
-		return render_template('technician/register.html', form=form)
-
-
-	except Exception as e:
-		return(str(e))
-
-@mod.route('/email_verify/<token>')
-def email_verify(token):
-	try:
-		c, conn = connection()
-		if 'logged_in' in session:
-			email = s.loads(token, salt='email-verify', max_age=3600)
-
-			if session['logged_in'] == 'tech':
-				tid = session['tid']
-				c.execute(
-					"UPDATE tpersonals SET email_verify = 1 WHERE tid = (%s)", (tid,))
-				conn.commit()
-				c.close()
-				conn.close()
-				flash(u'Email successfully verified!', 'success')
-				return redirect(url_for('technician.account'))
-				
-			elif session['logged_in'] == 'client':
-				flash(u'Log in as a technician first, then click the link again', 'danger')
-				return redirect(url_for('technician.login'))
-
-		else:
-			flash(u'Log in as a technician first, then click the link again', 'danger')
-			return redirect(url_for('technician.login'))
-
-		render_template("main.html")
-	except SignatureExpired:
-		flash(u'The token has expired', 'danger')
-		return redirect(url_for('main.homepage'))
->>>>>>> f630e9b9ac8577f5c975ba4c5e202262bdb71677
 
 ##############  2nd Layer SECTION  ####################
-
 
 @technician.route('/account/answer/', methods=['GET', 'POST'])
 def answer():
@@ -378,11 +284,7 @@ def room(select_q):
 
 @technician.route('/account/', methods=['GET', 'POST'])
 def account():
-<<<<<<< HEAD
     error = ''
-    # Using this global variable is tough because each time I redirect, even
-    # to the same page, it forgets the value. Make it a session varaible
-    # maybe?
     try:
         # Declare form early on, so the form is referenced before assignment
         form = TechEditAccountForm(request.form)
@@ -390,44 +292,34 @@ def account():
             # grab all the clients info
             c, conn = connection()
             email = session['email']
-            c.execute("SELECT tid FROM technicians WHERE email = (%s)", (email,))
-            tid = c.fetchone()[0]
-            c.execute(
-                "SELECT phone FROM technicians WHERE email = (%s)", (email,))
-            phone = c.fetchone()[0]
-            c.execute(
-                "SELECT rating FROM technicians WHERE email = (%s)", (email,))
-            rating = c.fetchone()[0]
-            c.execute(
-                "SELECT first_name FROM tpersonals WHERE tid = (%s)", (tid,))
-            first_name = c.fetchone()[0]
-            c.execute("SELECT last_name FROM tpersonals WHERE tid = (%s)", (tid,))
-            last_name = c.fetchone()[0]
-            c.execute("SELECT address FROM tpersonals WHERE tid = (%s)", (tid,))
-            address = c.fetchone()[0]
-            c.execute("SELECT city FROM tpersonals WHERE tid = (%s)", (tid,))
-            city = c.fetchone()[0]
-            c.execute("SELECT state FROM tpersonals WHERE tid = (%s)", (tid,))
-            state = c.fetchone()[0]
-            c.execute("SELECT zip FROM tpersonals WHERE tid = (%s)", (tid,))
-            tzip = c.fetchone()[0]
-            c.execute(
-                "SELECT birth_month FROM tpersonals WHERE tid = (%s)", (tid,))
-            birth_month = c.fetchone()[0]
-            c.execute("SELECT birth_day FROM tpersonals WHERE tid = (%s)", (tid,))
-            birth_day = c.fetchone()[0]
-            c.execute(
-                "SELECT birth_year FROM tpersonals WHERE tid = (%s)", (tid,))
-            birth_year = c.fetchone()[0]
-            c.execute("SELECT bio FROM tpersonals WHERE tid = (%s)", (tid,))
-            bio = c.fetchone()[0]
-            c.execute("SELECT reg_date FROM tpersonals WHERE tid = (%s)", (tid,))
-            reg_date = c.fetchone()[0]
-            c.execute("SELECT certified FROM tpersonals WHERE tid = (%s)", (tid,))
-            certified = c.fetchone()[0]
+            c.execute("""
+                SELECT t.tid, t.phone, t.rating,
+                p.first_name, p.last_name, p.address, p.city, p.state,
+                p.zip, p.birth_month, p.birth_day, p.birth_year, p.bio,
+                p.reg_date, p.prof_pic, p.email_verify, p.certified
+                FROM technicians t, tpersonals p
+                WHERE t.email = (%s) and t.tid=p.tid
+                """,
+                      (email,))
+            tech = c.fetchone()
+            tid = tech[0]
+            phone = tech[1]
+            rating = tech[2]
+            first_name = tech[3]
+            last_name = tech[4]
+            address = tech[5]
+            city = tech[6]
+            state = tech[7]
+            tzip = tech[8]
+            birth_month = tech[9]
+            birth_day = tech[10]
+            birth_year = tech[11]
+            bio = tech[12]
+            reg_date = tech[13]
             # For now, just putting the prof_pic url into the BLOB
-            c.execute("SELECT prof_pic FROM tpersonals WHERE tid = (%s)", (tid,))
-            prof_pic = c.fetchone()[0]
+            prof_pic = tech[14]
+            email_verify = tech[15]
+            certified = tech[15]
             conn.commit()
             c.close()
             conn.close()
@@ -447,6 +339,7 @@ def account():
             session['reg_date'] = reg_date
             session['prof_pic'] = prof_pic
             session['certified'] = certified
+            session['email_verify'] = email_verify
             # For change of password, phone, or email
             session['pconfirm'] = 0
             session['phconfirm'] = 0
@@ -460,6 +353,21 @@ def account():
             # jinja
             form.bio.data = session['bio']
             if request.method == 'POST' and form.validate():
+                if 'prof_pic' in request.files:
+                    new_prof_pic = request.files['prof_pic']
+                    if allowed_file(new_prof_pic.filename):
+                        filename = secure_filename(new_prof_pic.filename)
+                        old_prof_pic = os.path.join(UPLOAD_FOLDER,
+                                                    os.path.basename(prof_pic))
+                        if os.path.exists(old_prof_pic):
+                            os.unlink(old_prof_pic)
+                        new_prof_pic.save(os.path.join(
+                            UPLOAD_FOLDER, filename))
+                        prof_pic = '/static/user_info/' + filename
+                        c.execute("""
+                            UPDATE tpersonals SET prof_pic=%s
+                            where tid = (%s)""",
+                                  (thwart(prof_pic), tid))
                 first_name = form.first_name.data
                 last_name = form.last_name.data
                 address = form.address.data
@@ -499,121 +407,6 @@ def account():
 
 
 @technician.route('/account/duties/', methods=['GET', 'POST'])
-=======
-	error = ''
-	# Using this global variable is tough because each time I redirect, even to the same page, it forgets the value. Make it a session varaible maybe?
-	try:
-		# Declare form early on, so the form is referenced before assignment
-		form = TechEditAccountForm(request.form)
-		if session['logged_in'] == 'tech':
-			#grab all the clients info
-			c, conn = connection()
-			email = session['email']
-			c.execute("SELECT tid FROM technicians WHERE email = (%s)", (email,))
-			tid = c.fetchone()[0]
-			c.execute("SELECT phone FROM technicians WHERE email = (%s)", (email,))
-			phone = c.fetchone()[0]
-			c.execute("SELECT rating FROM technicians WHERE email = (%s)", (email,))
-			rating = c.fetchone()[0]
-			c.execute("SELECT first_name FROM tpersonals WHERE tid = (%s)", (tid,))
-			first_name = c.fetchone()[0]
-			c.execute("SELECT last_name FROM tpersonals WHERE tid = (%s)", (tid,))
-			last_name = c.fetchone()[0]
-			c.execute("SELECT address FROM tpersonals WHERE tid = (%s)", (tid,))
-			address = c.fetchone()[0]
-			c.execute("SELECT city FROM tpersonals WHERE tid = (%s)", (tid,))
-			city = c.fetchone()[0]
-			c.execute("SELECT state FROM tpersonals WHERE tid = (%s)", (tid,))
-			state = c.fetchone()[0]
-			c.execute("SELECT zip FROM tpersonals WHERE tid = (%s)", (tid,))
-			tzip = c.fetchone()[0]
-			c.execute("SELECT birth_month FROM tpersonals WHERE tid = (%s)", (tid,))
-			birth_month = c.fetchone()[0]
-			c.execute("SELECT birth_day FROM tpersonals WHERE tid = (%s)", (tid,))
-			birth_day = c.fetchone()[0]
-			c.execute("SELECT birth_year FROM tpersonals WHERE tid = (%s)", (tid,))
-			birth_year = c.fetchone()[0]
-			c.execute("SELECT bio FROM tpersonals WHERE tid = (%s)", (tid,))
-			bio = c.fetchone()[0]
-			c.execute("SELECT reg_date FROM tpersonals WHERE tid = (%s)", (tid,))
-			reg_date = c.fetchone()[0]
-			c.execute("SELECT certified FROM tpersonals WHERE tid = (%s)", (tid,))
-			certified = c.fetchone()[0]
-			c.execute("SELECT email_verify FROM tpersonals WHERE tid = (%s)", (tid,))
-			email_verify = c.fetchone()[0]
-			# For now, just putting the prof_pic url into the BLOB
-			c.execute("SELECT prof_pic FROM tpersonals WHERE tid = (%s)", (tid,))
-			prof_pic = c.fetchone()[0]
-			conn.commit()
-			c.close()
-			conn.close()
-			session['tid'] = tid
-			session['phone'] = phone
-			session['rating'] = rating
-			session['first_name'] = first_name
-			session['last_name'] = last_name
-			session['address'] = address
-			session['city'] = city
-			session['state'] = state
-			session['tzip'] = tzip
-			session['birth_month'] = birth_month
-			session['birth_day'] = birth_day
-			session['birth_year'] = birth_year
-			session['bio'] = bio
-			session['reg_date'] = reg_date
-			session['prof_pic'] = prof_pic
-			session['certified'] = certified
-			session['email_verify'] = email_verify
-			# For change of password, phone, or email
-			session['pconfirm'] = 0
-			session['phconfirm'] = 0
-			session['econfirm'] = 0
-
-			#//END grab all the clients info
-			c, conn = connection()
-			
-			#Get value before placing into textarea-box... 
-			#had to do this method because value=session.bio wasnt working in jinja
-			form.bio.data = session['bio']
-			if request.method == 'POST' and form.validate():
-				first_name = form.first_name.data
-				last_name = form.last_name.data
-				address = form.address.data
-				city = form.city.data
-				state = form.state.data
-				tzip = form.tzip.data
-				birth_month = form.birth_month.data
-				birth_day = form.birth_day.data
-				birth_year = form.birth_year.data
-				bio = request.form['bio']
-				tid = session['tid']
-				c.execute("UPDATE tpersonals SET first_name = %s, last_name = %s, address = %s, city = %s, state = %s, zip = %s, birth_month = %s, birth_day = %s, birth_year = %s, bio = %s WHERE tid = (%s)", (thwart(first_name), thwart(last_name), thwart(address), thwart(city), thwart(state), thwart(tzip), birth_month, birth_day, birth_year, bio, tid))
-				conn.commit()
-				c.close()
-				conn.close()
-				session['first_name'] = first_name
-				session['last_name'] = last_name
-				session['address'] = address
-				session['city'] = city
-				session['state'] = state
-				session['tzip'] = tzip
-				session['birth_month'] = birth_month
-				session['birth_day'] = birth_day
-				session['birth_year'] = birth_year
-				session['bio'] = bio
-				flash(u'Your account is successfully updated.', 'success')
-				return redirect(url_for('technician.account'))
-		else:
-			flash(u'Try logging out and back in again!', 'secondary')
-			return redirect(url_for('main.homepage'))
-
-		return render_template('technician/account/index.html', form=form, error = error)
-
-	except Exception as e:
-		return render_template('500.html', error = e)
-
-@mod.route('/account/duties/', methods=['GET','POST'])
->>>>>>> f630e9b9ac8577f5c975ba4c5e202262bdb71677
 def duties():
     return render_template('technician/account/duties.html')
 
@@ -637,9 +430,6 @@ def signature():
     else:
         error = "Please enter your name!"
         return render_template('technician/account/signature.html', form=form)
-
-# PASSWORD CONFIRM
-
 
 @technician.route('/account/password_confirm/', methods=['GET', 'POST'])
 def password_confirm():
@@ -673,9 +463,6 @@ def password_confirm():
         error = e
         return render_template('technician/account/password_confirm.html', error=error)
 
-# PASSWORD RESET
-
-
 @technician.route('/account/password_reset/', methods=['GET', 'POST'])
 def password_reset():
     error = ''
@@ -703,9 +490,6 @@ def password_reset():
 
     except Exception as e:
         return(str(e))
-
-# EMAIL CONFIRM
-
 
 @technician.route('/account/email_confirm/', methods=['GET', 'POST'])
 def email_confirm():
@@ -739,9 +523,6 @@ def email_confirm():
     except Exception as e:
         error = e
         return render_template('technician/account/email_confirm.html', error=error)
-
-# EMAIL RESET
-
 
 @technician.route('/account/email_reset/', methods=['GET', 'POST'])
 def email_reset():
@@ -786,9 +567,6 @@ def email_reset():
     except Exception as e:
         return(str(e))
 
-# PHONE CONFIRM
-
-
 @technician.route('/account/phone_confirm/', methods=['GET', 'POST'])
 def phone_confirm():
     error = ''
@@ -822,10 +600,8 @@ def phone_confirm():
         return render_template('technician/account/phone_confirm.html', error=error)
 
 
-# PHONE RESET
 @technician.route('/account/phone_reset/', methods=['GET', 'POST'])
 def phone_reset():
-<<<<<<< HEAD
     error = ''
     try:
         if session['phconfirm'] == 1:
@@ -863,60 +639,40 @@ def phone_reset():
 
     except Exception as e:
         return(str(e))
-=======
-	error = ''
-	try:
-		if session['phconfirm'] == 1:
-			form = TechPhoneResetForm(request.form)
-			if request.method == "POST" and form.validate():
-				#check if phone number exists first
-				tid = session['tid']
-				phone = form.phone.data
-				c, conn = connection()
-				if(phone != session["phone"]):
-					x = c.execute("SELECT * FROM technicians WHERE phone = (%s)", (thwart(phone),))
-					conn.commit()
-					if int(x) > 0:
-						#redirect them if they need to recover an old email from and old account
-						flash(u'That phone already has an account, please try a different phone.', 'danger')
-						return render_template('technician/account/phone_reset.html', form=form)
 
-				c.execute("UPDATE technicians SET phone = %s WHERE tid = (%s)", (thwart(phone), tid))
-				conn.commit()
-				flash(u'Phone number successfully changed!', 'success')
-				c.close()
-				conn.close()
-				#so they cant get back in!
-				session['phconfirm'] = 0
-				return redirect(url_for('technician.account'))
 
-			return render_template('technician/account/phone_reset.html', form=form)
-		else:
-			flash(u'Not allowed there!', 'danger')
-			return redirect(url_for('main.homepage'))
-
-	except Exception as e:
-		return(str(e))
-
-@mod.route('/email/send_email_verify/', methods=['GET', 'POST'])
+@technician.route('/email/send_email_verify/', methods=['GET', 'POST'])
 def send_email_verify():
-	if 'logged_in' in session and request.method == "GET":
-		email = session['email']
-		first_name = session['first_name']
-		# Send confirmation email
-		token = s.dumps(email, salt='email-verify')
-		msg = Message("Minute.tech - Email Verification",
-					  sender="test@minute.tech", recipients=[email])
-		link = url_for('technician.email_verify',
-					   token=token, _external=True)
-		msg.body = render_template(
-			'technician/email/send_email_verify.txt', link=link, first_name=first_name)
-		msg.html = render_template(
-			'technician/email/send_email_verify.html', link=link, first_name=first_name)
-		mail.send(msg)
-		flash(u'Verification email sent', 'success')
-		return redirect(url_for('technician.account'))
-	else:
-		flash(u'Log in as a technician first, then click the link again', 'danger')
-		return redirect(url_for('technician.login'))
->>>>>>> f630e9b9ac8577f5c975ba4c5e202262bdb71677
+    if 'logged_in' in session and request.method == "GET":
+        email = session['email']
+        first_name = session['first_name']
+        # Send confirmation email
+        token = s.dumps(email, salt='email-verify')
+        msg = Message("Minute.tech - Email Verification",
+                      sender="test@minute.tech", recipients=[email])
+        link = url_for('technician.email_verify',
+                       token=token, _external=True)
+        msg.body = render_template(
+            'technician/email/send_email_verify.txt', link=link, first_name=first_name)
+        msg.html = render_template(
+            'technician/email/send_email_verify.html', link=link, first_name=first_name)
+        mail.send(msg)
+        flash(u'Verification email sent', 'success')
+        return redirect(url_for('technician.account'))
+    else:
+        flash(u'Log in as a technician first, then click the link again', 'danger')
+        return redirect(url_for('technician.login'))
+
+#Temporary function
+@technician.route('/add_mp/', methods=['GET', 'POST'])
+def add_mp():
+    c, conn = connection()
+    rating = session['rating']
+    tid = session['tid']
+    rating = rating + 50
+    c.execute("UPDATE technicians SET rating = %s WHERE tid = (%s)", (rating, tid))
+    conn.commit()
+    flash(u'50mp added!', 'success')
+    c.close()
+    conn.close()
+    return redirect(url_for('technician.account'))

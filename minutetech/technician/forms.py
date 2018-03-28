@@ -1,11 +1,17 @@
-from wtforms import (Form, TextField, PasswordField,
-                     TextAreaField, validators)
+from wtforms import (Form, TextField,
+                     PasswordField,
+                     TextAreaField,
+                     validators)
 from wtforms.widgets import TextArea
-from flask_wtf import RecaptchaField
+from flask_wtf import FlaskForm, RecaptchaField
+from flask_wtf.file import FileField, FileAllowed  # FileRequired
+# from werkzeug.utils import secure_filename  # For secure file uploads
+from flask_uploads import (
+    UploadSet, IMAGES)  # patch_request_class, configure_uploads
+
+photos = UploadSet('photos', IMAGES)
 
 # TECHNICIAN FORMS #
-
-
 class TechRegistrationForm(Form):
     first_name = TextField(
         'First Name', [validators.Length(min=1, max=50)])
@@ -24,6 +30,7 @@ class TechRegistrationForm(Form):
 
 
 class TechEditAccountForm(Form):
+    prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
     first_name = TextField(
         'First Name', [validators.Length(min=1, max=50)])
     last_name = TextField('Last Name', [validators.Length(min=1, max=50)])
@@ -60,3 +67,4 @@ class TechEmailResetForm(Form):
 class TechSignatureForm(Form):
     signature = TextField('Signature (Please enter your full name)', [
                           validators.Length(min=2, max=100)])
+
