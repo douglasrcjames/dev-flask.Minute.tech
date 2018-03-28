@@ -319,7 +319,7 @@ def account():
             # For now, just putting the prof_pic url into the BLOB
             prof_pic = tech[14]
             email_verify = tech[15]
-            certified = tech[15]
+            certified = tech[16]
             conn.commit()
             c.close()
             conn.close()
