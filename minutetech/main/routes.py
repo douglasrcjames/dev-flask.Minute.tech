@@ -25,9 +25,11 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 # 1st Layer Pages (Visible to all visitors)
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def login_required(f):
     @wraps(f)
@@ -118,6 +120,8 @@ def about():
         return render_template("500.html", error=e)
 
 count = 1
+
+
 @main.route('/login/', methods=['GET', 'POST'])
 def login():
     global count
@@ -502,6 +506,7 @@ def account():
     except Exception as e:
         return render_template("500.html", error=e)
 
+
 @main.route('/password_confirm/', methods=['GET', 'POST'])
 def password_confirm():
     error = ''
@@ -538,6 +543,7 @@ def password_confirm():
         error = e
         return render_template("account/password_confirm.html", error=error)
 
+
 @main.route('/password_reset/', methods=['GET', 'POST'])
 def password_reset():
     error = ''
@@ -565,6 +571,7 @@ def password_reset():
 
     except Exception as e:
         return(str(e))
+
 
 @main.route('/email_confirm/', methods=['GET', 'POST'])
 def email_confirm():
@@ -598,6 +605,7 @@ def email_confirm():
     except Exception as e:
         error = e
         return render_template("account/email_confirm.html", error=error)
+
 
 @main.route('/email_reset/', methods=['GET', 'POST'])
 def email_reset():
@@ -639,6 +647,7 @@ def email_reset():
     except Exception as e:
         return(str(e))
 
+
 @main.route('/phone_confirm/', methods=['GET', 'POST'])
 def phone_confirm():
     error = ''
@@ -670,6 +679,7 @@ def phone_confirm():
     except Exception as e:
         error = e
         return render_template("account/phone_confirm.html", error=error)
+
 
 @main.route('/phone_reset/', methods=['GET', 'POST'])
 def phone_reset():
@@ -714,6 +724,7 @@ def phone_reset():
     except Exception as e:
         return(str(e))
 
+
 @main.route('/email/send_email_verify/', methods=['GET', 'POST'])
 def send_email_verify():
     if 'logged_in' in session and request.method == "GET":
@@ -736,7 +747,9 @@ def send_email_verify():
         flash(u'Log in as a client first, then click the link again', 'danger')
         return redirect(url_for('main.login'))
 
-#Temporary function
+# Temporary function
+
+
 @main.route('/add_mp/', methods=['GET', 'POST'])
 def add_mp():
     c, conn = connection()
@@ -757,9 +770,11 @@ def add_mp():
 def return_tos():
     return send_file('static/legal/MinutetechLLC_tos.pdf', attachment_filename='MinutetechLLC_tos.pdf')
 
+
 @main.route('/Minutetech_Logo/')
 def return_logo():
     return send_file('static/images/Icon_1000x1000px.png', attachment_filename='Icon_1000x1000px.png')
+
 
 @main.route('/coffee-lady/')
 def return_pic1():
@@ -772,6 +787,7 @@ def return_pic2():
 @main.route('/Minutetech_Long_Logo/')
 def return_logo_long():
     return send_file('static/images/Secondary_long.png')
+
 
 @main.route('/Minutetech_rocket_ship/')
 def return_rocket_ship():

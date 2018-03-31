@@ -12,6 +12,9 @@ else:
 DEBUG = True
 SECRET_KEY = 'quincyisthebestdog11'
 
+SQLALCHEMY_DATABASE_URI = "mysql://test:welcomeback11@localhost/minutetech"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 MAIL_SERVER = 'smtp.zoho.com'
 MAIL_USERNAME = 'test@minute.tech'
 MAIL_PASSWORD = 'welcomeback11'
