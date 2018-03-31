@@ -112,11 +112,11 @@ def register_page():
 
             if int(x) > 0:
                 flash(
-                    u'That email already has an account, please try a new email or send an email to help@minute.', 'danger')
+                    u'That email already has an account, please try a new email or send an email to help@minute.tech', 'danger')
                 return render_template('technician/register.html', form=form)
             elif int(y) > 0:
                 flash(
-                    u'That phone already has an account, please try a new phone or send an email to help@minute.', 'danger')
+                    u'That phone already has an account, please try a new phone or send an email to help@minute.tech', 'danger')
                 return render_template('technician/register.html', form=form)
             else:
                 default_prof_pic = url_for(
@@ -148,7 +148,7 @@ def register_page():
                 session['prof_pic'] = default_prof_pic
                 # Send confirmation email
                 token = s.dumps(email, salt='email-verify')
-                msg = Message("Minute. - Email Verification",
+                msg = Message("Minute.tech - Email Verification",
                               sender="test@minute.tech", recipients=[email])
                 link = url_for('technician.email_verify',
                                token=token, _external=True)

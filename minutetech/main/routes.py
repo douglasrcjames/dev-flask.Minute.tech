@@ -780,6 +780,9 @@ def return_logo():
 def return_pic1():
     return send_file('static/images/lady-logo-email-banner.png', attachment_filename='lady-logo-email-banner.png')
 
+@main.route('/technician-macbook-watch/')
+def return_pic2():
+    return send_file('static/images/technician-macbook-watch.png', attachment_filename='technician-macbook-watch.png')
 
 @main.route('/Minutetech_Long_Logo/')
 def return_logo_long():
@@ -787,5 +790,13 @@ def return_logo_long():
 
 
 @main.route('/Minutetech_rocket_ship/')
-def return_tocket_ship():
+def return_rocket_ship():
     return send_file('static/flat-icons/008-startup.png')
+
+@main.route('/Minute_technician/')
+def return_technician():
+    return send_file('static/flat-icons/support.png')
+
+@main.route('/Minutetech_shield/')
+def return_shield():
+    return send_file('static/flat-icons/005-shield.png')
