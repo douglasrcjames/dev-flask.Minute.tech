@@ -2,31 +2,127 @@
 
 {% block body %}
  
-	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center uk-padding-remove-top" 
-				style="padding-top: 50px; background-image: url({{ url_for('static', filename='images/SF_landing.JPG') }}">
-		<div class="uk-container">
-			<div class="uk-container uk-align-center" uk-scrollspy="cls: uk-animation-scale-up; repeat: true">
-				<div class="uk-text-center">
+	 <section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center" 
+				style="padding-top: 50px; background-image: url({{ url_for('static', filename='images/SF_landing_opacity.jpg')}}">
+			
+			<div class="uk-container uk-background-muted uk-padding-large uk-padding-remove-top uk-align-center">
+				<div class="uk-padding uk-margin-auto" >
+					<div class="uk-text-center">
 					<img class="uk-border-circle" alt="minute.tech-logo" src="{{ url_for('static', filename='images/Icon_1000x1000px.png')}}" style="max-width: 40%; height: auto;" >
 				</div>
-			</div>
-			
-			<div class="uk-container uk-background-muted uk-padding-large uk-align-center">
-				<div class="uk-padding uk-margin-auto" >
-					<h1 class="uk-heading-primary uk-text-center"><b>About Minute.tech </b></h1>
+					<h1 class="uk-heading-primary"><b>About Minute.tech</b></h1>
 					<hr>
-					<p class="uk-text-large">Minute.tech is an on-demand, high quality technical support line for the average tech user at home.<br>  We can assist on issues all over the tech spectrum from online accounts, computers, smart phones, software and more. Currently we are going through testing, and taking potential clients. Sign up now to participate!</p>
+					<p class="uk-text-large uk-dropcap">Since the invention of the personal computer in 1975, the daily prevalence of these mechanical minds have grown exponentially to unforeseen heights. Just like the motorized vehicle has changed our means of transportation, the personal computer has revolutionized the way people live, work, communicate, entertain, and educate; affecting every facet of people’s lives. <img alt="computer" src="{{ url_for('static', filename='flat-icons/025-computer.png')}}" style="max-width:150px; float:right;" uk-scrollspy="cls: uk-animation-fade; repeat: true"> It should not be surprising that computers are more efficient than traditional methods of completing many tasks. However, the rate at which these innovations are evolving outpaces most individuals’ understanding of how to utilize each device, available software, and existing services. This creates a psychological barrier and an excuse to shy away from realizing the potential of these technological advances. In addition, they are denied the opportunity of exploring new products and services simply due to unfamiliar and frustrating interfaces. (might take this whole section out, or reduce it heavily, becoming a big wall of text) </p>
+					<br>
+					<div style="text-align: center;"></div>
+					<br>
+					<p class="uk-text-large">
+					<img alt="network" src="{{ url_for('static', filename='flat-icons/001-network.png')}}" style="max-width:150px; float: left; padding-right: 15px;" uk-scrollspy="cls: uk-animation-fade; repeat: true">The Minute.tech system was conceptualized at San Jose State University, CA by <a href="http:///www.douglasrcjames.com" target="_blank">Douglas James</a> in early 2016 to facilitate his parents eagerness to learn the power of technology while he was studying computer engineering. Three months after inception, Minute.tech was entered into the Silicon Valley Business Plan Competition and placed 3rd out of ~80 teams, awarding the project $1500. Simply put, the idea is to bridge the tech knowledge gap between users across the tech spectrum, connecting non-techie users (like mom) to the techie users (like a computer engineering student). If you know someone who needs to get their tech to start working for <i>them</i>, tell them about Minute.tech! Better yet, if you make an account and refer them to us using your email, we will give you both $10 in credits! 
+					<br>
+					<br>
+					Minute.tech will use a rating system to give the best experience to both the technician and the client. Clients and Minute technicians will be worldwide, connected via messenger, voice call, video call, remote-control, or in-person. <img alt="podium" src="{{ url_for('static', filename='flat-icons/003-podium.png')}}" style="max-width:150px; float: right;" uk-scrollspy="cls: uk-animation-fade; repeat: true"> Minute technicians will be taking on tasks such as reinstalling an operating system or suggesting the best course of action for a broken device. Technicians will pass off calls in the case that there may be another technician better suited to answer that question. If you are interested in becoming a Minute technician, <a href="/technician/register">sign up today</a>!
+
+					</p>
+					<br>
+					
+					<br>
+					<h1 class="uk-heading-primary"><b>Team</b></h1>
+					<hr>
+					<div class="uk-child-width-1-4@s" uk-grid>
+						<!-- These need to collapse to one colomn on mobile -->
+					    <div>
+					        <div class="uk-card uk-card-default">
+					            <div class="uk-card-media-top">
+					                <img src="{{ url_for('static', filename='images/team/Douglas-James.png')}}" alt="" >
+					            </div>
+					            <div class="uk-card-body">
+					                <h3 class="uk-card-title">Douglas James</h3>
+					                <p>Founder &amp; CEO <br>
+					                <a href="https://www.linkedin.com/in/douglasrcjames/" uk-icon="icon: linkedin" target="_blank"></a>&nbsp;&nbsp;&nbsp; 
+					                <a href="https://twitter.com/douglasrcjames" uk-icon="icon: twitter" target="_blank"></a>&nbsp;&nbsp;&nbsp;
+					                <a href="https://www.instagram.com/douglasrcjames/?hl=en" uk-icon="icon: instagram" target="_blank"></a>
+					                </p>
+					                
+					              
+					            </div>
+					        </div>
+					    </div>
+					    <div>
+					    	<div class="uk-card uk-card-default">
+					            <div class="uk-card-body">
+					                <h3 class="uk-card-title">Ryan Wall</h3>
+					                <p>Graphic Designer <br>
+					                <a href="https://www.linkedin.com/in/ryan-wall-287837132/" uk-icon="icon: linkedin" target="_blank"></a>&nbsp;&nbsp;&nbsp; 
+					                <a href="https://twitter.com/ryan_wall95" uk-icon="icon: twitter" target="_blank"></a>&nbsp;&nbsp;&nbsp;
+					                <a href="https://www.instagram.com/mynameisryanwall/?hl=en" uk-icon="icon: instagram" target="_blank"></a>
+					                </p>
+					            </div>
+					            <div class="uk-card-media-bottom">
+					                <img src="{{ url_for('static', filename='images/team/Ryan-Wall.jpg')}}" alt="">
+					            </div>
+					        </div>
+					    </div>
+					    <div>
+					    	<div class="uk-card uk-card-default">
+					            <div class="uk-card-media-bottom">
+					                <img src="{{ url_for('static', filename='images/team/Mitch-Licata.JPG')}}" alt="">
+					            </div>
+					            <div class="uk-card-body">
+					                <h3 class="uk-card-title">Mitch Licata</h3>
+					                <p>Graphic Designer <br>
+					                <a href="https://www.linkedin.com/in/mitch-licata-14641692/" uk-icon="icon: linkedin" target="_blank"></a>&nbsp;&nbsp;&nbsp; 
+					                <a href="https://twitter.com/MitchellJames68" uk-icon="icon: twitter" target="_blank"></a>&nbsp;&nbsp;&nbsp;
+					                <a href="https://www.instagram.com/mitch_licata/?hl=en" uk-icon="icon: instagram" target="_blank"></a>
+					                </p>
+					            </div>
+					        </div>
+					    </div>
+					    <div>
+					    	<div class="uk-card uk-card-default">
+					            <div class="uk-card-body">
+					                <h3 class="uk-card-title">Nathan Elkind</h3>
+					                <p>Media Production <br>
+					                <a href="https://www.linkedin.com/in/nathan-a-elkind/" uk-icon="icon: linkedin" target="_blank"></a>&nbsp;&nbsp;&nbsp; 
+					                <a href="https://twitter.com/ElkindNathan" uk-icon="icon: twitter" target="_blank"></a>&nbsp;&nbsp;&nbsp;
+					                <a href="https://www.instagram.com/natee3xc/?hl=en" uk-icon="icon: instagram" target="_blank"></a>
+					                </p>
+					            </div>
+					            <div class="uk-card-media-bottom">
+					                <img src="{{ url_for('static', filename='images/team/Nathan-Elkind.JPG')}}" alt="">
+					            </div>
+					        </div>
+					    </div>
+					    <!-- <div>
+					    	<div class="uk-card uk-card-default">
+					    		<div class="uk-card-media-top">
+					                <img src="{{ url_for('static', filename='images/team/Douglas-James.png')}}" alt="">
+					            </div>
+					            <div class="uk-card-body">
+					                <h3 class="uk-card-title">Ana Campos</h3>
+					                <p>Public Relations</p>
+					            </div> 
+					        </div>
+					    </div> -->
+					</div>
+					<br>
+					<hr>
+					<p class="uk-text-large">
+					 	<img alt="magnifying-glass" src="{{ url_for('static', filename='flat-icons/worker.png')}}" style="max-width:75px; float: left; padding-right: 15px;" uk-scrollspy="cls: uk-animation-fade; repeat: true">
+						The Minute.tech team is small, and we are actively looking for ambitious team members, please contact <a href="mailto:jobs@minute.tech">jobs@minute.tech</a> if interested.
+						<br><br>
+						<img alt="plant" src="{{ url_for('static', filename='flat-icons/plant.png')}}" style="max-width:75px; float: left; padding-right: 15px;" uk-scrollspy="cls: uk-animation-fade; repeat: true">
+						Investment opportunties email <a href="mailto:contact@minute.tech">contact@minute.tech</a>.
+					</p>
 					
 				</div>
 			</div>
-		</div>
 
 	</section>
-
+			
 	<!-- SECTION 2 -->
 
-	<section class="uk-section uk-section-xsmall uk-section-secondary uk-background-cover" style="background-color: #4EBDE5;">
-		<div class="uk-container uk-padding-large">
+	<section class="uk-section uk-section-xsmall uk-section-secondary uk-background-cover" style="background-color: #FFD54C;">
+		<div class="uk-container uk-padding">
 			<div class="uk-margin-auto" >
 				
 			</div>
@@ -36,7 +132,7 @@
 	<!-- SECTION 5 -->
 
 	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom" 
-			style="background-image: url({{ url_for('static', filename='images/Minute_technician.JPG')}});">
+			style="background-image: url({{ url_for('static', filename='images/contact-hello.png')}});">
 		<div class="uk-container uk-container-small uk-margin-small">
 			<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-shake; repeat: true"> 
 				<div class="uk-text-center">

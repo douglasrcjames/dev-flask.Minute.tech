@@ -4,7 +4,7 @@
 
 	<!-- SECTION 1 -->
 
-	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center" style="background-image: url({{ url_for('static', filename='images/SF_landing_opacity.jpg')}});">
+	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center" style="background-image: url({{ url_for('static', filename='images/desk-clutter-with-phone.png')}});">
 		<div class="uk-container">
 		
 			{% if session.logged_in == 'client' %}
@@ -47,13 +47,12 @@
 					</div>
 				</div>
 			{% else %}
-			<div class="uk-container uk-padding-large uk-padding-remove-top uk-padding-remove-bottom uk-align-center">
-				<div class="uk-text-center">
-					<img alt="augmented-reality" src="{{ url_for('static', filename='flat-icons/augmented-reality.png')}}" style="max-width:175px;" uk-scrollspy="cls: uk-animation-fade; repeat: true">
-					<h1 class="uk-heading-primary" style="color:white;"><b>The future of tech support.</b></h1>
-					
+			<div class="uk-container uk-align-center uk-background-muted">
+				<div class="uk-padding-large uk-margin-auto uk-text-center" >
+					<img alt="augmented-reality" src="{{ url_for('static', filename='flat-icons/011-computer-2.png')}}" style="max-width:175px;" uk-scrollspy="cls: uk-animation-fade; repeat: true">
+					<h1 class="uk-heading-primary"><span><b>Everyone needs tech help, sometimes.</b></span></h1>
 					<hr>
-					<p class="uk-text-large" style="color:white;">Minute.tech is an on-demand, high quality technical support line for the average tech user at home.<br>  We can assist on issues all over the tech spectrum from online accounts, computers, smart phones, software and more. Currently we are going through testing, and taking potential clients. Sign up now to participate!</p>
+					<p class="uk-text-large">Minute.tech is an on-demand, high quality technical support line for the average tech user at home.<br>  We can assist on issues all over the tech spectrum from online accounts, computers, smart phones, software and more. Currently we are going through testing, and taking potential clients. Sign up now to participate!</p>
 					<div data-uk-margin>
 						<a href="/register/">
 							<div class="uk-button uk-button-secondary">
@@ -178,7 +177,7 @@
 
 	<!-- SECTION 3 -->
 
-	<section class="uk-section uk-section-large uk-background-cover" style="background-image: url({{ url_for('static', filename='images/space_banner.jpg')}});">
+	<!-- <section class="uk-section uk-section-large uk-background-cover" style="background-image: url({{ url_for('static', filename='images/space_banner.jpg')}});">
 		<div class="uk-container uk-container-small uk-text-center uk-margin-small">
 			<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"> 
 				<q cite="#" class="uk-text-large" style="color:white">
@@ -191,11 +190,11 @@
 				</footer>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<!-- SECTION 4 -->
 
-	<section class="uk-section uk-section-large uk-section-secondary uk-background-cover" style="background-color: #4EBDE5;">
+	<section class="uk-section uk-section-large uk-section-secondary uk-background-cover" style="background-color: #FFD54C;">
 		<div class="uk-container uk-container-small uk-text-center" style="color:black;">
 			<div class="uk-card-default uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
 				<q cite="#" class="uk-text-large">
@@ -212,8 +211,8 @@
 
 	<!-- SECTION 5 -->
 	{% if session.logged_in != 'tech' %}
-		<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom" 
-				style="background-image: url({{ url_for('static', filename='images/Minute_technician.JPG')}});">
+		<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-top-center" 
+				style="background-image: url({{ url_for('static', filename='images/black-tie-technician.png')}});">
 			<div class="uk-container uk-container-small uk-text-center uk-margin-small">
 				<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-scale-down; repeat: true"> 
 					<img alt="key hole" src="{{ url_for('static', filename='flat-icons/coffee.png')}}" style="max-width:75px;" >
