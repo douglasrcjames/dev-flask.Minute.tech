@@ -44,7 +44,7 @@ class Ticket(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey(
         Client.id), nullable=False)
     technician_id = db.Column(db.Integer, db.ForeignKey(
-        Technician.id), nullable=False)
+        Technician.id), nullable=True)
     difficulty = db.Column(db.Integer, default=0)
     priority = db.Column(db.Integer, default=500)
     solved = db.Column(db.Boolean, default=False)
@@ -64,7 +64,7 @@ class Thread(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey(
         Client.id), nullable=False)
     technician_id = db.Column(db.Integer, db.ForeignKey(
-        Technician.id), nullable=False)
+        Technician.id), nullable=True)
     ticket_id = db.Column(db.Integer, db.ForeignKey(
         Ticket.id), nullable=False)
     body = db.Column(db.Text)
