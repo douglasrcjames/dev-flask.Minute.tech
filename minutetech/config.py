@@ -7,7 +7,7 @@ MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static/user_info')
 
 if os.environ.get('FLASK_ENV') == 'DEV':
-    DEBUG = True
+    DEBUG = False
     RECAPTCHA_PUBLIC_KEY = '6LdYWksUAAAAANDZN1ooSZJ1cp7x2Z0Pfcc9Cz4n'
     RECAPTCHA_PRIVATE_KEY = '6LdYWksUAAAAAM0Hw43BxoN5fsuZQcndGcp5MNx5'
 else:
