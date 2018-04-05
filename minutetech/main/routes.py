@@ -402,7 +402,7 @@ def account():
             session['birth_year'] = birth_year
             session['bio'] = bio
             session['reg_date'] = reg_date
-            session['prof_pic'] = prof_pic
+            session['prof_pic'] = prof_pic.replace('/static/', '')
             session['email_verify'] = email_verify
             session['pconfirm'] = 0
             session['econfirm'] = 0
@@ -470,7 +470,8 @@ def account():
             # session variable called 'logged_in'
             flash(u'Try logging in as a client', 'secondary')
 
-        return render_template("account/index.html", form=form, error=error)
+        return render_template("account/index.html", form=form,
+                               error=error)
 
     except Exception as e:
         return render_template("500.html", error=e)

@@ -40,7 +40,7 @@
 								<p class="uk-text-center">You are ranked <b>Diamond</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
 							</div>
 						{% endif %}
-						
+
 						{% if session.email_verify == 0 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="rocket">
@@ -55,13 +55,14 @@
 						<!-- END Alert section -->
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
-							<img class="uk-border-rounded uk-box-shadow-small" src="{{ session.prof_pic }}" width="200" height="200" alt="">
+							<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=session.prof_pic, width=200, height=200, quality=98)}}" alt="">
+
 						</div>
 						<div class="uk-width-1-1">
 							<div uk-form-custom="target: true">
 					            {{ form.prof_pic }}
 					            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-					            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>      
+					            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
 						    </div>
 							{% for error in form.prof_pic.errors %}
 						        <span class="uk-label uk-label-danger">{{ error }}</span>
