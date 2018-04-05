@@ -4,3 +4,4 @@ venv/
 # Files
 
 *.pyc
+*.log

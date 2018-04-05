@@ -1,12 +1,11 @@
 import os
-import os.path
 from flask import (render_template, flash, request,
                    url_for, redirect, session,
                    send_file,
                    Blueprint)
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt  # To encrypt the password
-from MySQLdb import escape_string as thwart  # To prevent SQL injection
+# from MySQLdb import escape_string as thwart  # To prevent SQL injection
 from sqlalchemy import or_
 from flask_mail import Message
 # Email confirmation link that has a short lifespan

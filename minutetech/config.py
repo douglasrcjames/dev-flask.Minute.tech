@@ -1,16 +1,20 @@
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+SECRET_KEY = 'quincyisthebestdog11'
+
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static/user_info')
+
 if os.environ.get('FLASK_ENV') == 'DEV':
+    DEBUG = True
     RECAPTCHA_PUBLIC_KEY = '6LdYWksUAAAAANDZN1ooSZJ1cp7x2Z0Pfcc9Cz4n'
     RECAPTCHA_PRIVATE_KEY = '6LdYWksUAAAAAM0Hw43BxoN5fsuZQcndGcp5MNx5'
 else:
+    DEBUG = False
     RECAPTCHA_PUBLIC_KEY = '6Lc54UgUAAAAAPj5zf-R_pmKlnC_gBQSQ7EYfkzU'
     RECAPTCHA_PRIVATE_KEY = '6Lc54UgUAAAAAKvQv4x3QaYwKx5iZHAWiTO8Ft05'
 
-DEBUG = True
-SECRET_KEY = 'quincyisthebestdog11'
 
 SQLALCHEMY_DATABASE_URI = "mysql://test:welcomeback11@localhost/minutetech"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
