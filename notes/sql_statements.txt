@@ -4,6 +4,7 @@ DROP TABLE cpersonals;
 DROP TABLE tpersonals;
 DROP TABLE clients;
 DROP TABLE technicians;
+DROP TABLE contact;
 
 CREATE TABLE clients(
 cid BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -96,7 +97,7 @@ FOREIGN KEY(qid) REFERENCES tickets(qid),
 FOREIGN KEY(tid) REFERENCES technicians(tid),
 FOREIGN KEY(cid) REFERENCES clients(cid));
 
-DROP TABLE contact;
+
 
 CREATE TABLE contact(
 contact_id BIGINT UNSIGNED AUTO_INCREMENT,
