@@ -55,7 +55,9 @@
 						<!-- END Alert section -->
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
-							<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=session.prof_pic, width=200, height=200, quality=98)}}" alt="">
+							{% if session.prof_pic != "" %}
+								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=session.prof_pic, width=200, height=200, quality=98)}}" alt="">
+							{% endif %}
 
 						</div>
 						<div class="uk-width-1-1">
