@@ -5,6 +5,7 @@ SECRET_KEY = 'quincyisthebestdog11'
 
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static/user_info')
+IMAGES_CACHE = os.path.join(BASE_DIR, '../../tmp/flask-images')
 
 if os.environ.get('FLASK_ENV') == 'DEV':
     DEBUG = False
