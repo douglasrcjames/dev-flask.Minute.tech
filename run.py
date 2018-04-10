@@ -13,4 +13,4 @@ if __name__ == '__main__':
     file_handler.setLevel(logging.ERROR)
     app.logger.setLevel(logging.ERROR)
     app.logger.addHandler(file_handler)
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
