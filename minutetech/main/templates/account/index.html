@@ -55,8 +55,12 @@
 						<!-- END Alert section -->
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
-							{% if session.prof_pic != "" %}
+							{% if session.prof_pic != "" and session.prof_pic != "user_info/prof_pic/default.jpg" %}
 								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=session.prof_pic, width=200, height=200, quality=98)}}" alt="">
+							{% endif %}
+
+							{% if session.prof_pic != "" and session.prof_pic == "user_info/prof_pic/default.jpg" %}
+								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('static', filename=session.prof_pic)}}" alt="" width="200" height="200">
 							{% endif %}
 
 						</div>
