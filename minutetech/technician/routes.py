@@ -24,9 +24,12 @@ s = URLSafeTimedSerializer(SECRET_KEY)  # For token
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 #  1st Layer SECTION
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def login_required(f):
     @wraps(f)
@@ -48,6 +51,8 @@ def logout():
     return redirect(url_for('main.homepage'))
 
 count = 1
+
+
 @technician.route('/login/', methods=['GET', 'POST'])
 def login():
     global count
@@ -197,6 +202,7 @@ def email_verify(token):
         return redirect(url_for('main.homepage'))
 
 ##############  2nd Layer SECTION  ####################
+
 
 @technician.route('/account/answer/', methods=['GET', 'POST'])
 def answer():
@@ -431,6 +437,7 @@ def signature():
         error = "Please enter your name!"
         return render_template('technician/account/signature.html', form=form)
 
+
 @technician.route('/account/password_confirm/', methods=['GET', 'POST'])
 def password_confirm():
     error = ''
@@ -463,6 +470,7 @@ def password_confirm():
         error = e
         return render_template('technician/account/password_confirm.html', error=error)
 
+
 @technician.route('/account/password_reset/', methods=['GET', 'POST'])
 def password_reset():
     error = ''
@@ -490,6 +498,7 @@ def password_reset():
 
     except Exception as e:
         return(str(e))
+
 
 @technician.route('/account/email_confirm/', methods=['GET', 'POST'])
 def email_confirm():
@@ -523,6 +532,7 @@ def email_confirm():
     except Exception as e:
         error = e
         return render_template('technician/account/email_confirm.html', error=error)
+
 
 @technician.route('/account/email_reset/', methods=['GET', 'POST'])
 def email_reset():
@@ -566,6 +576,7 @@ def email_reset():
 
     except Exception as e:
         return(str(e))
+
 
 @technician.route('/account/phone_confirm/', methods=['GET', 'POST'])
 def phone_confirm():
@@ -663,7 +674,9 @@ def send_email_verify():
         flash(u'Log in as a technician first, then click the link again', 'danger')
         return redirect(url_for('technician.login'))
 
-#Temporary function
+# Temporary function
+
+
 @technician.route('/add_mp/', methods=['GET', 'POST'])
 def add_mp():
     c, conn = connection()

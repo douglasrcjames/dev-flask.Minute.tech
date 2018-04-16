@@ -3,9 +3,11 @@ from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_images import Images
 from flask_wtf.csrf import CSRFProtect
+# from flask_uploads import configure_uploads, UploadSet, IMAGES
+
+# photos = UploadSet('photos', IMAGES)
 
 app = Flask(__name__)
-
 app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
@@ -14,6 +16,7 @@ images = Images(app)
 csrf = CSRFProtect()
 csrf.init_app(app)
 
+# configure_uploads(app, photos)
 
 from minutetech.main.routes import main
 from minutetech.technician.routes import technician

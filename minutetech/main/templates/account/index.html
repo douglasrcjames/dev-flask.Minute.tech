@@ -71,9 +71,10 @@
 					            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
 					            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
 						    </div>
-							{% for error in form.prof_pic.errors %}
-						        <span class="uk-label uk-label-danger">{{ error }}</span>
-						    {% endfor %}
+						    <br>
+						    {% for error in form.prof_pic.errors %}
+							    <span class="uk-label uk-label-danger">{{ error }}</span>
+							{% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
 							{{ form.first_name.label }}

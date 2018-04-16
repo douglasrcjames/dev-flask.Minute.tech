@@ -1,14 +1,16 @@
+import os
 from wtforms import (Form, TextField,
                      PasswordField,
                      TextAreaField,
-                     validators)
+                     validators, ValidationError)
 from wtforms.widgets import TextArea
 from flask_wtf import FlaskForm, RecaptchaField
-from flask_wtf.file import FileField, FileAllowed  # FileRequired
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 # from werkzeug.utils import secure_filename  # For secure file uploads
 from flask_uploads import (
     UploadSet, IMAGES)  # patch_request_class, configure_uploads
 
+# from minutetech import photos
 
 photos = UploadSet('photos', IMAGES)
 
@@ -29,7 +31,12 @@ class AskForm(Form):
 
 
 class EditAccountForm(Form):
-    prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
+    prof_pic = FileField(
+        validators=[
+            FileAllowed(
+                ['jpg', 'png'],
+                u'Only {} extensions allowed.'.format(', '.join(IMAGES)))
+        ])
     first_name = TextField('First Name', [validators.Length(min=1, max=50)])
     last_name = TextField('Last Name', [validators.Length(min=1, max=50)])
     address = TextField('Street Address', [validators.Length(min=6, max=100)])

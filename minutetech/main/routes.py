@@ -20,7 +20,6 @@ from .models import Contact, Client, Ticket, Thread
 from minutetech.config import SECRET_KEY, UPLOAD_FOLDER
 from minutetech import mail, db
 
-
 main = Blueprint('main', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -363,7 +362,7 @@ def pending():
 def account():
     error = ''
     try:
-        form = EditAccountForm(request.form)
+        form = EditAccountForm(request.form, request.files)
         if session['logged_in'] == 'client':
             # grab all the clients info
             # c, conn = connection()
@@ -413,6 +412,11 @@ def account():
             # had to do this method because value=session.bio wasnt working in
             # jinja
             form.bio.data = session['bio']
+            if request.files:
+                formdata = request.form.copy()
+                formdata.update(request.files)
+                form = EditAccountForm(formdata)
+
             if request.method == 'POST' and form.validate():
                 if 'prof_pic' in request.files:
                     new_prof_pic = request.files['prof_pic']
