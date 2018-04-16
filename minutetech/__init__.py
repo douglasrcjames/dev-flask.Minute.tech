@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_images import Images
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 
@@ -10,6 +11,8 @@ app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 mail = Mail(app)
 images = Images(app)
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 
 from minutetech.main.routes import main

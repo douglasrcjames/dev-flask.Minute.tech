@@ -49,6 +49,7 @@
 		<hr>
 		{% from "_formhelpers.html" import render_field %}
 			<form class="uk-grid-small uk-background-muted uk-padding" method=post action="/register/" uk-grid>
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				<h4>All information provided below will be kept secure and private.</h4>
 				<div class="uk-width-1-2@s">{{ render_field(form.first_name,placeholder="First Name", class_="uk-input") }}</div>
 				<div class="uk-width-1-2@s">{{ render_field(form.last_name,placeholder="Last Name", class_="uk-input") }}</div>

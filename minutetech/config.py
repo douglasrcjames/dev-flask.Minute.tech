@@ -7,6 +7,9 @@ MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static/user_info')
 IMAGES_CACHE = os.path.join(BASE_DIR, '../../tmp/flask-images')
 
+WTF_CSRF_ENABLED = True
+WTF_CSRF_SECRET_KEY = '2dz+fGD@lQ%?TwqZy-YpEcYU1q:GaSk!>CxNT5'
+
 if os.environ.get('FLASK_ENV') == 'DEV':
     DEBUG = False
     RECAPTCHA_PUBLIC_KEY = '6LdYWksUAAAAANDZN1ooSZJ1cp7x2Z0Pfcc9Cz4n'

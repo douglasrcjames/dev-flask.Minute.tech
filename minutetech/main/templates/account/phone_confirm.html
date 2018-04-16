@@ -1,5 +1,5 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
 
 	{% if session.logged_in == 'client' %}
@@ -8,6 +8,7 @@
 			<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
 				<div class="uk-width-1-2@s uk-padding uk-background-muted uk-margin-large">
 					<form action="" method="post">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 						<h2><span uk-icon="icon: lock; ratio: 2.5"></span>Authenticate</h2>
 						<hr>
 						<div class="uk-margin">
@@ -26,11 +27,11 @@
 							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1" value="Login">Authenticate</button>
 						</div>
 					</form>
-					
+
 					{% if error %}
 						<span class="uk-label uk-label-danger">{{ error }}</span></p>
 					{% endif %}
-					
+
 				</div>
 			</div>
 
@@ -41,7 +42,7 @@
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
 		 	<hr>
 		 	<p>
-		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a>
 		 		<br>
 		 		<br>
 		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
@@ -49,12 +50,12 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
-		 	
+		 	</p>
+		 </div>
+
 	{% endif %}
- 
+
 {% endblock %}
 
 
-		
+

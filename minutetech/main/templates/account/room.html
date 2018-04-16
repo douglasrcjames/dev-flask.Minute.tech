@@ -1,5 +1,5 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
 
 	{% if session.logged_in == 'client' %}
@@ -10,11 +10,12 @@
 		<img class="uk-align-center" style="height: 5em;" src="{{ url_for('static', filename='flat-icons/008-startup.png')}}" alt="rocket">
 		<p class="uk-text-lead uk-text-center">Interested in being notified when we launch our full site?</p>
 		<form action="/room/" method="post">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<input class="uk-button uk-button-primary uk-align-center" type="submit" value="Sign up">
 		</form>
 	</div>
 
-	{% elif session.logged_in == 'tech' %}	
+	{% elif session.logged_in == 'tech' %}
 
 		<!-- Display only if technician reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
@@ -32,17 +33,17 @@
 		 		<br>
 		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Technician Account</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
+		 	</p>
+		 </div>
 
 	{% else %}
-	
+
 		<!-- Display only if user reaches this page w/o logging in -->
 		<div class="uk-article uk-padding uk-align-center">
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
 		 	<hr>
 		 	<p>
-		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a>
 		 		<br>
 		 		<br>
 		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
@@ -50,10 +51,10 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
-		 
+		 	</p>
+		 </div>
+
 	{% endif %}
- 
+
 {% endblock %}
-	  
+

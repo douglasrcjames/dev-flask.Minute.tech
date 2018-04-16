@@ -12,6 +12,7 @@ from flask_uploads import (
 
 photos = UploadSet('photos', IMAGES)
 
+
 class RegistrationForm(Form):
     first_name = TextField('First Name', [validators.Length(min=1, max=50)])
     last_name = TextField('Last Name', [validators.Length(min=1, max=50)])
@@ -22,8 +23,10 @@ class RegistrationForm(Form):
     ), validators.EqualTo('confirm', message="Passwords must match.")])
     confirm = PasswordField('Repeat Password')
 
+
 class AskForm(Form):
     body = TextAreaField('Desciption', [validators.Length(min=10, max=2000)])
+
 
 class EditAccountForm(Form):
     prof_pic = FileField(validators=[FileAllowed(photos, u'Image only!')])
@@ -39,20 +42,24 @@ class EditAccountForm(Form):
     bio = TextAreaField('Personal Description', [
                         validators.Length(min=1, max=2000)], widget=TextArea())
 
+
 class PasswordResetForm(Form):
     password = PasswordField('Password', [validators.Required(
     ), validators.EqualTo('confirm', message="Passwords must match.")])
     confirm = PasswordField('Repeat Password')
+
 
 class EmailResetForm(Form):
     email = TextField('Email', [validators.Required(), validators.EqualTo(
         'confirm', message="Emails must match.")])
     confirm = TextField('Repeat Email')
 
+
 class PhoneResetForm(Form):
     phone = TextField('Phone', [validators.Required(), validators.EqualTo(
         'confirm', message="Phone numbers must match.")])
     confirm = TextField('Repeat Phone')
+
 
 class ContactForm(Form):
     message = TextAreaField('Message', [validators.Length(min=10, max=2000)])
