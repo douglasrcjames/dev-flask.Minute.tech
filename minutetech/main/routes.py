@@ -10,7 +10,7 @@ from sqlalchemy import or_
 from flask_mail import Message
 # Email confirmation link that has a short lifespan
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-from functools import wraps  # For login_required
+
 # Custom f(x)
 from minutetech.dbconnect import connection
 from .forms import (ContactForm, RegistrationForm, AskForm,
@@ -19,29 +19,13 @@ from .forms import (ContactForm, RegistrationForm, AskForm,
 from .models import Contact, Client, Ticket, Thread
 from minutetech.config import SECRET_KEY, UPLOAD_FOLDER
 from minutetech import mail, db
+from minutetech.utils import allowed_file, login_required
 
 main = Blueprint('main', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
 
 # 1st Layer Pages (Visible to all visitors)
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if ('logged_in') in session:
-            # arguments and key word arguments
-            return f(*args, **kwargs)
-        else:
-            flash(u'You need to login first.', 'danger')
-            return redirect(url_for('main.login'))
-    return wrap
 
 
 @main.route('/logout/', methods=['GET', 'POST'])
