@@ -1,6 +1,6 @@
 # Ignore directory named 'venv'
 venv/
-
+minutetech/static/user_info/
 # Files
 
 *.pyc
