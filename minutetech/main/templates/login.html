@@ -74,6 +74,7 @@
 						</form>
 						<div class="uk-margin-small-top" id="recover" hidden>
 								<form action="{{ url_for('main.fforgot_password') }}" method="POST">
+								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 								<div class="uk-margin-small">
 									<div class="uk-inline uk-width-1-1">
 										<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>

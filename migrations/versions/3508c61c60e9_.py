@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 08f4a28b4a9d
+Revision ID: 3508c61c60e9
 Revises: 
-Create Date: 2018-03-31 11:16:40.614264
+Create Date: 2018-04-17 16:58:52.570879
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '08f4a28b4a9d'
+revision = '3508c61c60e9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,6 +40,7 @@ def upgrade():
     sa.Column('email_verify', sa.Integer(), nullable=True),
     sa.Column('prof_pic', sa.String(length=255), nullable=True),
     sa.Column('reg_date', sa.DateTime(), nullable=False),
+    sa.Column('reset_password', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
@@ -86,7 +87,7 @@ def upgrade():
     op.create_table('tickets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('client_id', sa.Integer(), nullable=False),
-    sa.Column('technician_id', sa.Integer(), nullable=False),
+    sa.Column('technician_id', sa.Integer(), nullable=True),
     sa.Column('difficulty', sa.Integer(), nullable=True),
     sa.Column('priority', sa.Integer(), nullable=True),
     sa.Column('solved', sa.Boolean(), nullable=True),
@@ -103,7 +104,7 @@ def upgrade():
     op.create_table('threads',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('client_id', sa.Integer(), nullable=False),
-    sa.Column('technician_id', sa.Integer(), nullable=False),
+    sa.Column('technician_id', sa.Integer(), nullable=True),
     sa.Column('ticket_id', sa.Integer(), nullable=False),
     sa.Column('body', sa.Text(), nullable=True),
     sa.Column('img', sa.String(length=255), nullable=True),

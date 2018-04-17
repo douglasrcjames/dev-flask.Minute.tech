@@ -29,10 +29,13 @@ class Client(db.Model):
     prof_pic = db.Column(db.String(255), default=default_prof_pic)
     reg_date = db.Column(db.DateTime, nullable=False,
                          default=datetime.utcnow)
+    reset_password_token = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
-    ticket = db.relationship('Ticket', backref='client', lazy=True)
-    thread = db.relationship('Thread', backref='client', lazy=True)
+    ticket = db.relationship(
+        'Ticket', cascade="all,delete", backref='client', lazy=True)
+    thread = db.relationship(
+        'Thread', cascade="all,delete", backref='client', lazy=True)
 
     def __repr__(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -55,7 +58,8 @@ class Ticket(db.Model):
     answer = db.Column(db.Text)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
-    thread = db.relationship('Thread', backref='ticket', lazy=True)
+    thread = db.relationship(
+        'Thread', cascade="all,delete", backref='ticket', lazy=True)
 
 
 class Thread(db.Model):

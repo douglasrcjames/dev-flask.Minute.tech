@@ -1,6 +1,7 @@
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
+DEBUG = True
 SECRET_KEY = 'quincyisthebestdog11'
 
 MAX_CONTENT_LENGTH = 8 * 1024 * 1024
@@ -12,7 +13,6 @@ WTF_CSRF_ENABLED = True
 WTF_CSRF_SECRET_KEY = '2dz+fGD@lQ%?TwqZy-YpEcYU1q:GaSk!>CxNT5'
 
 if os.environ.get('FLASK_ENV') == 'DEV':
-    DEBUG = False
     RECAPTCHA_PUBLIC_KEY = '6LdYWksUAAAAANDZN1ooSZJ1cp7x2Z0Pfcc9Cz4n'
     RECAPTCHA_PRIVATE_KEY = '6LdYWksUAAAAAM0Hw43BxoN5fsuZQcndGcp5MNx5'
 else:

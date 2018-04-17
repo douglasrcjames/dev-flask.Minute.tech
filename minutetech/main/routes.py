@@ -12,7 +12,6 @@ from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 
 # Custom f(x)
-from minutetech.dbconnect import connection
 from .forms import (ContactForm, RegistrationForm, AskForm,
                     EditAccountForm,
                     PasswordResetForm, EmailResetForm, PhoneResetForm)
@@ -227,38 +226,40 @@ def email_verify(token):
         flash(u'The token has expired', 'danger')
         return redirect(url_for('main.homepage'))
 
-# @main.route('/forgot_password/<token>')
-# def forgot_password(token):
-# 	try:
-# 		email = s.loads(token, salt='email-confirm', max_age=3600)
-# 		form = PasswordResetForm(request.form)
-# 		if request.method == "POST" and form.validate():
-# 			password = sha256_crypt.encrypt((str(form.password.data)))
-# 			c, conn = connection()
-# 			c.execute("UPDATE clients SET password = %s WHERE cid = (%s)", (thwart(password), cid))
-# 			conn.commit()
-# 			flash(u'Password successfully changed!', 'success')
-# 			c.close()
-# 			conn.close()
-# 			#make sure token cant be used twice
-# 			return redirect(url_for('main.account'))
 
-# 		return render_template("forgot_password.html", form=form)
+@main.route('/reset_password/<token>')
+def reset_password(token):
+    try:
+        email = s.loads(token, salt='email-confirm', max_age=3600)
+        form = PasswordResetForm(request.form)
+        if request.method == "POST" and form.validate():
+            password = sha256_crypt.encrypt((str(form.password.data)))
+            # c, conn = connection()
+            # c.execute("UPDATE clients SET password = %s WHERE cid = (%s)",
+            #           (thwart(password), cid))
+            # conn.commit()
+            flash(u'Password successfully changed!', 'success')
+            # c.close()
+            # conn.close()
+            # make sure token cant be used twice
+            return redirect(url_for('main.account'))
 
-# 	except SignatureExpired:
-# 		flash(u'The token has expired', 'danger')
-# 		return redirect(url_for('main.homepage'))
+        return render_template("forgot_password.html", form=form)
+
+    except SignatureExpired:
+        flash(u'The token has expired', 'danger')
+        return redirect(url_for('main.homepage'))
 
 
-@main.route('/fforgot_password/')
-def fforgot_password():
+@main.route('/forgot_password/', methods=['POST'])
+def forgot_password():
     try:
         # Send confirmation email
         f_email = request.form['f_email']
         token = s.dumps(f_email, salt='forgot-password')
         msg = Message("Minute.tech - Forgot Password",
-                      sender="admin@minute.tech", recipients=[f_email])
-        link = url_for('main.forgot_password', token=token, _external=True)
+                      sender="test@minute.tech", recipients=[f_email])
+        link = url_for('main.reset_password', token=token, _external=True)
         msg.body = render_template(
             'forgot_password-email.txt', link=link, first_name=first_name)
         msg.html = render_template(
@@ -441,7 +442,6 @@ def password_reset():
 def email_confirm():
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
             client = Client.query.filter_by(
                 email=request.form['email']).first()
@@ -499,7 +499,6 @@ def email_reset():
 def phone_confirm():
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
             email = request.form['email']
             client = Client.query.filter_by(email=email).first_or_404()
