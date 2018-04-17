@@ -151,7 +151,7 @@ def login():
 
 
 @main.route('/register/', methods=['GET', 'POST'])
-def register_page():
+def register():
     error = ''
     try:
         form = RegistrationForm(request.form)
@@ -196,17 +196,6 @@ def register_page():
                 # dont worry
                 session['cid'] = client.id
                 session['email'] = email
-                session['phone'] = phone
-                session['rating'] = 0
-                session['first_name'] = first_name
-                session['last_name'] = last_name
-                session['address'] = address
-                session['city'] = city
-                session['state'] = state
-                session['czip'] = czip
-                session['reg_date'] = 0
-                session['bio'] = bio
-                session['prof_pic'] = client.prof_pic
                 # Send confirmation email
                 token = s.dumps(email, salt='email-verify')
                 msg = Message("Minute.tech - Email Verification",
@@ -219,8 +208,6 @@ def register_page():
                 msg.html = render_template(
                     'email/email_verify.html', link=link,
                     first_name=first_name)
-                # from IPython import embed
-                # embed()
                 mail.send(msg)
                 return redirect(url_for('main.account'))
 
@@ -365,53 +352,12 @@ def account():
         form = EditAccountForm(request.form, request.files)
         if session['logged_in'] == 'client':
             # grab all the clients info
-            # c, conn = connection()
             email = session['email']
             client = Client.query.filter_by(email=email).first_or_404()
-
-            cid = client.id
-            phone = client.phone
-            rating = client.rating
-            first_name = client.first_name
-            last_name = client.last_name
-            address = client.address
-            city = client.city
-            state = client.state
-            czip = client.zip_code
-            birth_month = client.birth_month
-            birth_day = client.birth_day
-            birth_year = client.birth_year
-            bio = client.bio
-            reg_date = client.reg_date
-            # For now, just putting the prof_pic url into the BLOB
-            prof_pic = client.prof_pic
-            email_verify = client.email_verify
-
-            session['cid'] = cid
-            session['phone'] = phone
-            session['rating'] = rating
-            session['first_name'] = first_name
-            session['last_name'] = last_name
-            session['address'] = address
-            session['city'] = city
-            session['state'] = state
-            session['czip'] = czip
-            session['birth_month'] = birth_month
-            session['birth_day'] = birth_day
-            session['birth_year'] = birth_year
-            session['bio'] = bio
-            session['reg_date'] = reg_date
-            session['prof_pic'] = prof_pic.replace('/static/', '')
-            session['email_verify'] = email_verify
-            session['pconfirm'] = 0
-            session['econfirm'] = 0
-            session['phconfirm'] = 0
-            # END grab all the clients info
-
             # Get value before placing into textarea-box...
             # had to do this method because value=session.bio wasnt working in
             # jinja
-            form.bio.data = session['bio']
+            form.bio.data = client.bio
             if request.files:
                 formdata = request.form.copy()
                 formdata.update(request.files)
@@ -423,59 +369,34 @@ def account():
                     if allowed_file(new_prof_pic.filename):
                         filename = secure_filename(new_prof_pic.filename)
                         old_prof_pic = os.path.join(UPLOAD_FOLDER,
-                                                    os.path.basename(prof_pic))
+                                                    os.path.basename(client.prof_pic))
                         if os.path.exists(old_prof_pic):
                             os.unlink(old_prof_pic)
                         new_prof_pic.save(os.path.join(
                             UPLOAD_FOLDER, filename))
-                        prof_pic = '/static/user_info/' + filename
-
+                        prof_pic = 'user_info/' + filename
                         client.prof_pic = prof_pic
-                        db.session.commit()
 
-                first_name = form.first_name.data
-                last_name = form.last_name.data
-                address = form.address.data
-                city = form.city.data
-                state = form.state.data
-                czip = form.czip.data
-                birth_month = form.birth_month.data
-                birth_day = form.birth_day.data
-                birth_year = form.birth_year.data
-                bio = request.form['bio']
-                cid = session['cid']
-                client.first_name = first_name
-                client.last_name = last_name
-                client.address = address
-                client.city = city
-                client.state = state
-                client.zip_code = czip
-                client.birth_year = birth_year
-                client.birth_day = birth_day
-                client.birth_month = birth_month
-                client.bio = bio
+                client.first_name = form.first_name.data
+                client.last_name = form.last_name.data
+                client.address = form.address.data
+                client.city = form.city.data
+                client.state = form.state.data
+                client.zip_code = form.czip.data
+                client.birth_year = form.birth_year.data
+                client.birth_day = form.birth_day.data
+                client.birth_month = form.birth_month.data
+                client.bio = form.bio.data
                 db.session.commit()
-
-                session['first_name'] = first_name
-                session['last_name'] = last_name
-                session['address'] = address
-                session['city'] = city
-                session['state'] = state
-                session['czip'] = czip
-                session['birth_month'] = birth_month
-                session['birth_day'] = birth_day
-                session['birth_year'] = birth_year
-                session['bio'] = bio
-
                 flash(u'Your account is successfully updated.', 'success')
-                return redirect(url_for('main.account'))
+            return render_template("account/index.html", form=form,
+                                   client=client,
+                                   error=error)
         else:
             # this probably isnt necessary since 500 error catches it as no
             # session variable called 'logged_in'
             flash(u'Try logging in as a client', 'secondary')
-
-        return render_template("account/index.html", form=form,
-                               error=error)
+            return redirect(url_for('main.login'))
 
     except Exception as e:
         return render_template("500.html", error=e)

@@ -20,29 +20,29 @@
 					<form class="uk-grid-small" enctype="multipart/form-data" action="" method="post" uk-grid>
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 						<!-- Alert section -->
-						{% if session.rating < 250 %}
+						{% if client.rating < 250 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/bronze-medal.png')}}" alt="bronze">
-								<p class="uk-text-center">You are ranked <b>Bronze</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+								<p class="uk-text-center">You are ranked <b>Bronze</b> with a user rating of <b>{{ client.rating }}</b>.<br><a href="">Learn more</a></p>
 							</div>
-						{% elif session.rating >= 250 and session.rating < 500 %}
+						{% elif client.rating >= 250 and client.rating < 500 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/silver-medal.png')}}" alt="silver">
-								<p class="uk-text-center">You are ranked <b>Silver</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+								<p class="uk-text-center">You are ranked <b>Silver</b> with a user rating of <b>{{ client.rating }}</b>.<br><a href="">Learn more</a></p>
 							</div>
-						{% elif session.rating >= 500 and session.rating < 750 %}
+						{% elif client.rating >= 500 and client.rating < 750 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/gold-medal.png')}}" alt="gold">
-								<p class="uk-text-center">You are ranked <b>Gold</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+								<p class="uk-text-center">You are ranked <b>Gold</b> with a user rating of <b>{{ client.rating }}</b>.<br><a href="">Learn more</a></p>
 							</div>
-						{% elif session.rating >= 750 %}
+						{% elif client.rating >= 750 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/diamond.png')}}" alt="diamond">
-								<p class="uk-text-center">You are ranked <b>Diamond</b> with a user rating of <b>{{ session.rating }}</b>.<br><a href="">Learn more</a></p>
+								<p class="uk-text-center">You are ranked <b>Diamond</b> with a user rating of <b>{{ client.rating }}</b>.<br><a href="">Learn more</a></p>
 							</div>
 						{% endif %}
 
-						{% if session.email_verify == 0 %}
+						{% if client.email_verify == 0 %}
 							<div class="uk-card-small uk-card-default uk-card-hover uk-card-body uk-width-1-4@s">
 								<img class="uk-align-center" style="height: 3.5em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="rocket">
 								<p class="uk-text-center">You haven't verified your email!</p><a class="uk-button uk-button-small uk-button-secondary uk-align-center uk-margin-small" href="/email/send_email_verify/">Send Link</a>
@@ -56,12 +56,12 @@
 						<!-- END Alert section -->
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
-							{% if session.prof_pic != "" and session.prof_pic != "user_info/prof_pic/default.jpg" %}
-								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=session.prof_pic, width=200, height=200, quality=98)}}" alt="">
+							{% if client.prof_pic != "" and client.prof_pic != "user_info/prof_pic/default.jpg" %}
+								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=client.prof_pic, width=200, height=200, quality=98)}}" alt="">
 							{% endif %}
 
-							{% if session.prof_pic != "" and session.prof_pic == "user_info/prof_pic/default.jpg" %}
-								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('static', filename=session.prof_pic)}}" alt="" width="200" height="200">
+							{% if client.prof_pic != "" and client.prof_pic == "user_info/prof_pic/default.jpg" %}
+								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('static', filename=client.prof_pic)}}" alt="" width="200" height="200">
 							{% endif %}
 
 						</div>
@@ -78,44 +78,44 @@
 						</div>
 						<div class="uk-width-1-2@s">
 							{{ form.first_name.label }}
-							{{ form.first_name(value=session.first_name, class_="uk-input") }}
+							{{ form.first_name(value=client.first_name, class_="uk-input") }}
 							{% for error in form.first_name.errors %}
 						        <span class="uk-label uk-label-danger">{{ error }}</span>
 						    {% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
 							{{ form.last_name.label }}
-							{{ form.last_name(value=session.last_name, class_="uk-input") }}
+							{{ form.last_name(value=client.last_name, class_="uk-input") }}
 							{% for error in form.last_name.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-2@s">
 							<div style="padding:3.5px;"><b>Email</b> <a href="/email_confirm/">Change</a></div>
-							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.email }}</div>
+							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ client.email }}</div>
 						</div>
 						<div class="uk-width-1-2@s">
 							<div style="padding:3.5px;"><b>Phone</b> <a href="/phone_confirm/">Change</a></div>
-							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ session.phone }}</div>
+							<div style="border-style: solid; border-width: 1px; border-color: #ebe6e3; padding:9px">{{ client.phone }}</div>
 						</div>
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-6@s">
 							{{ form.birth_month.label }}
-							{{ form.birth_month(value=session.birth_month, class_="uk-input") }}
+							{{ form.birth_month(value=client.birth_month, class_="uk-input") }}
 							{% for error in form.birth_month.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-6@s">
 							{{ form.birth_day.label }}
-							{{ form.birth_day(value=session.birth_day, class_="uk-input") }}
+							{{ form.birth_day(value=client.birth_day, class_="uk-input") }}
 							{% for error in form.birth_day.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-6@s">
 							{{ form.birth_year.label }}
-							{{ form.birth_year(value=session.birth_year, class_="uk-input") }}
+							{{ form.birth_year(value=client.birth_year, class_="uk-input") }}
 							{% for error in form.birth_year.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
@@ -123,28 +123,28 @@
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
 							{{ form.address.label }}
-							{{ form.address(value=session.address, class_="uk-input") }}
+							{{ form.address(value=client.address, class_="uk-input") }}
 							{% for error in form.address.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
 							{{ form.city.label }}
-							{{ form.city(value=session.city, class_="uk-input") }}
+							{{ form.city(value=client.city, class_="uk-input") }}
 							{% for error in form.city.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
 							{{ form.state.label }}
-							{{ form.state(value=session.state, class_="uk-input") }}
+							{{ form.state(value=client.state, class_="uk-input") }}
 							{% for error in form.state.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
 						</div>
 						<div class="uk-width-1-4@s">
 							{{ form.czip.label }}
-							{{ form.czip(value=session.czip, class_="uk-input") }}
+							{{ form.czip(value=client.zip_code, class_="uk-input") }}
 							{% for error in form.czip.errors %}
 							    <span class="uk-label uk-label-danger">{{ error }}</span>
 							{% endfor %}
@@ -153,7 +153,7 @@
 						<div class="uk-width-1-2@s">
 							{{ render_field(form.bio, class_="uk-textarea", rows="10", cols="10") }}
 						</div>
-						<div class="uk-width-1"><strong>Registration date:</strong> {{ session.reg_date }}</div>
+						<div class="uk-width-1"><strong>Registration date:</strong> {{ client.reg_date }}</div>
 						<!-- <div class="uk-width-1"><strong>Google:</strong> <u>Connect</u>  </div>
 						<div class="uk-width-1"><strong>Facebook:</strong> <u>Connect</u>  </div>
 						<div class="uk-width-1"><strong>LinkedIn:</strong> <u>Connect</u>  </div>
@@ -186,7 +186,7 @@
 				            <div class="uk-width-expand@m">
 				                <ul id="ratings-tab-right" class="uk-switcher">
 				                    <li>
-				                    	Your current <b>User Rating</b> is <b>{{ session.rating }}</b>.
+				                    	Your current <b>User Rating</b> is <b>{{ client.rating }}</b>.
 				                    	<br>
 				                    	<br>
 				                    	We will have a breakdown of where that number is derived from in the near future.
