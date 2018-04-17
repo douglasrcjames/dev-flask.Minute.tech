@@ -73,7 +73,7 @@
 						</div>
 						</form>
 						<div class="uk-margin-small-top" id="recover" hidden>
-								<form action="{{ url_for('main.fforgot_password') }}" method="POST">
+							<form action="{{ url_for('main.forgot_password') }}" method="POST">
 								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 								<div class="uk-margin-small">
 									<div class="uk-inline uk-width-1-1">
@@ -84,7 +84,6 @@
 								<div class="uk-margin-small">
 									<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">SEND PASSWORD</button>
 								</div>
-
 							</form>
 						</div>
 

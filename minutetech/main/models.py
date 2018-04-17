@@ -2,7 +2,7 @@ from datetime import datetime
 from minutetech import db
 from minutetech.technician.models import Technician
 
-default_prof_pic = '/static/user_info/prof_pic/default.jpg'
+default_prof_pic = 'user_info/prof_pic/default.jpg'
 
 
 class Client(db.Model):

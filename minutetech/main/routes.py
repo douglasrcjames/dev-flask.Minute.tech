@@ -230,7 +230,8 @@ def email_verify(token):
 @main.route('/reset_password/<token>')
 def reset_password(token):
     try:
-        email = s.loads(token, salt='email-confirm', max_age=3600)
+        email = s.loads(token, salt='forgot-password', max_age=3600)
+        client = Client.query.filter_by(email=email).first_or_404()
         form = PasswordResetForm(request.form)
         if request.method == "POST" and form.validate():
             password = sha256_crypt.encrypt((str(form.password.data)))
@@ -256,18 +257,27 @@ def forgot_password():
     try:
         # Send confirmation email
         f_email = request.form['f_email']
-        token = s.dumps(f_email, salt='forgot-password')
-        msg = Message("Minute.tech - Forgot Password",
-                      sender="test@minute.tech", recipients=[f_email])
-        link = url_for('main.reset_password', token=token, _external=True)
-        msg.body = render_template(
-            'forgot_password-email.txt', link=link, first_name=first_name)
-        msg.html = render_template(
-            'forgot_password-email.html', link=link, first_name=first_name)
-        mail.send(msg)
-        flash(u'Password reset link sent to email', 'success')
-        return redirect(url_for('main.homepage'))
+        client = Client.query.filter_by(email=f_email).first()
 
+        if client:
+            token = s.dumps(f_email, salt='forgot-password')
+            client.reset_password_token = token
+            db.session.commit()
+            msg = Message("Minute.tech - Forgot Password",
+                          sender="test@minute.tech", recipients=[f_email])
+            link = url_for('main.reset_password', token=token, _external=True)
+            msg.body = render_template(
+                'email/forgot_password-email.txt', link=link,
+                first_name=client.first_name)
+            msg.html = render_template(
+                'email/forgot_password-email.html', link=link,
+                first_name=client.first_name)
+            mail.send(msg)
+            flash(u'Password reset link sent to email', 'success')
+            return redirect(url_for('main.homepage'))
+        else:
+            flash(u'The email you entered doesn\'t exists', 'danger')
+            return redirect(url_for('main.login'))
     except Exception as e:
         return(str(e))
 
