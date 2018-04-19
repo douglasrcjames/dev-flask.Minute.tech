@@ -214,11 +214,13 @@ def email_verify(token):
                 return redirect(url_for('main.account'))
 
             elif session['logged_in'] == 'tech':
-                flash(u'Log in as a client first, then click the link again', 'danger')
+                flash(u'Log in as a client first, then click the link again',
+                      'danger')
                 return redirect(url_for('main.login'))
 
         else:
-            flash(u'Log in as a client first, then click the link again', 'danger')
+            flash(u'Log in as a client first, then click the link again',
+                  'danger')
             return redirect(url_for('main.login'))
 
         render_template("main.html")
@@ -227,25 +229,24 @@ def email_verify(token):
         return redirect(url_for('main.homepage'))
 
 
-@main.route('/reset_password/<token>')
+@main.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     try:
+        form = PasswordResetForm(request.form)
         email = s.loads(token, salt='forgot-password', max_age=3600)
         client = Client.query.filter_by(email=email).first_or_404()
-        form = PasswordResetForm(request.form)
+        if client.reset_password_token != token:
+            flash(u'Invalid token', 'danger')
+            return redirect(url_for('main.login'))
+
         if request.method == "POST" and form.validate():
             password = sha256_crypt.encrypt((str(form.password.data)))
-            # c, conn = connection()
-            # c.execute("UPDATE clients SET password = %s WHERE cid = (%s)",
-            #           (thwart(password), cid))
-            # conn.commit()
+            client.password = password
+            client.reset_password_token = ''
+            db.session.commit()
             flash(u'Password successfully changed!', 'success')
-            # c.close()
-            # conn.close()
-            # make sure token cant be used twice
-            return redirect(url_for('main.account'))
-
-        return render_template("forgot_password.html", form=form)
+            return redirect(url_for('main.login'))
+        return render_template("reset_password.html", form=form, token=token)
 
     except SignatureExpired:
         flash(u'The token has expired', 'danger')
