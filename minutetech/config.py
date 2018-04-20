@@ -4,7 +4,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 SECRET_KEY = 'quincyisthebestdog11'
 
-MAX_CONTENT_LENGTH = 8 * 1024 * 1024
+MAX_CONTENT_LENGTH = 24 * 1024 * 1024
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static/user_info')
 # UPLOADED_PHOTOS_DEST = os.path.join(BASE_DIR, 'static/user_info')
 IMAGES_CACHE = os.path.join(BASE_DIR, '../../tmp/flask-images')
