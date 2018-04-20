@@ -30,9 +30,9 @@
                     <li><a href="/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
                     <li><a href="/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
 				</ul>
-			</div>	
+			</div>
 			<div class="uk-navbar-right uk-responsive-height">
-				<ul class="uk-navbar-nav">	    
+				<ul class="uk-navbar-nav">
 					<li>
 		                <a><span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>{{ session.first_name }}&nbsp;<span class="uk-icon uk-margin-small-right" uk-icon="icon: chevron-down"></span></a>
 		                <div class="uk-navbar-dropdown">
@@ -45,7 +45,7 @@
 		                </div>
 		            </li>
 				</ul>
-			</div>	
+			</div>
 			{% elif session.logged_in == 'tech' %}
 			<!-- TECH NAVBAR -->
 			<div class="uk-navbar-left uk-responsive-height">
@@ -54,7 +54,7 @@
 					<li><a href="/technician/account/pending/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span> Pending </a></li>
 					<li><a href="/technician/account/resolved/"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span> Resolved </a></li>
 				</ul>
-			</div>	
+			</div>
 			<div class="uk-navbar-right uk-responsive-height">
 				<ul class="uk-navbar-nav">
 					<li>
@@ -83,10 +83,10 @@
 					<li><a href="/register/"><span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>Sign up</a></li>
 				</ul>
 			</div>
-			{% endif %}	
+			{% endif %}
 	    </nav>
 	</div>
-	
+
 	<!-- Displayed only on small screens -->
 	<div class="uk-container">
 		<nav class="uk-navbar uk-navbar-container uk-margin uk-hidden@m" style="background: #FFFFFF; padding-top:5%; padding-bottom: 5%;">
@@ -155,8 +155,8 @@
 
 	<!-- Main Body section for page contents -->
 	<div class="uk-container uk-container-small">
-		{% block body %} 
-		
+		{% block body %}
+
 		{% endblock %}
 	</div>
 	<!-- /END Main Body -->
@@ -173,6 +173,6 @@
 		</p>
 	</div>
 </footer>
-
+{% block extra_js%} {% endblock %}
 </html>
 

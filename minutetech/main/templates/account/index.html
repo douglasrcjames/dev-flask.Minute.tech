@@ -57,11 +57,11 @@
 						<div class="uk-width-1"><hr></div>
 						<div class="uk-width-1-1">
 							{% if client.prof_pic != "" and client.prof_pic != "user_info/prof_pic/default.jpg" %}
-								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=client.prof_pic, width=200, height=200, quality=98)}}" alt="">
+								<img id="profilePicimg" class="uk-border-rounded uk-box-shadow-small" src="{{url_for('images.crop', filename=client.prof_pic, width=200, height=200, quality=98)}}" alt="">
 							{% endif %}
 
 							{% if client.prof_pic != "" and client.prof_pic == "user_info/prof_pic/default.jpg" %}
-								<img class="uk-border-rounded uk-box-shadow-small" src="{{url_for('static', filename=client.prof_pic)}}" alt="" width="200" height="200">
+								<img id="profilePicimg" class="uk-border-rounded uk-box-shadow-small" src="{{url_for('static', filename=client.prof_pic)}}" alt="" width="200" height="200">
 							{% endif %}
 
 						</div>
@@ -292,6 +292,30 @@
 	{% endif %}
 
 {% endblock %}
+
+{% block extra_js %}
+	<script>
+		jQuery(document).ready(function($) {
+
+			function filePreview(input) {
+			    if (input.files && input.files[0]) {
+			        var reader = new FileReader();
+			        reader.onload = function (e) {
+			            $('#profilePicimg')
+			            .attr('src',e.target.result)
+			            .css({ width: 200, height: 200 });
+			        }
+			        reader.readAsDataURL(input.files[0]);
+			    }
+			}
+
+			$("#prof_pic").change(function () {
+			    filePreview(this);
+			});
+
+		});
+	</script>
+{% endblock%}
 
 
 
