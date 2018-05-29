@@ -12,8 +12,9 @@
 	<script src="{{ url_for('static', filename='js/uikit-3.0.0-beta.30/js/uikit-icons.min.js')}}"></script>
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}">
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+	{% block extra_head%} {% endblock %}
 </head>
-
+<body>
 <header>
 	<div class="uk-container">
 	    <nav class="uk-navbar uk-navbar-container uk-margin uk-visible@m uk-text-nowrap"  style="background: #FFFFFF; padding-top: 0.5%; padding-bottom: 0.5%;" uk-navbar>
@@ -136,7 +137,6 @@
 </header>
 
 
-<body>
 	<!-- Flashed messages section -->
 	<div class="uk-container-small uk-width-1-4@s uk-position-top-center uk-position-medium uk-position-z-index">
 		{% with messages = get_flashed_messages(with_categories=true) %}
@@ -160,9 +160,6 @@
 		{% endblock %}
 	</div>
 	<!-- /END Main Body -->
-</body>
-
-
 <!-- Footer -->
 <footer>
 	<div class="uk-container uk-padding">
@@ -174,5 +171,6 @@
 	</div>
 </footer>
 {% block extra_js%} {% endblock %}
+</body>
 </html>
 

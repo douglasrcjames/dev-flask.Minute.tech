@@ -1,46 +1,32 @@
 import os
-import os.path
+from uuid import uuid4
 from flask import (render_template, flash, request,
                    url_for, redirect, session,
                    send_file,
                    Blueprint)
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt  # To encrypt the password
-from MySQLdb import escape_string as thwart  # To prevent SQL injection
+# from MySQLdb import escape_string as thwart  # To prevent SQL injection
+from sqlalchemy import or_, and_
+from sqlalchemy import desc
 from flask_mail import Message
 # Email confirmation link that has a short lifespan
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-from functools import wraps  # For login_required
+# from functools import wraps  # For login_required
 # Custom f(x)
 from minutetech.dbconnect import connection
 from forms import (TechRegistrationForm, TechEditAccountForm,
                    TechPasswordResetForm,
                    TechEmailResetForm, TechPhoneResetForm, TechSignatureForm)
+from .models import Technician
 from minutetech.config import SECRET_KEY, UPLOAD_FOLDER
-from minutetech import mail
+from minutetech import mail, db
+from minutetech.utils import allowed_file, login_required
+from minutetech.main.models import Ticket
 
 technician = Blueprint('technician', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
-#  1st Layer SECTION
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if ('logged_in') in session:
-            # arguments and key word arguments
-            return f(*args, **kwargs)
-        else:
-            flash(u'You need to login first.', 'danger')
-            return redirect(url_for('technician.login'))
-    return wrap
+count = 1
 
 
 @technician.route('/logout/', methods=['GET', 'POST'])
@@ -50,31 +36,23 @@ def logout():
     flash(u'You have been logged out!', 'danger')
     return redirect(url_for('main.homepage'))
 
-count = 1
-
 
 @technician.route('/login/', methods=['GET', 'POST'])
 def login():
     global count
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
-            # 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
-            x = c.execute("SELECT * FROM technicians WHERE email = (%s)",
-                          (thwart(request.form['email']),))
-            # Prevent login to another account from this stage
-            if int(x) > 0:
-                pdata = c.fetchone()[3]
+            email = request.form['email']
+            technician = Technician.query.filter_by(email=email).first()
+            if technician:
+                pdata = technician.password
                 if sha256_crypt.verify(request.form['password'], pdata):
-                    email = request.form['email']
-                    # putting these close and commit
-                    # functions outside the 'if' will break code
-                    conn.commit()
-                    c.close()
-                    conn.close()
                     session['logged_in'] = 'tech'
-                    session['email'] = thwart(email)
+                    session['tid'] = technician.id
+                    session['email'] = technician.email
+                    session['first_name'] = technician.first_name
+                    session['rating'] = technician.rating
                     flash(u'You are now logged in.', 'success')
                     return redirect(url_for('technician.account'))
                 else:
@@ -107,50 +85,34 @@ def register_page():
             tzip = form.tzip.data
             bio = "Not provided"
             password = sha256_crypt.encrypt((str(form.password.data)))
-            c, conn = connection()
 
-            # check if already exists
-            x = c.execute(
-                "SELECT * FROM technicians WHERE email = (%s)", (thwart(email),))
-            y = c.execute(
-                "SELECT * FROM technicians WHERE phone = (%s)", (thwart(phone),))
+            technician = Technician.query.filter(or_(Technician.email == email,
+                                                     Technician.phone == phone)).first()
 
-            if int(x) > 0:
-                flash(
-                    u'That email already has an account, please try a new email or send an email to help@minute.tech', 'danger')
-                return render_template('technician/register.html', form=form)
-            elif int(y) > 0:
-                flash(
-                    u'That phone already has an account, please try a new phone or send an email to help@minute.tech', 'danger')
-                return render_template('technician/register.html', form=form)
+            if technician:
+                if technician.email == email:
+                    flash(
+                        u'That email already has an account, please try a new email or send an email to help@minute.tech', 'danger')
+                    return render_template('technician/register.html', form=form)
+                if technician.phone == phone:
+                    flash(
+                        u'That phone already has an account, please try a new phone or send an email to help@minute.tech', 'danger')
+                    return render_template('technician/register.html', form=form)
             else:
-                default_prof_pic = url_for(
-                    'static', filename='tech_user_info/prof_pic/default.jpg')
-                c.execute("INSERT INTO technicians (email, phone, password) VALUES (%s, %s, %s)", (thwart(
-                    email), thwart(phone), thwart(password)))
-                c.execute("INSERT INTO tpersonals (first_name, last_name, address, city, state, zip, bio, prof_pic) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (thwart(
-                    first_name), thwart(last_name), thwart(address), thwart(city), state, thwart(tzip), bio, default_prof_pic))
-                conn.commit()
+                technician = Technician(
+                    email=email, phone=phone, password=password, first_name=first_name, last_name=last_name, address=address, city=city, state=state, zip_code=tzip, bio=bio)
+                db.session.add(technician)
+                db.session.commit()
+
                 flash(u'Thanks for registering!', 'success')
-                c.close()
-                conn.close()
 
                 session['logged_in'] = 'tech'
                 # tid will be inputted once generated
-                session['tid'] = 0
-                session['email'] = email
-                session['phone'] = phone
-                session['rating'] = 0
-                session['first_name'] = first_name
-                session['last_name'] = last_name
-                session['address'] = address
-                session['city'] = city
-                session['state'] = state
-                session['tzip'] = tzip
-                session['reg_date'] = 0
-                session['certified'] = 0
-                session['bio'] = bio
-                session['prof_pic'] = default_prof_pic
+                session['tid'] = technician.id
+                session['first_name'] = technician.first_name
+                session['email'] = technician.email
+                session['phone'] = technician.phone
+                session['rating'] = technician.rating
                 # Send confirmation email
                 token = s.dumps(email, salt='email-verify')
                 msg = Message("Minute.tech - Email Verification",
@@ -167,23 +129,20 @@ def register_page():
         return render_template('technician/register.html', form=form)
 
     except Exception as e:
-        return(str(e))
+        return "Error: {}".format(e)
 
 
 @technician.route('/email_verify/<token>')
 def email_verify(token):
     try:
-        c, conn = connection()
         if 'logged_in' in session:
             email = s.loads(token, salt='email-verify', max_age=3600)
 
             if session['logged_in'] == 'tech':
                 tid = session['tid']
-                c.execute(
-                    "UPDATE tpersonals SET email_verify = 1 WHERE tid = (%s)", (tid,))
-                conn.commit()
-                c.close()
-                conn.close()
+                technician = Technician.query.filter_by(id=tid).first_or_404()
+                technician.email_verify = 1
+                db.session.commit()
                 flash(u'Email successfully verified!', 'success')
                 return redirect(url_for('technician.account'))
 
@@ -196,7 +155,7 @@ def email_verify(token):
             flash(u'Log in as a technician first, then click the link again', 'danger')
             return redirect(url_for('technician.login'))
 
-        render_template("main.html")
+        return render_template("main.html")
     except SignatureExpired:
         flash(u'The token has expired', 'danger')
         return redirect(url_for('main.homepage'))
@@ -204,67 +163,110 @@ def email_verify(token):
 ##############  2nd Layer SECTION  ####################
 
 
+# @technician.route('/account/answer/', methods=['GET', 'POST'])
+# def answer():
+#     error = ''
+#     try:
+#         c, conn = connection()
+#         if request.method == "POST":
+#             tid = session['tid']
+#             c.execute(
+#                 "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
+#             conn.commit()
+#             c.close()
+#             conn.close()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('technician.answer'))
+
+#         return render_template('technician/account/answer.html', error=error)
+
+#     except Exception as e:
+#         return render_template('500.html', error=e)
+
 @technician.route('/account/answer/', methods=['GET', 'POST'])
 def answer():
-    error = ''
     try:
-        c, conn = connection()
-        if request.method == "POST":
-            tid = session['tid']
-            c.execute(
-                "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
-            conn.commit()
-            c.close()
-            conn.close()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('technician.answer'))
-
-        return render_template('technician/account/answer.html', error=error)
-
+        if session['logged_in']:
+            result = Ticket.query.filter_by(
+                solved=0, pending=0).order_by(desc(Ticket.created_at))
+            return render_template("technician/account/answer.html",
+                                   result=result)
+        else:
+            return render_template("404.html")
     except Exception as e:
-        return render_template('500.html', error=e)
+        return(str(e))
 
+
+# @technician.route('/account/resolved/', methods=['GET', 'POST'])
+# def resolved():
+#     error = ''
+#     try:
+#         c, conn = connection()
+#         if request.method == "POST":
+#             tid = session['tid']
+#             c.execute(
+#                 "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
+#             conn.commit()
+#             c.close()
+#             conn.close()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('technician.resolved'))
+
+# return render_template('technician/account/resolved.html', error=error)
+
+#     except Exception as e:
+#         return render_template('500.html', error=e)
 
 @technician.route('/account/resolved/', methods=['GET', 'POST'])
 def resolved():
-    error = ''
     try:
-        c, conn = connection()
-        if request.method == "POST":
-            tid = session['tid']
-            c.execute(
-                "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
-            conn.commit()
-            c.close()
-            conn.close()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('technician.resolved'))
-
-        return render_template('technician/account/resolved.html', error=error)
-
+        if session['logged_in']:
+            tech_id = session['tid']
+            result = Ticket.query.filter(
+                and_(Ticket.technician_id == tech_id,
+                     Ticket.solved == 1)).order_by(desc(Ticket.created_at))
+            return render_template("technician/account/resolved.html",
+                                   result=result)
+        else:
+            return render_template("404.html")
     except Exception as e:
-        return render_template('500.html', error=e)
+        return(str(e))
 
+
+# @technician.route('/account/pending/', methods=['GET', 'POST'])
+# def pending():
+#     error = ''
+#     try:
+#         c, conn = connection()
+#         if request.method == "POST":
+#             tid = session['tid']
+#             c.execute(
+#                 "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
+#             conn.commit()
+#             c.close()
+#             conn.close()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('technician.pending'))
+
+# return render_template('technician/account/pending.html', error=error)
+
+#     except Exception as e:
+#         return render_template('500.html', error=e)
 
 @technician.route('/account/pending/', methods=['GET', 'POST'])
 def pending():
-    error = ''
     try:
-        c, conn = connection()
-        if request.method == "POST":
-            tid = session['tid']
-            c.execute(
-                "UPDATE tpersonals SET launch_email = 1 WHERE tid = (%s)", (tid,))
-            conn.commit()
-            c.close()
-            conn.close()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('technician.pending'))
-
-        return render_template('technician/account/pending.html', error=error)
-
+        if session['logged_in']:
+            tech_id = session['tid']
+            result = Ticket.query.filter(
+                and_(Ticket.technician_id == tech_id,
+                     Ticket.solved == 0)).order_by(desc(Ticket.created_at))
+            return render_template("technician/account/pending.html",
+                                   result=result)
+        else:
+            return render_template("404.html")
     except Exception as e:
-        return render_template('500.html', error=e)
+        return(str(e))
 
 
 @technician.route('/account/room/?select_q=<select_q>', methods=['GET', 'POST'])
@@ -296,118 +298,51 @@ def account():
         form = TechEditAccountForm(request.form)
         if session['logged_in'] == 'tech':
             # grab all the clients info
-            c, conn = connection()
             email = session['email']
-            c.execute("""
-                SELECT t.tid, t.phone, t.rating,
-                p.first_name, p.last_name, p.address, p.city, p.state,
-                p.zip, p.birth_month, p.birth_day, p.birth_year, p.bio,
-                p.reg_date, p.prof_pic, p.email_verify, p.certified
-                FROM technicians t, tpersonals p
-                WHERE t.email = (%s) and t.tid=p.tid
-                """,
-                      (email,))
-            tech = c.fetchone()
-            tid = tech[0]
-            phone = tech[1]
-            rating = tech[2]
-            first_name = tech[3]
-            last_name = tech[4]
-            address = tech[5]
-            city = tech[6]
-            state = tech[7]
-            tzip = tech[8]
-            birth_month = tech[9]
-            birth_day = tech[10]
-            birth_year = tech[11]
-            bio = tech[12]
-            reg_date = tech[13]
-            # For now, just putting the prof_pic url into the BLOB
-            prof_pic = tech[14]
-            email_verify = tech[15]
-            certified = tech[16]
-            conn.commit()
-            c.close()
-            conn.close()
-            session['tid'] = tid
-            session['phone'] = phone
-            session['rating'] = rating
-            session['first_name'] = first_name
-            session['last_name'] = last_name
-            session['address'] = address
-            session['city'] = city
-            session['state'] = state
-            session['tzip'] = tzip
-            session['birth_month'] = birth_month
-            session['birth_day'] = birth_day
-            session['birth_year'] = birth_year
-            session['bio'] = bio
-            session['reg_date'] = reg_date
-            session['prof_pic'] = prof_pic
-            session['certified'] = certified
-            session['email_verify'] = email_verify
-            # For change of password, phone, or email
-            session['pconfirm'] = 0
-            session['phconfirm'] = 0
-            session['econfirm'] = 0
-
-            #//END grab all the clients info
-            c, conn = connection()
+            technician = Technician.query.filter_by(email=email).first_or_404()
 
             # Get value before placing into textarea-box...
             # had to do this method because value=session.bio wasnt working in
             # jinja
-            form.bio.data = session['bio']
+            form.bio.data = technician.bio
+            if request.files:
+                formdata = request.form.copy()
+                formdata.update(request.files)
+                form = TechEditAccountForm(formdata)
+
             if request.method == 'POST' and form.validate():
                 if 'prof_pic' in request.files:
                     new_prof_pic = request.files['prof_pic']
                     if allowed_file(new_prof_pic.filename):
                         filename = secure_filename(new_prof_pic.filename)
-                        old_prof_pic = os.path.join(UPLOAD_FOLDER,
-                                                    os.path.basename(prof_pic))
+                        old_prof_pic = os.path.join(
+                            UPLOAD_FOLDER,
+                            os.path.basename(technician.prof_pic))
                         if os.path.exists(old_prof_pic):
                             os.unlink(old_prof_pic)
                         new_prof_pic.save(os.path.join(
                             UPLOAD_FOLDER, filename))
-                        prof_pic = '/static/user_info/' + filename
-                        c.execute("""
-                            UPDATE tpersonals SET prof_pic=%s
-                            where tid = (%s)""",
-                                  (thwart(prof_pic), tid))
-                first_name = form.first_name.data
-                last_name = form.last_name.data
-                address = form.address.data
-                city = form.city.data
-                state = form.state.data
-                tzip = form.tzip.data
-                birth_month = form.birth_month.data
-                birth_day = form.birth_day.data
-                birth_year = form.birth_year.data
-                bio = request.form['bio']
-                tid = session['tid']
-                c.execute("UPDATE tpersonals SET first_name = %s, last_name = %s, address = %s, city = %s, state = %s, zip = %s, birth_month = %s, birth_day = %s, birth_year = %s, bio = %s WHERE tid = (%s)", (thwart(
-                    first_name), thwart(last_name), thwart(address), thwart(city), thwart(state), thwart(tzip), birth_month, birth_day, birth_year, bio, tid))
-                conn.commit()
-                c.close()
-                conn.close()
-                session['first_name'] = first_name
-                session['last_name'] = last_name
-                session['address'] = address
-                session['city'] = city
-                session['state'] = state
-                session['tzip'] = tzip
-                session['birth_month'] = birth_month
-                session['birth_day'] = birth_day
-                session['birth_year'] = birth_year
-                session['bio'] = bio
+                        prof_pic = 'user_info/' + filename
+                        technician.prof_pic = prof_pic
+                technician.first_name = form.first_name.data
+                technician.last_name = form.last_name.data
+                technician.address = form.address.data
+                technician.city = form.city.data
+                technician.state = form.state.data
+                technician.zip_code = form.czip.data
+                technician.birth_year = form.birth_year.data
+                technician.birth_day = form.birth_day.data
+                technician.birth_month = form.birth_month.data
+                technician.bio = form.bio.data
+                db.session.commit()
                 flash(u'Your account is successfully updated.', 'success')
-                return redirect(url_for('technician.account'))
+            # return redirect(url_for('technician.account'))
+            return render_template('technician/account/index.html',
+                                   form=form, technician=technician,
+                                   error=error)
         else:
             flash(u'Try logging out and back in again!', 'secondary')
             return redirect(url_for('main.homepage'))
-
-        return render_template('technician/account/index.html', form=form, error=error)
-
     except Exception as e:
         return render_template('500.html', error=e)
 
@@ -423,39 +358,30 @@ def signature():
     if request.method == "POST" and form.validate():
         signature = form.signature.data
         tid = session['tid']
+        technician = Technician.query.filter_by(id=tid).first_or_404()
+        technician.signature = signature
+        technician.certified = 1
+        db.session.commit()
         c, conn = connection()
-        c.execute("UPDATE tpersonals SET signature = %s, certified = %s WHERE tid = %s",
-                  (thwart(signature), 1, tid))
-        conn.commit()
-        c.close()
-        conn.close()
         session['certified'] = 1
         flash(u'Submission successful. We will contact you soon.', 'success')
         return redirect(url_for('technician.account'))
-
     else:
-        error = "Please enter your name!"
-        return render_template('technician/account/signature.html', form=form)
+        flash(u"Please enter your name!", 'danger')
+    return render_template('technician/account/signature.html', form=form)
 
 
 @technician.route('/account/password_confirm/', methods=['GET', 'POST'])
 def password_confirm():
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
-            # 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
-            x = c.execute("SELECT * FROM technicians WHERE email = (%s)",
-                          (thwart(request.form['email']),))
+            email = request.form['email']
+            technician = Technician.query.filter_by(email=email).first_or_404()
             # Prevent login to another account from this stage
-            if int(x) > 0 and request.form['email'] == session['email']:
-                pdata = c.fetchone()[3]
+            if technician and request.form['email'] == session['email']:
+                pdata = technician.password
                 if sha256_crypt.verify(request.form['password'], pdata):
-                    # putting these close and commit
-                    # functions outside the 'if' will break code
-                    conn.commit()
-                    c.close()
-                    conn.close()
                     session['pconfirm'] = 1
                     flash(u'Successfully authorized.', 'success')
                     return redirect(url_for('technician.password_reset'))
@@ -480,13 +406,11 @@ def password_reset():
             if request.method == "POST" and form.validate():
                 tid = session['tid']
                 password = sha256_crypt.encrypt((str(form.password.data)))
-                c, conn = connection()
-                c.execute(
-                    "UPDATE technicians SET password = %s WHERE tid = (%s)", (thwart(password), tid))
-                conn.commit()
+
+                technician = Technician.query.filter_by(id=tid).first_or_404()
+                technician.password = password
+                db.session.commit()
                 flash(u'Password successfully changed!', 'success')
-                c.close()
-                conn.close()
                 # so they cant get back in!
                 session['pconfirm'] = 0
                 return redirect(url_for('technician.account'))
@@ -504,20 +428,16 @@ def password_reset():
 def email_confirm():
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
-            # 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
-            x = c.execute("SELECT * FROM technicians WHERE email = (%s)",
-                          (thwart(request.form['email']),))
+            email = request.form['email']
+            technician = Technician.query.filter_by(email=email).first()
+
             # Prevent login to another account from this stage
-            if int(x) > 0 and request.form['email'] == session['email']:
-                pdata = c.fetchone()[3]
+            if client and request.form['email'] == session['email']:
+                pdata = technician.password
                 if sha256_crypt.verify(request.form['password'], pdata):
                     # putting these close and commit
                     # functions outside the 'if' will break code
-                    conn.commit()
-                    c.close()
-                    conn.close()
                     session['econfirm'] = 1
                     flash(u'Successfully authorized.', 'success')
                     return redirect(url_for('technician.email_reset'))
@@ -540,34 +460,31 @@ def email_reset():
     try:
         if session['econfirm'] == 1:
             form = TechEmailResetForm(request.form)
-            c, conn = connection()
+
             if request.method == "POST" and form.validate():
-                tid = session['tid']
                 email = form.email.data
                 # check if form input is different than whats in session, if so, then we want to make sure the form input isnt in the DB
                 # if form input and the session are the same, we dont care,
                 # because nothing will change
                 if(email != session["email"]):
-                    x = c.execute(
-                        "SELECT * FROM technicians WHERE email = (%s)", (thwart(email),))
-                    conn.commit()
-                    if int(x) > 0:
+                    technician = Technician.query.filter_by(
+                        email=email).first_or_404()
+
+                    if technician and technician.id != session['tid']:
                         # redirect them if they need to recover an old email
                         # from and old account
                         flash(
                             u'That email already has an account, please try a different email.', 'danger')
                         return render_template('technician/account/email_reset.html', form=form)
-
-                c.execute(
-                    "UPDATE technicians SET email = %s WHERE tid = (%s)", (thwart(email), tid))
-                conn.commit()
-                flash(u'Email successfully changed!', 'success')
-                c.close()
-                conn.close()
-                session['email'] = email
-                # so they cant get back in!
-                session['econfirm'] = 0
-                return redirect(url_for('technician.account'))
+                    technician = Technician.query.filter_by(
+                        id=session['tid']).first()
+                    technician.email = email
+                    db.session.commit()
+                    flash(u'Email successfully changed!', 'success')
+                    session['email'] = email
+                    # so they cant get back in!
+                    session['econfirm'] = 0
+                    return redirect(url_for('technician.account'))
 
             return render_template('technician/account/email_reset.html', form=form)
         else:
@@ -582,24 +499,18 @@ def email_reset():
 def phone_confirm():
     error = ''
     try:
-        c, conn = connection()
         if request.method == "POST":
-            # 'x' To prevent " 'NONETYPE' OBJECT HAS NO ATTRIBUTE '__GETITEM__' " error
-            x = c.execute("SELECT * FROM technicians WHERE email = (%s)",
-                          (thwart(request.form['email']),))
+            email = request.form['email']
+            technician = Technician.query.filter_by(email=email).first_or_404()
             # Prevent login to another account from this stage
-            if int(x) > 0 and request.form['email'] == session['email']:
-                pdata = c.fetchone()[3]
+            if technician and request.form['email'] == session['email']:
+                pdata = technician.password
                 if sha256_crypt.verify(request.form['password'], pdata):
                     # putting these close and commit
                     # functions outside the 'if' will break code
-                    conn.commit()
-                    c.close()
-                    conn.close()
                     session['phconfirm'] = 1
                     flash(u'Successfully authorized.', 'success')
                     return redirect(url_for('technician.phone_reset'))
-
                 else:
                     error = "Invalid credentials, try again."
             else:
@@ -618,27 +529,19 @@ def phone_reset():
         if session['phconfirm'] == 1:
             form = TechPhoneResetForm(request.form)
             if request.method == "POST" and form.validate():
-                # check if phone number exists first
-                tid = session['tid']
                 phone = form.phone.data
-                c, conn = connection()
-                if(phone != session["phone"]):
-                    x = c.execute(
-                        "SELECT * FROM technicians WHERE phone = (%s)", (thwart(phone),))
-                    conn.commit()
-                    if int(x) > 0:
-                        # redirect them if they need to recover an old email
-                        # from and old account
-                        flash(
-                            u'That phone already has an account, please try a different phone.', 'danger')
-                        return render_template('technician/account/phone_reset.html', form=form)
+                technician = Technician.query.filter_by(
+                    phone=phone).first()
+                if technician and technician.id != session['tid']:
+                    flash(
+                        u'That phone already has an account, please try a different phone.', 'danger')
+                    return render_template('technician/account/phone_reset.html', form=form)
 
-                c.execute(
-                    "UPDATE technicians SET phone = %s WHERE tid = (%s)", (thwart(phone), tid))
-                conn.commit()
+                technician = Technician.query.filter_by(
+                    id=session['tid']).first()
+                technician.phone = phone
+                db.session.commit()
                 flash(u'Phone number successfully changed!', 'success')
-                c.close()
-                conn.close()
                 # so they cant get back in!
                 session['phconfirm'] = 0
                 return redirect(url_for('technician.account'))
@@ -679,13 +582,9 @@ def send_email_verify():
 
 @technician.route('/add_mp/', methods=['GET', 'POST'])
 def add_mp():
-    c, conn = connection()
-    rating = session['rating']
-    tid = session['tid']
-    rating = rating + 50
-    c.execute("UPDATE technicians SET rating = %s WHERE tid = (%s)", (rating, tid))
-    conn.commit()
+    technician = Technician.query.filter_by(id=session['tid']).first_or_404()
+    rating = int(technician.rating) + 50
+    technician.rating = rating
+    db.sesison.commit()
     flash(u'50mp added!', 'success')
-    c.close()
-    conn.close()
     return redirect(url_for('technician.account'))

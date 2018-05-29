@@ -1,16 +1,13 @@
-import os
 from wtforms import (Form, TextField,
                      PasswordField,
                      TextAreaField,
-                     validators, ValidationError)
+                     validators)  # , ValidationError
 from wtforms.widgets import TextArea
-from flask_wtf import FlaskForm, RecaptchaField
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+# from flask_wtf import FlaskForm, RecaptchaField
+from flask_wtf.file import FileField, FileAllowed  # , FileRequired
 # from werkzeug.utils import secure_filename  # For secure file uploads
 from flask_uploads import (
     UploadSet, IMAGES)  # patch_request_class, configure_uploads
-
-# from minutetech import photos
 
 photos = UploadSet('photos', IMAGES)
 
@@ -27,7 +24,9 @@ class RegistrationForm(Form):
 
 
 class AskForm(Form):
-    body = TextAreaField('Desciption', [validators.Length(min=10, max=2000)])
+    title = TextField('Title:', [validators.Length(min=5, max=100)])
+    body = TextAreaField('Desciption:', [validators.Length(min=10, max=2000)])
+    tags = TextField('Tags:', [validators.Optional()])
 
 
 class EditAccountForm(Form):

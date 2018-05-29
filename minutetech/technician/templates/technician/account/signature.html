@@ -1,7 +1,7 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
- 
+
 	{% if session.logged_in == 'tech' %}
 		<h2><img style="height: 2.5em;" src="{{ url_for('static', filename='flat-icons/014-interface.png')}}" alt="alert"> Become Certified</h2>
 		<hr>
@@ -21,6 +21,7 @@
 				<b><u>By signing my full name below I acknowledge that I have read and understood the Terms of Service, and that I agree to the Terms of Service.</u></b>
 			</p>
 			<form class="uk-grid-small" action="" method="post" uk-grid>
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				<div class="uk-width-1-2 uk-margin-small">
 					{{ form.signature.label }}
 					{{ form.signature(class_="uk-input") }}
@@ -36,7 +37,7 @@
 		</div>
 		</div>
 
-	{% elif session.logged_in == 'client' %}	
+	{% elif session.logged_in == 'client' %}
 
 		<!-- Display only if technician reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
@@ -54,17 +55,17 @@
 		 		<br>
 		 		<a href="/techaccount/" uk-icon="icon: user"></a> <a href="/techaccount/"> Technician Account</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
+		 	</p>
+		 </div>
 
 	{% else %}
-	
+
 		<!-- Display only if user reaches this page w/o logging in -->
 		<div class="uk-article uk-padding uk-align-center">
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
 		 	<hr>
 		 	<p>
-		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a>
 		 		<br>
 		 		<br>
 		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
@@ -72,10 +73,10 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
-		 
+		 	</p>
+		 </div>
+
 	{% endif %}
- 
+
 {% endblock %}
-	  
+

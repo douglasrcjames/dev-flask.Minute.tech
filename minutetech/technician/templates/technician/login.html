@@ -1,5 +1,5 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
 
 	{% if session.logged_in == 'client' %}
@@ -22,10 +22,10 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
+		 	</p>
 		 </div>
 
-	{% elif session.logged_in == 'tech' %}	
+	{% elif session.logged_in == 'tech' %}
 
 		<!-- Display only technician that is logged_in reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
@@ -40,7 +40,7 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
+		 	</p>
 		 </div>
 
 	{% else %}
@@ -49,6 +49,7 @@
 			<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
 				<div class="uk-width-1-2@s uk-padding uk-background-muted uk-margin-large">
 					<form action="" method="post">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 						<h3><span uk-icon="icon: nut; ratio: 2.5"></span> Technician Login</h3>
 						<hr>
 						<div class="uk-margin">
@@ -56,7 +57,7 @@
 								<span class="uk-form-icon" uk-icon="icon: mail"></span>
 								<input class="uk-input" required placeholder="Email" type="text" name="email" value="{{ request.form.email }}">
 							</div>
-							
+
 						</div>
 						<div class="uk-margin">
 							<div class="uk-inline uk-width-1-1">
@@ -64,25 +65,25 @@
 								<input class="uk-input" required placeholder="Password" type="password" name="password" value="{{ request.form.password }}">
 							</div>
 						</div>
-						
+
 						<div class="uk-margin">
 							<button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1" value="Login">LOG IN</button>
 						</div>
 					</form>
-					
+
 					{% if error %}
 						<span class="uk-label uk-label-danger">{{ error }}</span></p>
 					{% endif %}
 					<hr>
 					<p><a href="technician/register/" uk-icon="icon: plus"></a> Want to be a Technician? <a href="/technician/register/">Register here.</a></p>
 					<p><a href="/login/" uk-icon="icon: sign-in"></a> Looking for Client login? <a href="/login/">Login here.</a></p>
-					
+
 				</div>
 			</div>
 		</div>
 
 	{% endif %}
- 
+
 {% endblock %}
 
 

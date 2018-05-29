@@ -1,28 +1,58 @@
 import os
+from uuid import uuid4
 from flask import (render_template, flash, request,
-                   url_for, redirect, session,
+                   url_for, redirect, session, jsonify,
                    send_file,
                    Blueprint)
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt  # To encrypt the password
 # from MySQLdb import escape_string as thwart  # To prevent SQL injection
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
+from sqlalchemy import desc
 from flask_mail import Message
 # Email confirmation link that has a short lifespan
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-
+from flask_socketio import join_room, emit
 # Custom f(x)
 from .forms import (ContactForm, RegistrationForm, AskForm,
                     EditAccountForm,
                     PasswordResetForm, EmailResetForm, PhoneResetForm)
 from .models import Contact, Client, Ticket, Thread
 from minutetech.config import SECRET_KEY, UPLOAD_FOLDER
-from minutetech import mail, db
+from minutetech import mail, db, socketio
 from minutetech.utils import allowed_file, login_required
 
 main = Blueprint('main', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
+count = 1
 
+
+# socketio events
+
+@socketio.on('join')
+def join(message):
+    room = message.get('room')
+    join_room(room)
+    emit('status',
+         {
+             'msg': session.get('first_name') + ' joined the room ' + str(room)
+         },
+         room=room)
+
+
+@socketio.on('message')
+def messaging(message):
+    room = message.get('room')
+    body = message.get('body')
+    msg_from = message.get('from')
+    name = message.get('name')
+
+    emit('message',
+         {'body': body,
+          'from': msg_from,
+          'name': name
+          },
+         room=room)
 
 # 1st Layer Pages (Visible to all visitors)
 
@@ -41,23 +71,24 @@ def homepage():
     form = AskForm(request.form)
     if request.method == "POST" and form.validate():
         difficulty = 0
-        title = 'Not provided'
+        title = form.title.data
         body = form.body.data
-        tags = 'Not provided'
+        tags = form.tags.data
         priority = 0
         cid = session['cid']
 
         ticket = Ticket(client_id=cid, difficulty=difficulty,
-                        priority=priority, title=title, tags=tags)
+                        priority=priority, title=title, tags=tags,
+                        random=uuid4())
         db.session.add(ticket)
         db.session.commit()
         thread = Thread(client_id=cid, ticket_id=ticket.id, body=body)
         db.session.add(thread)
         db.session.commit()
 
-        flash(u'Submission successful. We have added your question to the pool!', 'success')
+        flash(u'Submission successful. We have added your question to the pool!',
+              'success')
         return redirect(url_for('main.homepage'))
-
     else:
         error = "We couldn't post your question, please make sure you filled out all the fields properly and try again!"
         return render_template("main.html", form=form)
@@ -99,8 +130,6 @@ def about():
     except Exception as e:
         return render_template("500.html", error=e)
 
-count = 1
-
 
 @main.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -115,6 +144,8 @@ def login():
                 pdata = client.password
                 if sha256_crypt.verify(request.form['password'], pdata):
                     session['logged_in'] = 'client'
+                    session['first_name'] = client.first_name
+                    session['cid'] = client.id
                     session['email'] = client.email
                     flash(u'You are now logged in.', 'success')
                     return redirect(url_for("main.account"))
@@ -223,7 +254,7 @@ def email_verify(token):
                   'danger')
             return redirect(url_for('main.login'))
 
-        render_template("main.html")
+        return render_template("main.html")
     except SignatureExpired:
         flash(u'The token has expired', 'danger')
         return redirect(url_for('main.homepage'))
@@ -287,56 +318,122 @@ def forgot_password():
 # 2nd Layer #################
 
 
-@main.route('/ask/', methods=['GET', 'POST'])
-def ask():
-    error = ''
-    try:
-        if request.method == "POST":
-            client_id = session['cid']
-            client = Client.query.filter_by(id=client_id).first_or_404()
-            client.launch_email = 1
-            db.session.commit()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('main.ask'))
-        return render_template("account/ask.html", error=error)
+# @main.route('/ask/', methods=['GET', 'POST'])
+# def ask():
+#     error = ''
+#     try:
+#         if request.method == "POST":
+#             client_id = session['cid']
+#             client = Client.query.filter_by(id=client_id).first_or_404()
+#             client.launch_email = 1
+#             db.session.commit()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('main.ask'))
+#         return render_template("account/ask.html", error=error)
 
-    except Exception as e:
-        return render_template("500.html", error=e)
+#     except Exception as e:
+#         return render_template("500.html", error=e)
+
+
+# @main.route('/resolved/', methods=['GET', 'POST'])
+# def resolved():
+#     error = ''
+#     try:
+#         if request.method == "POST":
+#             client_id = session['cid']
+#             client = Client.query.filter_by(id=client_id).first_or_404()
+#             client.launch_email = 1
+#             db.session.commit()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('main.ask'))
+#         return render_template("account/ask.html", error=error)
+
+#     except Exception as e:
+#         return render_template("500.html", error=e)
+
+#     except Exception as e:
+#         return render_template("500.html", error=e)
 
 
 @main.route('/resolved/', methods=['GET', 'POST'])
 def resolved():
-    error = ''
     try:
-        if request.method == "POST":
+        if session['logged_in']:
             client_id = session['cid']
-            client = Client.query.filter_by(id=client_id).first_or_404()
-            client.launch_email = 1
-            db.session.commit()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('main.ask'))
-        return render_template("account/ask.html", error=error)
-
+            result = Ticket.query.filter(
+                and_(Ticket.client_id == client_id,
+                     Ticket.solved == 1)).order_by(
+                desc(Ticket.created_at)).all()
+            return render_template("account/resolved.html", result=result)
+        else:
+            return render_template("404.html")
     except Exception as e:
-        return render_template("500.html", error=e)
+        return(str(e))
 
-    except Exception as e:
-        return render_template("500.html", error=e)
+# @main.route('/pending/', methods=['GET', 'POST'])
+# def pending():
+#     error = ''
+#     try:
+#         if request.method == "POST":
+#             client_id = session['cid']
+#             client = Client.query.filter_by(id=client_id).first_or_404()
+#             client.launch_email = 1
+#             db.session.commit()
+#             flash(u'Thanks, we got you down!', 'success')
+#             return redirect(url_for('main.ask'))
+#         return render_template("account/ask.html", error=error)
+
+#     except Exception as e:
+#         return render_template("500.html", error=e)
 
 
 @main.route('/pending/', methods=['GET', 'POST'])
 def pending():
-    error = ''
     try:
-        if request.method == "POST":
+        if session['logged_in']:
             client_id = session['cid']
-            client = Client.query.filter_by(id=client_id).first_or_404()
-            client.launch_email = 1
-            db.session.commit()
-            flash(u'Thanks, we got you down!', 'success')
-            return redirect(url_for('main.ask'))
-        return render_template("account/ask.html", error=error)
+            result = Ticket.query.filter(
+                and_(Ticket.client_id == client_id,
+                     Ticket.solved == 0)).order_by(
+                desc(Ticket.created_at)).all()
+            return render_template("account/pending.html", result=result)
+        else:
+            return render_template("404.html")
+    except Exception as e:
+        return render_template("500.html", error=e)
 
+
+@main.route('/room/<string:select_q>/', methods=['GET', 'POST'])
+def room(select_q):
+    answered = 0
+    try:
+        ticket = Ticket.query.filter_by(random=select_q).first_or_404()
+        threads = Thread.query.filter_by(ticket_id=ticket.id).all()
+        # What to insert into the conversation
+        if request.method == 'POST' and 'logged_in' in session:
+            if request.form.getlist('answered'):
+                answered = 1
+                ticket.solved = 1
+                db.session.commit()
+            body = request.form['body']
+            if 'cid' in session:
+                client_id = session['cid']
+                thread = Thread(ticket_id=ticket.id, client_id=client_id,
+                                body=body, answered=answered)
+            if 'tid' in session:
+                tech_id = session['tid']
+                thread = Thread(ticket_id=ticket.id, technician_id=tech_id,
+                                body=body)
+            db.session.add(thread)
+            db.session.commit()
+            response = {
+                'from': session.get('logged_in'),
+                'body': thread.body,
+                'name': session.get('first_name')
+            }
+            return jsonify(response)
+        return render_template("account/room.html", threads=threads,
+                               ticket=ticket, room=select_q)
     except Exception as e:
         return render_template("500.html", error=e)
 
@@ -364,8 +461,9 @@ def account():
                     new_prof_pic = request.files['prof_pic']
                     if allowed_file(new_prof_pic.filename):
                         filename = secure_filename(new_prof_pic.filename)
-                        old_prof_pic = os.path.join(UPLOAD_FOLDER,
-                                                    os.path.basename(client.prof_pic))
+                        old_prof_pic = os.path.join(
+                            UPLOAD_FOLDER,
+                            os.path.basename(client.prof_pic))
                         if os.path.exists(old_prof_pic):
                             os.unlink(old_prof_pic)
                         new_prof_pic.save(os.path.join(
@@ -483,19 +581,20 @@ def email_reset():
                 email = form.email.data
                 if(email != session["email"]):
                     client = Client.query.filter_by(email=email).first_or_404()
-                    if client:
+                    if client and client.id != session['cid']:
                         # redirect them if they need to recover an old email
                         # from and old account
                         flash(
                             u'That email already has an account, please try a different email.', 'danger')
                         return render_template('account/email_reset.html', form=form)
-                client.email = email
-                db.session.commit()
-                flash(u'Email successfully changed!', 'success')
-                session['email'] = email
-                # so they cant get back in!
-                session['econfirm'] = 0
-                return redirect(url_for('main.account'))
+                    client = Client.query.filter_by(id=session['cid']).first()
+                    client.email = email
+                    db.session.commit()
+                    flash(u'Email successfully changed!', 'success')
+                    session['email'] = email
+                    # so they cant get back in!
+                    session['econfirm'] = 0
+                    return redirect(url_for('main.account'))
 
             return render_template("account/email_reset.html", form=form)
         else:
@@ -539,16 +638,13 @@ def phone_reset():
             form = PhoneResetForm(request.form)
             if request.method == "POST" and form.validate():
                 phone = form.phone.data
-                client = Client.query.filter_by(phone=phone).first_or_404()
+                client = Client.query.filter_by(phone=phone).first()
                 # check if phone number exists first
-                if(phone != session["phone"]):
-                    if client:
-                        # redirect them if they need to recover an old email
-                        # from and old account
-                        flash(
-                            u'That phone already has an account, please try a different phone.', 'danger')
-                        return render_template('account/phone_reset.html', form=form)
-
+                if client and client.id != session['cid']:
+                    flash(
+                        u'That phone already has an account, please try a different phone.', 'danger')
+                    return render_template('account/phone_reset.html', form=form)
+                client = Client.query.filter_by(id=session['cid']).first()
                 client.phone = phone
                 db.session.commit()
                 flash(u'Phone number successfully changed!', 'success')
@@ -592,10 +688,9 @@ def send_email_verify():
 
 @main.route('/add_mp/', methods=['GET', 'POST'])
 def add_mp():
-    rating = session['rating']
     cid = session['cid']
-    rating = rating + 50
     client = Client.query.filter_by(id=cid).first_or_404()
+    rating = int(client.rating) + 50
     client.rating = rating
     db.session.commit()
     flash(u'50mp added!', 'success')

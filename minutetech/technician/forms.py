@@ -3,7 +3,7 @@ from wtforms import (Form, TextField,
                      TextAreaField,
                      validators)
 from wtforms.widgets import TextArea
-from flask_wtf import FlaskForm, RecaptchaField
+# from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileAllowed  # FileRequired
 # from werkzeug.utils import secure_filename  # For secure file uploads
 from flask_uploads import (
@@ -11,7 +11,7 @@ from flask_uploads import (
 
 photos = UploadSet('photos', IMAGES)
 
-# TECHNICIAN FORMS #
+
 class TechRegistrationForm(Form):
     first_name = TextField(
         'First Name', [validators.Length(min=1, max=50)])
@@ -26,7 +26,7 @@ class TechRegistrationForm(Form):
     password = PasswordField('Password', [validators.Required(
     ), validators.EqualTo('confirm', message="Passwords must match.")])
     confirm = PasswordField('Repeat Password')
-    recaptcha = RecaptchaField()
+    # recaptcha = RecaptchaField()
 
 
 class TechEditAccountForm(Form):
@@ -67,4 +67,3 @@ class TechEmailResetForm(Form):
 class TechSignatureForm(Form):
     signature = TextField('Signature (Please enter your full name)', [
                           validators.Length(min=2, max=100)])
-

@@ -6,7 +6,7 @@
 
 	<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-bottom-center" style="background-image: url({{ url_for('static', filename='images/desk-clutter-with-phone.png')}});">
 		<div class="uk-container">
-		
+
 			{% if session.logged_in == 'client' %}
 				<div class="uk-container-small uk-background-muted uk-padding-large uk-padding-remove-top uk-padding-remove-bottom uk-align-center">
 					<div class="uk-padding uk-margin-auto" >
@@ -17,13 +17,24 @@
 						<hr>
 						<p class="uk-text-meta">Feel free to ask any tech question below! We are taking some of our first questions into the system to prepare the Minute.tech system. We will try our best to answer your questions as technicians join the Minute.tech team in the coming days!</p>
 						<form class="uk-grid-small" action="/" method="post" uk-grid>
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+							<div class="uk-width-1-1 uk-margin-small">
+								{{ form.title.label }}
+								{{ form.title(placeholder="The Problem", class='uk-input') }}
+								{% for error in form.title.errors %}
+						        	<span class="uk-label uk-label-danger">{{ error }}</span>
+						    	{% endfor %}
+							</div>
 							<div class="uk-width-1-1 uk-margin-small">
 								{{ form.body.label }}
 								{{ form.body(placeholder="i.e. - My device probably has a virus. I clicked the wrong link, and I have like a million popups a minute now. Minute.tech HELP! I need some direction here guys.", class_="uk-textarea", rows="20", cols="100") }}
+								{% for error in form.body.errors %}
+						        	<span class="uk-label uk-label-danger">{{ error }}</span>
+						    	{% endfor %}
 							</div>
-							{% for error in form.body.errors %}
-					        	<span class="uk-label uk-label-danger">{{ error }}</span>
-					    	{% endfor %}
+							<div class="uk-width-1-1 uk-margin-small">
+								{{ form.tags(placeholder="Mac, virus, Facebook, etc", class_="uk-input") }}
+							</div>
 							<div class="uk-width-1-4@s uk-margin-small">
 								<input class="uk-button uk-button-primary" type="submit" value="Ask">
 							</div>
@@ -63,7 +74,7 @@
 				</div>
 			</div>
 			{% endif %}
-			
+
 		</div>
 		<br>
 		<div class="uk-container uk-container-small uk-text-center uk-padding-large">
@@ -89,14 +100,14 @@
 			            <p>We can assist you over messenger, voice call, or video call from the comfort of your home. Someday we will have technicians available to fix your tech issues in person!</p>
 			        </div>
 			    </div>
-			    <div class="uk-width-1-2@s"> 
+			    <div class="uk-width-1-2@s">
 			        <div class="uk-card uk-card-default uk-card-body">
 			        	<img alt="piggy" src="{{ url_for('static', filename='flat-icons/009-piggy-bank.png')}}" style="max-width:75px;" >
 			            <h3 class="uk-card-title">Modest</h3>
 			            <p>Get advice at a fraction of the cost compared to our competitors, like GeekSquad high upfront fee or Basks expensive monthly subscription.</p>
 			        </div>
 			    </div>
-			    <div class="uk-width-1-2@s"> 
+			    <div class="uk-width-1-2@s">
 			        <div class="uk-card uk-card-default uk-card-body">
 			        	<img alt="thread" src="{{ url_for('static', filename='flat-icons/003-thread.png')}}" style="max-width:75px;" >
 			            <h3 class="uk-card-title">Tailored</h3>
@@ -132,7 +143,7 @@
 			    <div class="uk-width-1-2@s" uk-scrollspy="cls: uk-animation-slide-right; delay: 20; repeat: true">
 			        <div class="uk-card uk-card-default uk-card-body">
 			        	<img alt="mobile" src="{{ url_for('static', filename='flat-icons/017-computer-1.png')}}" style="max-width:75px;" >
-			            <h3 class="uk-card-title" style="color:black;">Can’t figure out your new mobile phone?</h3>  
+			            <h3 class="uk-card-title" style="color:black;">Can’t figure out your new mobile phone?</h3>
 			        </div>
 			    </div>
 			    <div class="uk-width-1-2@s">
@@ -141,13 +152,13 @@
 			            <h3 class="uk-card-title" style="color:black;">Need help setting up your home theatre?</h3>
 			        </div>
 			    </div>
-			    <div class="uk-width-1-2@s"> 
+			    <div class="uk-width-1-2@s">
 			        <div class="uk-card uk-card-default uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; delay: 40; repeat: true">
 			        	<img alt="gaming" src="{{ url_for('static', filename='flat-icons/022-technology.png')}}" style="max-width:75px;" >
 			            <h3 class="uk-card-title" style="color:black;">Have some questions while building a new gaming rig?</h3>
 			        </div>
 			    </div>
-			    <div class="uk-width-1-2@s"> 
+			    <div class="uk-width-1-2@s">
 			        <div class="uk-card uk-card-default uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; delay: 50; repeat: true">
 			        	<img alt="network" src="{{ url_for('static', filename='flat-icons/001-network.png')}}" style="max-width:75px;" >
 			            <h3 class="uk-card-title" style="color:black;">Having trouble with Twitter or Facebook?</h3>
@@ -179,7 +190,7 @@
 
 	<!-- <section class="uk-section uk-section-large uk-background-cover" style="background-image: url({{ url_for('static', filename='images/space_banner.jpg')}});">
 		<div class="uk-container uk-container-small uk-text-center uk-margin-small">
-			<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"> 
+			<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
 				<q cite="#" class="uk-text-large" style="color:white">
 				    ...every question is a cry to understand the world. <br>There is no such thing as a dumb question.
 				</q>
@@ -211,10 +222,10 @@
 
 	<!-- SECTION 5 -->
 	{% if session.logged_in != 'tech' %}
-		<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-top-center" 
+		<section class="uk-section uk-section-large uk-background-cover uk-background-fixed uk-background-top-center"
 				style="background-image: url({{ url_for('static', filename='images/black-tie-technician.png')}});">
 			<div class="uk-container uk-container-small uk-text-center uk-margin-small">
-				<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-scale-down; repeat: true"> 
+				<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light" uk-scrollspy="cls: uk-animation-scale-down; repeat: true">
 					<img alt="key hole" src="{{ url_for('static', filename='flat-icons/coffee.png')}}" style="max-width:75px;" >
 					<p class="uk-text-large" style="color:white">
 					   Have some free time and plenty of techie knowledge? Come help us as a Minute technician! Think an Uber driver, but for tech support. You don't even have to leave home if you don't want to. Come check out the perks, sign up today to become a certified Minute technician.

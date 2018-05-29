@@ -53,9 +53,10 @@ class Ticket(db.Model):
     solved = db.Column(db.Boolean, default=False)
     pending = db.Column(db.Boolean, default=False)
     archived = db.Column(db.Boolean, default=False)
-    tite = db.Column(db.String(255))
+    title = db.Column(db.String(255))
     tags = db.Column(db.Text)
     answer = db.Column(db.Text)
+    random = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     thread = db.relationship(
@@ -66,7 +67,7 @@ class Thread(db.Model):
     __tablename__ = 'threads'
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey(
-        Client.id), nullable=False)
+        Client.id), nullable=True)
     technician_id = db.Column(db.Integer, db.ForeignKey(
         Technician.id), nullable=True)
     ticket_id = db.Column(db.Integer, db.ForeignKey(

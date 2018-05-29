@@ -1,17 +1,18 @@
 {% extends "header.html" %}
- 
+
 {% block body %}
 
 	{% if session.logged_in == 'tech' %}
 
 	   <body>
 	      <h2><span uk-icon="icon: user; ratio: 2.5"></span> Change profile picture: </h2>
-	      <hr>   
-			<p> 
+	      <hr>
+			<p>
 			<div class="uk-card uk-card-default uk-card-body">
 				<img class="uk-border-rounded uk-align-center uk-box-shadow-large" src="{{ session.techprof_pic }}" width="200" height="200" alt="">
 				<div class="uk-align-center">
 					<form method="POST" action="{{ url_for('tech_profile_picture_upload')}}" enctype="multipart/form-data">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 					    {{ form.hidden_tag() }}
 					    <div class="uk-margin">
 					        <p>Please choose a new profile picture from your computer below:</p>
@@ -19,7 +20,7 @@
 						        <div uk-form-custom="target: true">
 						            {{ form.techprof_pic }}
 						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-						            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>      
+						            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
 						        </div>
 						        <button type="submit" class="uk-button uk-button-primary">Upload</button>
 						        <p class="uk-text-muted">*max size of 16MB</p>
@@ -29,16 +30,16 @@
 						    </div>
 					    </div>
 					    <br>
-					    
+
 					</form>
 					<a href="{{ url_for('techaccount') }}"><button class="uk-button uk-button-default">Back to Account</button></a>
 				</div>
 			</div>
-			</p>    
-	             
-	   </body> 
+			</p>
 
-	{% elif session.logged_in == 'client' %}	
+	   </body>
+
+	{% elif session.logged_in == 'client' %}
 
 		<!-- Display only if technician reaches this page -->
 		<div class="uk-article uk-padding uk-align-center">
@@ -56,17 +57,17 @@
 		 		<br>
 		 		<a href="/account/" uk-icon="icon: user"></a> <a href="/account/">  Account</a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
+		 	</p>
+		 </div>
 
 	{% else %}
-	
+
 		<!-- Display only if user reaches this page w/o logging in -->
 		<div class="uk-article uk-padding uk-align-center">
 		 	<h2><img style="height: 1em;" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert"> Not logged in  </h2>
 		 	<hr>
 		 	<p>
-		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a> 
+		 		<a href="/login/" uk-icon="icon: sign-in"></a> <a href="/login/"> Login </a>
 		 		<br>
 		 		<br>
 		 		<a href="/register/" uk-icon="icon: plus"></a> <a href="/register/"> Sign up </a>
@@ -74,10 +75,10 @@
 		 		<br>
 		 		<a href="/" uk-icon="icon: home"></a> <a href="/"> Homepage </a>
 		 		<img class="uk-responsive-height uk-responsive-width uk-padding uk-align-center" style="height:275px" src="{{ url_for('static', filename='flat-icons/alert.png')}}" alt="alert">
-		 	</p> 
-		 </div>	
-		 
+		 	</p>
+		 </div>
+
 	{% endif %}
- 
+
 {% endblock %}
-     
+

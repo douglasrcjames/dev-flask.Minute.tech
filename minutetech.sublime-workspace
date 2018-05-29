@@ -1,0 +1,3107 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"init",
+				"init_app"
+			],
+			[
+				"joi",
+				"join_room\tfunction"
+			],
+			[
+				"flask_s",
+				"flask_socketio\tmodule"
+			],
+			[
+				"techni",
+				"technician_id\tstatement"
+			],
+			[
+				"tech",
+				"tech_id"
+			],
+			[
+				"session",
+				"session['tid"
+			],
+			[
+				"tehc",
+				"technician"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"cu",
+				"cur\tCSS - cursor: pointer;"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"array",
+				"array_slice"
+			],
+			[
+				"st",
+				"stateReordered"
+			],
+			[
+				"more",
+				"morecities"
+			],
+			[
+				"style",
+				"style\tAttr"
+			],
+			[
+				"Ser",
+				"ServerListingSerializer\tclass"
+			],
+			[
+				"is",
+				"is_public"
+			],
+			[
+				"get_te",
+				"get_term"
+			],
+			[
+				"state",
+				"stateReordered"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"get_the",
+				"get_the_ID\t(single-lawyers.php)"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"hide",
+				"hide_contact_details"
+			],
+			[
+				"sign",
+				"signature"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"first",
+				"first_name"
+			],
+			[
+				"sha",
+				"sha256_crypt"
+			],
+			[
+				"Model",
+				"ModelSerializer"
+			],
+			[
+				"Notifi",
+				"NotificationAdmin"
+			],
+			[
+				"seria",
+				"serializers"
+			],
+			[
+				"App",
+				"AppSerializer"
+			],
+			[
+				"ser",
+				"serializers"
+			],
+			[
+				"logo",
+				"logo_url"
+			],
+			[
+				"apps_",
+				"apps_serializer\tstatement"
+			],
+			[
+				"A",
+				"AppListingSerializer"
+			],
+			[
+				"view",
+				"viewsets.ReadOnlyModelViewSet"
+			],
+			[
+				"define",
+				"defineLocale\t(fa.js)"
+			],
+			[
+				"event",
+				"event_label"
+			],
+			[
+				"event_",
+				"event_label"
+			],
+			[
+				"ov",
+				"overflow"
+			],
+			[
+				"first_",
+				"first_or_404"
+			],
+			[
+				"clien",
+				"client_id"
+			],
+			[
+				"tick",
+				"ticket_id"
+			],
+			[
+				"uuid",
+				"uuid4\tfunction"
+			],
+			[
+				"birth",
+				"birth_month\t(routes.py)"
+			],
+			[
+				"fad",
+				"fadeOut\t.fadeOut()"
+			],
+			[
+				"select",
+				"selected_year\t(calendar.min.js)"
+			],
+			[
+				"sel",
+				"select_year"
+			],
+			[
+				"ar_",
+				"ar_day"
+			],
+			[
+				"is_",
+				"is_saas"
+			],
+			[
+				"pers",
+				"persian_date"
+			],
+			[
+				"jd",
+				"jd_to_persian\t(calendar.min.js)"
+			],
+			[
+				"per",
+				"persian_date\t(calendar.min.js)"
+			],
+			[
+				"grego",
+				"gregorian_to_jd\t(calendar.min.js)"
+			],
+			[
+				"fc",
+				"fCalendar"
+			],
+			[
+				"rem",
+				"removeAttr\t.removeAttr()"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"fc-to",
+				"fc-today\t(fullcalendar.min.css)"
+			],
+			[
+				"time",
+				"timedelta\tclass"
+			],
+			[
+				"push",
+				"push_notification_iterator"
+			],
+			[
+				"cate",
+				"category_id"
+			],
+			[
+				"category",
+				"category_id"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"Mobil",
+				"MobileNotificationSerializer"
+			],
+			[
+				"seri",
+				"serializer\tSerializer"
+			],
+			[
+				"notific",
+				"notification"
+			],
+			[
+				"Noti",
+				"NotificationAPIView"
+			],
+			[
+				"No",
+				"NotificationAPIView\t(views.py)"
+			],
+			[
+				"base",
+				"base_name"
+			],
+			[
+				"Not",
+				"NotificationAPIView"
+			],
+			[
+				"N",
+				"MobileNotification\tclass"
+			],
+			[
+				"tra",
+				"transparent"
+			],
+			[
+				"full",
+				"fullcalendar\t(index.html)"
+			],
+			[
+				"mc",
+				"mchar\tCharField (mchar)"
+			],
+			[
+				"Ta",
+				"TargetViewSet\tclass"
+			],
+			[
+				"ca",
+				"cache_page\tfunction"
+			],
+			[
+				"de",
+				"decorators\tmodule"
+			],
+			[
+				"cach",
+				"cache_page"
+			],
+			[
+				"Comm",
+				"CommentViewSet"
+			],
+			[
+				"Tech",
+				"TechnologyViewSet"
+			],
+			[
+				"Ca",
+				"CategoryViewSet"
+			],
+			[
+				"Te",
+				"TechnologyViewSet"
+			],
+			[
+				"Cat",
+				"CategorySerializer"
+			],
+			[
+				"Cate",
+				"CategorySerializer\t(serializers.py)"
+			],
+			[
+				"rea",
+				"read_only\t(serializers.py)"
+			],
+			[
+				"ima",
+				"image_set"
+			],
+			[
+				"Com",
+				"Comment\t(models.py)"
+			],
+			[
+				"At",
+				"Attribute\t(models.py)"
+			],
+			[
+				"G",
+				"GoogleLogin"
+			],
+			[
+				"vali",
+				"validate_data"
+			],
+			[
+				"GI",
+				"GitHubLoginView"
+			],
+			[
+				"Se",
+				"SessionAuthentication"
+			],
+			[
+				"re",
+				"register\tfunction"
+			],
+			[
+				"en",
+				"endif"
+			],
+			[
+				"end",
+				"endif\t(header.php)"
+			],
+			[
+				"url",
+				"url_for"
+			],
+			[
+				"reset_pass",
+				"reset_password_token"
+			],
+			[
+				"clie",
+				"client"
+			],
+			[
+				"res",
+				"reset_password_token"
+			],
+			[
+				"reset_passwor",
+				"reset_password_token\t(models.py)"
+			],
+			[
+				"fla",
+				"flash"
+			],
+			[
+				"logi",
+				"login_required"
+			],
+			[
+				"min",
+				"minutetech"
+			],
+			[
+				"post",
+				"post_id"
+			],
+			[
+				"Attri",
+				"AttributeSerializer"
+			],
+			[
+				"attr",
+				"attribute\t(models.py)"
+			],
+			[
+				"Att",
+				"AttributeValuesSerializer"
+			],
+			[
+				"att",
+				"attributesvalues_set"
+			],
+			[
+				"Attr",
+				"AttributesValues\t(models.py)"
+			],
+			[
+				"form",
+				"formdata"
+			],
+			[
+				"Pro",
+				"Prof_pic_check"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"ph",
+				"photos\t(__init__.py)"
+			],
+			[
+				"floor",
+				"floor_plans\t(content-single.php)"
+			],
+			[
+				"update_post",
+				"update_post_meta\tWP Function"
+			],
+			[
+				"get_po",
+				"get_post_type\t(content-single.php)"
+			],
+			[
+				"fil",
+				"filters\tmodule"
+			],
+			[
+				"pri",
+				"pricesheet"
+			],
+			[
+				"pr",
+				"pricesheet"
+			],
+			[
+				"floo",
+				"floorplan"
+			],
+			[
+				"if",
+				"if\t<?php if (…) ?> … <?php endif ?>"
+			],
+			[
+				"fl",
+				"floorplan"
+			],
+			[
+				"simple",
+				"simplemodal\t(index.html)"
+			],
+			[
+				"is_pa",
+				"is_paged\tWP Function"
+			],
+			[
+				"is_main",
+				"is_main_query\tWP Function"
+			],
+			[
+				"retr",
+				"retreive"
+			],
+			[
+				"Ide",
+				"IdeViewSet"
+			],
+			[
+				"_",
+				"_blank"
+			],
+			[
+				"project",
+				"projects_count"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "minutetech/main/templates/account/room.html",
+			"settings":
+			{
+				"buffer_size": 3656,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "run.py",
+			"settings":
+			{
+				"buffer_size": 588,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "minutetech/__init__.py",
+			"settings":
+			{
+				"buffer_size": 1044,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "minutetech/main/models.py",
+			"settings":
+			{
+				"buffer_size": 3682,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "minutetech/main/routes.py",
+			"settings":
+			{
+				"buffer_size": 27536,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 128.0,
+		"last_filter": "jinj",
+		"selected_items":
+		[
+			[
+				"jinj",
+				"Set Syntax: HTML (Jinja2)"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"ut",
+				"Snippet: coding: utf-8"
+			],
+			[
+				"project",
+				"Project: Save As"
+			],
+			[
+				"sche",
+				"Schemr: List all schemes"
+			],
+			[
+				"them",
+				"Themr: List themes"
+			],
+			[
+				"pretty",
+				"HTMLPrettify"
+			],
+			[
+				"beau",
+				"HTMLBeautify"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"the",
+				"Themr: List themes"
+			],
+			[
+				"pret",
+				"HTMLPrettify"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"passwo",
+				"Generate medium password"
+			],
+			[
+				"glyph",
+				"Snippet: bs3-icon-glyphicon"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"theme",
+				"Themr: Next theme"
+			],
+			[
+				"scheme",
+				"Schemr: List all schemes"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"pas",
+				"Generate long secure password"
+			],
+			[
+				"flask",
+				"Snippet: Flask"
+			],
+			[
+				"fl",
+				"Flask: Create New App (relative to Open File)"
+			],
+			[
+				"taks",
+				"Tasks: New"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"bea",
+				"HTMLBeautify"
+			],
+			[
+				"beua",
+				"HTMLBeautify"
+			],
+			[
+				"form",
+				"Snippet: bs3-form"
+			],
+			[
+				"nav",
+				"Snippet: bs3-navbar"
+			],
+			[
+				"thu",
+				"Snippet: bs3-thumbnail"
+			],
+			[
+				"gyl",
+				"Snippet: bs3-icon-glyphicon"
+			],
+			[
+				"container",
+				"Snippet: container"
+			],
+			[
+				"ci",
+				"Snippet: container-in"
+			],
+			[
+				"tem",
+				"Snippet: bs3-html5-template"
+			],
+			[
+				"templ",
+				"Snippet: bs3-template.starter"
+			],
+			[
+				"jquery",
+				"Snippet: Google AJAX Libraries: jQuery"
+			],
+			[
+				"cdn",
+				"Snippet: bs3-cdn-js"
+			],
+			[
+				"cdn cs",
+				"Snippet: bs3-cdn-css"
+			],
+			[
+				"",
+				"A File Icon: Changelog"
+			],
+			[
+				"flas",
+				"Flask: Create New App (relative to Open File)"
+			],
+			[
+				"bs3 al",
+				"Snippet: bs3-alert-success"
+			],
+			[
+				"bs3 form",
+				"Snippet: bs3-form"
+			],
+			[
+				"bs3",
+				"Snippet: bs3-col"
+			],
+			[
+				"row",
+				"Snippet: row"
+			],
+			[
+				"bs3 con",
+				"Snippet: bs3-container"
+			],
+			[
+				"conaine",
+				"Snippet: container"
+			],
+			[
+				"html dja",
+				"Set Syntax: HTML (Django)"
+			],
+			[
+				"utf",
+				"Snippet: coding: utf-8"
+			],
+			[
+				"commen",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"themer",
+				"Themr: List themes"
+			],
+			[
+				"gene",
+				"Generate long password"
+			],
+			[
+				"pass",
+				"Generate medium password"
+			],
+			[
+				"bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				" pass",
+				"Generate medium password"
+			],
+			[
+				"rand",
+				"Schemr: Random scheme"
+			],
+			[
+				"babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"jso",
+				"Set Syntax: JSON"
+			],
+			[
+				"pro",
+				"Project: Save As"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"syn css",
+				"Set Syntax: CSS"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ad",
+				"Project: Add Folder"
+			],
+			[
+				"syntx sh",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"th",
+				"Themr: List themes"
+			],
+			[
+				"sch",
+				"Schemr: List all schemes"
+			],
+			[
+				"bs3 media",
+				"Snippet: bs3-media-object"
+			],
+			[
+				"fluid",
+				"Snippet: container_fluid"
+			],
+			[
+				"navba",
+				"Snippet: bs3-navbar-basic"
+			],
+			[
+				"ajax",
+				"Snippet: Google AJAX Libraries: jQuery"
+			],
+			[
+				"bs3 html",
+				"Snippet: bs3-html5-template"
+			],
+			[
+				"boil",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"html be",
+				"HTMLBeautify"
+			],
+			[
+				"collapse",
+				"Snippet: collapse"
+			],
+			[
+				"jsq",
+				"Snippet: Google AJAX Libraries: jQuery"
+			],
+			[
+				"na",
+				"Snippet: bs3-navbar-basic"
+			],
+			[
+				"bs3 menu",
+				"Snippet: bs3-mini-button-default"
+			],
+			[
+				"resp",
+				"Snippet: bs3-navbar-responsive"
+			],
+			[
+				"jq",
+				"Snippet: Google AJAX Libraries: jQuery"
+			],
+			[
+				"contin",
+				"Snippet: bs3-container"
+			],
+			[
+				"bs3 css",
+				"Snippet: bs3-cdn-css"
+			],
+			[
+				"bo",
+				"Snippet: bs3-media-object"
+			],
+			[
+				"bootstr",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"style",
+				"Snippet: link - stylesheet"
+			],
+			[
+				"boot",
+				"Snippet: bs3-panel-footer"
+			],
+			[
+				"modal",
+				"Snippet: modal"
+			],
+			[
+				"activate theme",
+				"ayu: Activate theme"
+			],
+			[
+				"syn bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"syntax bab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"font",
+				"FontCycler - Next Font"
+			],
+			[
+				"mini",
+				"Minify::Minify File"
+			],
+			[
+				"t",
+				"Themr: List themes"
+			],
+			[
+				"audio",
+				"Snippet: <audio>"
+			],
+			[
+				"color",
+				"Snippet: color"
+			],
+			[
+				"input",
+				"Snippet: input - text"
+			],
+			[
+				"inp",
+				"Snippet: input"
+			],
+			[
+				"hd",
+				"Set Syntax: HTML (Django)"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"labe",
+				"Snippet: label"
+			],
+			[
+				"clo",
+				"Project: Close"
+			],
+			[
+				"cl",
+				"Project: Close"
+			],
+			[
+				"clos",
+				"Project: Close"
+			],
+			[
+				"slider",
+				"Snippet: bs3-link-button-danger"
+			],
+			[
+				"img",
+				"Snippet: fakeimg"
+			],
+			[
+				"card",
+				"Snippet: cards"
+			],
+			[
+				"link",
+				"Snippet: link - alternate"
+			],
+			[
+				"table",
+				"Snippet: bs3-table-responsive"
+			],
+			[
+				"mailt",
+				"Snippet: <a href=\"mailto:\"> "
+			],
+			[
+				"inlin",
+				"Snippet: list_inline"
+			],
+			[
+				"al",
+				"Snippet: bs3-alert-info"
+			],
+			[
+				"fake",
+				"Snippet: fakeimg"
+			],
+			[
+				"unsty",
+				"Snippet: list_unstyled"
+			],
+			[
+				"pa",
+				"Snippet: bs3-pagination"
+			],
+			[
+				"a",
+				"Project: Add Folder"
+			],
+			[
+				"modelf",
+				"Snippet: ModelForm"
+			],
+			[
+				"ta",
+				"Snippet: bs3-tabs"
+			],
+			[
+				"csr",
+				"Snippet: Django template csrf token"
+			],
+			[
+				"tab",
+				"Snippet: bs3-tabs"
+			],
+			[
+				"bs ch",
+				"Snippet: bs3-input-checkbox"
+			],
+			[
+				"hdj",
+				"Set Syntax: HTML (Django)"
+			],
+			[
+				"inpur g",
+				"Snippet: bs3-input-group"
+			],
+			[
+				"form ",
+				"Snippet: bs3-form-inline"
+			],
+			[
+				"hori",
+				"Snippet: bs3-form-horizontal"
+			]
+		],
+		"width": 510.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/yusuf/Coding/python/dev.Minute.tech",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech"
+	],
+	"file_history":
+	[
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/header.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/routes.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/room.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/routes.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/room.old.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/answer.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/resolved.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech.sublime-project",
+		"/home/yusuf/Coding/python/dev.Minute.tech/.gitignore",
+		"/home/yusuf/Coding/python/dev.Minute.tech/run.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/__init__.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/models.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/pending.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/pending.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/resolved.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/index.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/index.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/password_reset.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/password_confirm.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/email_reset.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/email_confirm.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/duties.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/signature.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/room.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/profile_picture_upload.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/phone_reset.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/phone_confirm.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/login.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/register.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/login.html",
+		"/tmp/fz3temp-1/functions.php",
+		"/tmp/fz3temp-1/ir_search.js",
+		"/tmp/fz3temp-1/navigation-top.php",
+		"/tmp/fz3temp-1/header 2.php",
+		"/tmp/fz3temp-1/header.php",
+		"/tmp/fz3temp-1/all_lawyers.php",
+		"/home/yusuf/Coding/python/allthingsserver/servers/models.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/serializers.py",
+		"/home/yusuf/Coding/python/allthingsserver/allthingsserver/common_settings.py",
+		"/home/yusuf/Think.TODO",
+		"/tmp/fz3temp-1/simple-slider.js",
+		"/home/yusuf/Coding/reactnative/selfhostedalt/package.json",
+		"/home/yusuf/Coding/python/allthingsserver/allthingsserver/local_settings.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/middleware.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/views.py",
+		"/home/yusuf/Coding/python/allthingsserver/allthingsserver/urls.py",
+		"/tmp/fz3temp-1/style.css",
+		"/home/yusuf/Coding/python/allthingsserver/home/urls.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/views.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/serializers.py",
+		"/home/yusuf/Coding/python/selfhostedalt/selfhosted/urls.py",
+		"/home/yusuf/Coding/reactnative/selfhostedalt/app.json",
+		"/home/yusuf/Coding/reactnative/allthingsserver/App.js",
+		"/tmp/fz3temp-1/page.php",
+		"/tmp/fz3temp-1/location-practice-areas-page.php",
+		"/tmp/fz3temp-1/practice-areas-lawyers-grid-all-page.php",
+		"/tmp/fz3temp-1/home-all-lawyers.php",
+		"/tmp/fz3temp-1/single.php",
+		"/tmp/fz3temp-1/single-lawyers.php",
+		"/tmp/fz3temp-1/postratings-manager.php",
+		"/tmp/fz3temp-1/lawyer-post-type.php",
+		"/tmp/fz3temp-1/post-metabox.php",
+		"/home/yusuf/Coding/Random/ghost.conf",
+		"/home/yusuf/Coding/Random/taxonomy-location.php",
+		"/home/yusuf/Coding/nodejs/foobar/package.json",
+		"/home/yusuf/Coding/nodejs/foobar/client/main.js",
+		"/home/yusuf/Coding/reactnative/demx/App.js",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/main/routes.py",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/main/templates/register.html",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/technician/templates/technician/register.html",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/technician/forms.py",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/technician/routes.py",
+		"/tmp/fitness-price-comparator/comparator.py",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/main/forms.py",
+		"/home/yusuf/Coding/python/misc/dev.Minute.tech/minutetech/technician/models.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/routers.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/tasks.py",
+		"/home/yusuf/Coding/python/allthingside/allthingside/urls.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/signals.py",
+		"/home/yusuf/Coding/python/allthingsserver/mobile/admin.py",
+		"/home/yusuf/Coding/python/allthingside/allthingside/common_settings.py",
+		"/home/yusuf/Coding/python/allthingside/requirements.txt",
+		"/home/yusuf/Coding/python/allthingsserver/requirements.txt",
+		"/home/yusuf/Coding/python/allthingside/mobile/admin.py",
+		"/home/yusuf/Coding/python/allthingsserver/allthingsserver.sublime-project",
+		"/home/yusuf/Coding/python/allthingsserver/.gitignore",
+		"/home/yusuf/Coding/python/selfhostedalt/software/urls.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/models.py",
+		"/home/yusuf/Coding/python/selfhostedalt/selfhosted/common_settings.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/signals.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/admin.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/tasks.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/routers.py",
+		"/home/yusuf/Coding/python/selfhostedalt/software/models.py",
+		"/home/yusuf/Coding/python/selfhostedalt/selfhosted/prod_settings.py",
+		"/home/yusuf/Coding/python/selfhostedalt/software/signals.py",
+		"/home/yusuf/Coding/python/taghvim/templates/index.html",
+		"/home/yusuf/Coding/python/taghvim/static/js/fullcalendar/fullcalendar.min.js",
+		"/home/yusuf/Coding/python/taghvim/static/js/calendar.min.js",
+		"/home/yusuf/Coding/python/taghvim/static/js/main.js",
+		"/tmp/fz3temp-1/functions 2.php",
+		"/home/yusuf/Coding/python/taghvim/static/css/fullcalendar/fullcalendar.min.css",
+		"/home/yusuf/.cache/.fr-GXZWL3/fullcalendar-master/dist/fullcalendar.js",
+		"/home/yusuf/Coding/python/selfhostedalt/requirements.txt",
+		"/home/yusuf/Coding/python/taghvim/static/js/fullcalendar/fa.js",
+		"/home/yusuf/Coding/python/taghvim/static/admin/css/base.css",
+		"/home/yusuf/Coding/python/selfhostedalt/selfhosted/local_settings.py",
+		"/home/yusuf/Coding/python/selfhostedalt/mobile/middleware.py",
+		"/home/yusuf/Coding/python/allthingside/mobile/middleware.py",
+		"/home/yusuf/Coding/python/allthingside/core/maintenance/middleware.py",
+		"/home/yusuf/Coding/reactnative/selfhostedalt/api/index.js",
+		"/home/yusuf/Coding/python/allthingside/mobile/views.py",
+		"/home/yusuf/Coding/python/allthingside/mobile/models.py",
+		"/home/yusuf/Coding/python/allthingside/mobile/serializers.py",
+		"/home/yusuf/Coding/reactnative/selfhostedalt/screens/AppDetailScreen.js",
+		"/tmp/fz3temp-1/index.html",
+		"/home/yusuf/Clients/minute.tech.todo",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/key_constructor/bits.py",
+		"/home/yusuf/Coding/python/allthingside/mobile/routers.py",
+		"/home/yusuf/Coding/python/allthingside/mobile/apps.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/apps.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/cache/decorators.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/bulk_operations/mixins.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/cache/mixins.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/compat_drf.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/etag/decorators.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/etag/mixins.py",
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/key_constructor/constructors.py"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 147.0,
+		"where_history":
+		[
+			"/home/yusuf/Coding/python/dev.Minute.tech",
+			"/home/yusuf/Coding/python/selfhostedalt",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/python/selfhostedalt",
+			"/home/yusuf/Coding/python/allthingside",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/python/selfhostedalt",
+			"/home/yusuf/Coding/python/allthingside",
+			"/home/yusuf/Coding/python/misc/dev.Minute.tech",
+			"/home/yusuf/Coding/wordpress/twentyseventeen",
+			"/home/yusuf/Coding/python/allthingside",
+			"/home/yusuf/Coding/python/misc/dev.Minute.tech",
+			"/home/yusuf/Clients/taghvim",
+			"/home/yusuf/Coding/heroku/shrouded-temple-13229",
+			"/home/yusuf/Coding/reactnative/idehq",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/ir5",
+			"/home/yusuf/Coding/python/misc/pawductbox",
+			"/home/yusuf/Coding/heroku/SoftScore",
+			"/home/yusuf/Coding/python/pawductbox",
+			"/home/yusuf/Coding/nodejs/rc-ca-blinds/imports/plugins/custom/product-detail-option",
+			"/home/yusuf/Coding/nodejs/rc-ca-blinds",
+			"/home/yusuf/Coding/nodejs/rc-ca-blinds/imports/plugins/custom/",
+			"/home/yusuf/Coding/nodejs/rc-ca-blinds",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/plugins/wp-postratings",
+			"/home/yusuf/Coding/wordpress/janetravis/staging",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/",
+			"/home/yusuf/Coding/wordpress/janetravis/staging",
+			"/home/yusuf/Coding/python/online_test",
+			"/home/yusuf/Coding/wordpress/janetravis/staging",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/plugins/wp-postratings",
+			"/home/yusuf/Coding/python/xpost",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/plugins/wp-postratings",
+			"/home/yusuf/Coding/nodejs/videosocketchat",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/plugins/wp-postratings",
+			"/home/yusuf/Coding/php/golha",
+			"<project>",
+			"/home/yusuf/Coding/php/golha",
+			"<project>",
+			"/home/yusuf/Coding/php/golha",
+			"/home/yusuf/Coding/python/vibezon",
+			"/home/yusuf/Coding/wordpress/ir5/wp-content/themes/twentyseventeen",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/iranianlawyer2-old",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/listings",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/iranianlawyer2-old",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/listings",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"<project>",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/listings",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/listings",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/python/madewithwagtail",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/plugins",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/python/minimalistico",
+			"/home/yusuf/Coding/python/dailypy",
+			"/home/yusuf/Coding/python/pn",
+			"/home/yusuf/Coding/python/dailypy",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/iranianlawyer2",
+			"/home/yusuf/Coding/python/pn",
+			"/home/yusuf/Coding/heroku/BeaconControl",
+			"/home/yusuf/Coding/python/affiliate",
+			"/home/yusuf/Coding/wordpress/janetravis/staging",
+			"/home/yusuf/Coding/wordpress/janetravis/staging/wp-content/themes/",
+			"/home/yusuf/Coding/wordpress/janetravis/staging",
+			"/home/yusuf/Coding/python/pn",
+			"/usr/share/themes/elementary/gtk-3.0",
+			"/home/yusuf/Coding/python/taghvim",
+			"<project>",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/python/irsal",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/python/taghvim/static/css",
+			"/home/yusuf/Coding/python/taghvim/static",
+			"/home/yusuf/Coding/python/irsal",
+			"/home/yusuf/Coding/python/taghvim/templates",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/python/pn",
+			"/home/yusuf/Coding/python/usdops",
+			"/home/yusuf/Coding/socialite",
+			"/home/yusuf/Coding/python/taghvim",
+			"/home/yusuf/Coding/php/blog",
+			"/home/yusuf/Coding/php/gtw-internal",
+			"/home/yusuf/Coding/wordpress/arabia/wp-content/themes/safraa",
+			"/home/yusuf/Coding/wordpress/arabia/wp-content/themes/twentysixteen",
+			"/home/yusuf/Coding/php/mailvitamin"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"order_by",
+			"allthingsserver",
+			"main.ask",
+			"Ticket",
+			"client",
+			"prof_pic",
+			"session",
+			"/account/",
+			"<form",
+			"account/",
+			"account",
+			"rating",
+			"jQuery",
+			"<script",
+			"script",
+			"stateReordered",
+			"url",
+			"Response",
+			"quickSort",
+			"il_echo_states_numbers",
+			"postratings_sortorder",
+			"Ascending",
+			"block_rating",
+			"cls",
+			"session['rating']",
+			"and_",
+			"_and",
+			"client",
+			"ALLOWED_EXTENSIONS",
+			"targets",
+			"Target",
+			"target",
+			"Ide",
+			"IdeViewSet",
+			"Ide",
+			"Similar",
+			"similar",
+			"Image",
+			"Ide",
+			"Target",
+			"HEAD",
+			"display_",
+			"AppListingSerializer",
+			"photo",
+			"apps",
+			"fc-week",
+			"height",
+			"style",
+			"generate_gregorian_dates",
+			"persian_to_gre",
+			"class=\"fc-'+",
+			"class=\"fc-",
+			"sectionEl",
+			"renderSection",
+			".append",
+			"\"left\"",
+			".fc-right",
+			"left",
+			"\"fc-\"+",
+			"\"fc\"+",
+			"s(",
+			"fc-right",
+			"fc-view-container",
+			"widgetContentClass",
+			"style",
+			"71px",
+			"fc-row",
+			"fc-widget",
+			"72px",
+			"fc-day-grid",
+			"fc-widget-content",
+			"72px",
+			"vendor.rest_framework_extensions",
+			"HEAD",
+			"description",
+			"tagline",
+			"description",
+			"</p>",
+			"<p>",
+			"visitLink",
+			"url",
+			"descript",
+			"javascript:",
+			"ga(",
+			"/opt/backups",
+			"font-size:",
+			"40px",
+			"vendor",
+			"from rest_framework_extensions",
+			"from rest_framework_extensions.",
+			"from rest_framework_extensions",
+			"thread",
+			"room/",
+			"save",
+			"[0]",
+			"tickets_result",
+			"and_",
+			"cid",
+			"insertionSort",
+			"count",
+			"form",
+			"numeric",
+			"month",
+			"gotoYear",
+			",",
+			"today",
+			"click",
+			"today",
+			"fc-today-button",
+			"timezone",
+			"ZONE",
+			"AR_DIGITS",
+			"persian_to_gre",
+			"#fa-today",
+			"fa-today",
+			"Month",
+			"t.Month",
+			"t.month",
+			".html(",
+			".text(",
+			"alert",
+			"signals",
+			"tiger",
+			"JSON",
+			"AsyncStorage",
+			"mobile",
+			"SimpleApp",
+			"authentication"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"from thirdparty.rest_framework_extensions",
+			"from thirdparty.rest_framework_extensions.",
+			"",
+			"pawductbox",
+			"runed",
+			"\"",
+			",",
+			"",
+			",",
+			"",
+			"pending",
+			"        if (twitter) {\n            if ($(this).val().length == 0) {\n                $(TextCountOptions.countWrap).html(TextCountOptions.limitNumber);\n            }else{\n                $(TextCountOptions.countWrap).html(TextCountOptions.limitNumber - $(this).val().length);\n            }\n        }",
+			"background: #363636",
+			"<p>Join over 260,000 subscribers! </p>",
+			"sell&é\"aze123",
+			"&amp;",
+			"onclick",
+			"&amp;",
+			"AWS_SECRET_ACCESS_KEY",
+			"AWS_ASSOCIATE_TAG",
+			"div",
+			")\n",
+			"',\n",
+			"\"",
+			"InlinePanel",
+			"{% static 'images/1.png' %}",
+			"share",
+			"OWNER TO ojhxaihpnvjcrz"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "minutetech/main/templates/account/room.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1945,
+								1945
+							]
+						],
+						"settings":
+						{
+							"SL.32.region_keys":
+							[
+								"SL.htmltidy.Highlights.|28017cb59fab8231616e5dcc6d8a44f8f07d95f2454871b698836ca413892f94|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|80324c6fbc4a6a9a1355c908babd73da9a489f71a0cc710e345b8307860b035a|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|64bea1c5b613129522bbf8dd5c7c415c120b4df6091f69282dc394edeabe6046|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|dad11fd30bb380a729ac5f19ef0da44ad56661742ddc7de61b936e4247ae6630|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Gutter.|region.redish markup.error.sublime_linter|dot",
+								"SL.htmltidy.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.htmltidy.Highlights.|270e4a6aa919b26469d7dfedbc4b8625058f432691f28afc8f646ec915ffbb0c|region.yellowish markup.warning.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.htmltidy.Highlights.|75664cc6638ed56e9871432bf12ea68807d7ec4a7ae54e9c8b566313228f8d5a|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|7fb9118c133d2c201ded5023d45d43bef41076b3fc8610dee333ce81d153b41b|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|bbd646d83505642c4062aa0408e523d498c6b7898f0928ac84102c1f06e4e021|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|2b05b4dd89cd912263fa10ab38000315cf7469c1feb0b9771c0b814e082b5a1f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|7eb1f790fa77f3006d7e07f296b72e4785953c18fd0d411db8b3ce8c30ffa754|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|f538277150e5b789b9966a991d42cc21f2420026f0f61b6709426567ad195d2f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|af492b6ee493381959512a8ce94d0d52ef30e5fb7d97a5aa45b433dc95e76abe|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|b44191237e32be8b7efc1b1fb211a847eec47b8e33d8a98c1f0e6c863693eacf|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|7170cb2b4f80f175f69ecb59dc5313b4b08529d7dcb4e4a40aec5529af714a0e|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|42578be2cdd96aa3c8cd442a713ecdff7c13074950f9efbc7fee6000407468e7|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|47544e38131a7898af03b3ef8b6d7dc277988eba3e3e9051fa97b7e2a081448f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|d181f9195fb0cdaf8b5408be82a161114236a68681c9162b21db2e1bb5b6b39c|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|4ca267d19735a2611a46897d7103049f3125948bdc80cbb03a72573e5556cc2e|region.redish markup.error.sublime_linter|32",
+								"SL.htmltidy.Highlights.|da6dae2b0268c35e8fe8370ac89a6e49f2594a30793607b4c8307b304e241802|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|b29fcd89756d1914a67dd60e69f082d62e2a95321683a3f74a51a9dc37a9bbeb|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|36977891701a4f5fb03c20c68d1163bf946477391bb7ba239b9a67a0edcae8a1|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|5d88a897d78c08fd1b7a838697878b69ecde002de6ea3686452a216d91de1dbb|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|e1c690f19145b79d9e66a30a192be153f2ad07cad8810dcd588a7f599b12d1db|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|898afaa278df4640adc2ee48f9793888bd8b90b0e4dd79c55fbcce96c17f74d0|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|b03a3f63857ba6b030218173957a77ef41f39395f5850382df4a90419bcb09ec|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|3a277ec257f0b1f468b0a421f718ce7ddbf2d4e4bb4aba7e0877458451de5fed|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|96ee9972090025e833f0f1523ac21bc0e6aeabc2a3d73bfd0499e3e7b43a1376|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|b6ab120eb00d22266eb03ad888851e097055f2aa0897d6dce0489597f29dee33|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|7b360b000ee7a881c55bef15394e2aa23174e1ff658e6deca585bc196e596f6c|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|7d3b2af20c73607766ee7f3504550409608e694a8553d8a53fb22d7e7a98bf2f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|45ff1414602fbaf4c9c3c36b00fa7ead388b18fa1717aac441ebc75000b2d68f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|a1fc6a3f184dfaf5ad3d2ace5bf37638f149436492f36b1495cd0dcd27a8da79|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|85e07a5388fbb232818812481ff51281183fed3dc1416e2376adc45fe967137a|region.yellowish markup.warning.sublime_linter|32",
+								"SL.htmltidy.Highlights.|c08f5ec43e240af9501a867c401e32e8873ec77fee72784b722a27e80289e045|region.yellowish markup.warning.sublime_linter|32"
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1416,
+										1417
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1415,
+										1416
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1955,
+										1956
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1945,
+										1946
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Jinja2/Syntaxes/HTML (Jinja2).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "run.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								523,
+								523
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "minutetech/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1044,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								523,
+								523
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										523,
+										524
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										519,
+										520
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "minutetech/main/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2940,
+								2940
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2940,
+										2941
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2879,
+										2880
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 792.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "minutetech/main/routes.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14306,
+								14306
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6588.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 70.0
+	},
+	"input":
+	{
+		"height": 61.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 132.0
+	},
+	"output.exec":
+	{
+		"height": 146.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 146.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "minutetech.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mainrou",
+				"minutetech/main/routes.py"
+			],
+			[
+				"header",
+				"minutetech/main/templates/header.html"
+			],
+			[
+				"mainroo",
+				"minutetech/main/templates/account/room.html"
+			],
+			[
+				"pending",
+				"minutetech/technician/templates/technician/account/pending.html"
+			],
+			[
+				"ans",
+				"minutetech/technician/templates/technician/account/answer.html"
+			],
+			[
+				"techres",
+				"minutetech/technician/templates/technician/account/resolved.html"
+			],
+			[
+				"mainmod",
+				"minutetech/main/models.py"
+			],
+			[
+				"maipendin",
+				"minutetech/main/templates/account/pending.html"
+			],
+			[
+				"mainres",
+				"minutetech/main/templates/account/resolved.html"
+			],
+			[
+				"mainaccin",
+				"minutetech/main/templates/account/index.html"
+			],
+			[
+				"techrou",
+				"minutetech/technician/routes.py"
+			],
+			[
+				"techaccount",
+				"minutetech/technician/templates/technician/account/index.html"
+			],
+			[
+				"mainlogi",
+				"minutetech/main/templates/login.html"
+			],
+			[
+				"com",
+				"allthingsserver/common_settings.py"
+			],
+			[
+				"comm",
+				"allthingsserver/common_settings.py"
+			],
+			[
+				"mobileser",
+				"mobile/serializers.py"
+			],
+			[
+				"loca",
+				"allthingsserver/local_settings.py"
+			],
+			[
+				"mainregi",
+				"minutetech/main/templates/register.html"
+			],
+			[
+				"moblsi",
+				"mobile/signals.py"
+			],
+			[
+				"softmode",
+				"software/models.py"
+			],
+			[
+				"obroute",
+				"mobile/routers.py"
+			],
+			[
+				"mobvie",
+				"mobile/views.py"
+			],
+			[
+				"sofsi",
+				"software/signals.py"
+			],
+			[
+				"sofmode",
+				"software/models.py"
+			],
+			[
+				"sofmod",
+				"software/models.py"
+			],
+			[
+				"url",
+				"selfhosted/urls.py"
+			],
+			[
+				"full",
+				"taghvim/static/js/fullcalendar/fullcalendar.min.js"
+			],
+			[
+				"calenda",
+				"taghvim/static/js/calendar.min.js"
+			],
+			[
+				"main",
+				"taghvim/static/js/main.js"
+			],
+			[
+				"index",
+				"taghvim/templates/index.html"
+			],
+			[
+				"mains.",
+				"taghvim/static/js/main.js"
+			],
+			[
+				"fa.js",
+				"static/js/fullcalendar/fa.js"
+			],
+			[
+				"momidd",
+				"mobile/middleware.py"
+			],
+			[
+				"mobilrou",
+				"mobile/routers.py"
+			],
+			[
+				"urls",
+				"selfhosted/urls.py"
+			],
+			[
+				"middl",
+				"mobile/middleware.py"
+			],
+			[
+				"common",
+				"selfhostedalt/selfhosted/common_settings.py"
+			],
+			[
+				"middle",
+				"core/maintenance/middleware.py"
+			],
+			[
+				"obilrou",
+				"mobile/routers.py"
+			],
+			[
+				"main.js",
+				"taghvim/static/js/main.js"
+			],
+			[
+				"models",
+				"minutetech/main/models.py"
+			],
+			[
+				"login",
+				"minutetech/main/templates/login.html"
+			],
+			[
+				"reso",
+				"minutetech/main/templates/account/resolved.html"
+			],
+			[
+				"calendar.min",
+				"taghvim/static/js/calendar.min.js"
+			],
+			[
+				"mobvies",
+				"selfhostedalt/mobile/views.py"
+			],
+			[
+				"taghsett",
+				"taghvim/taghvim/settings.py"
+			],
+			[
+				"cal",
+				"taghvim/static/js/calendar.min.js"
+			],
+			[
+				"commo",
+				"allthingside/allthingside/common_settings.py"
+			],
+			[
+				"softmod",
+				"software/models.py"
+			],
+			[
+				"softwamod",
+				"allthingside/software/models.py"
+			],
+			[
+				"techm",
+				"minutetech/technician/models.py"
+			],
+			[
+				"app",
+				"public/scripts/app.js"
+			],
+			[
+				"sear",
+				"public/scripts/search.js"
+			],
+			[
+				"app.c",
+				"public/stylesheets/app.css"
+			],
+			[
+				"navi",
+				"navigation.js"
+			],
+			[
+				"tagsc",
+				"screens/TargetScreen.js"
+			],
+			[
+				"ty",
+				"actions/types.js"
+			],
+			[
+				"tarreduces",
+				"reducers/targetReducers.js"
+			],
+			[
+				"target",
+				"screens/TargetScreen.js"
+			],
+			[
+				"idesc",
+				"screens/IdeScreen.js"
+			],
+			[
+				"h",
+				"components/HeaderHome.js"
+			],
+			[
+				"store",
+				"store.js"
+			],
+			[
+				"stor",
+				"store.js"
+			],
+			[
+				"",
+				"actions/targetActions.js"
+			],
+			[
+				"targeta",
+				"actions/targetActions.js"
+			],
+			[
+				"tarsc",
+				"screens/targetScreen.js"
+			],
+			[
+				"langua",
+				"screens/languageScreen.js"
+			],
+			[
+				"taxo",
+				"taxonomy.php"
+			],
+			[
+				"style",
+				"style.css"
+			],
+			[
+				"ta",
+				"taxonomy.php"
+			],
+			[
+				"sty",
+				"style.css"
+			],
+			[
+				"single",
+				"single-lawyers.php"
+			],
+			[
+				"function",
+				"functions.php"
+			],
+			[
+				"head",
+				"header.php"
+			],
+			[
+				"sing",
+				"single-lawyers.php"
+			],
+			[
+				"soci",
+				"css/socicon.css"
+			],
+			[
+				"ir5function",
+				"staging/wp-content/themes/ir5/functions.php"
+			],
+			[
+				"ir5fun",
+				"wp-content/themes/ir5/functions.php"
+			],
+			[
+				"ir5head",
+				"wp-content/themes/ir5/header.php"
+			],
+			[
+				"add_question",
+				"yaksh/templates/yaksh/add_question.html"
+			],
+			[
+				"ir5func",
+				"wp-content/themes/ir5/functions.php"
+			],
+			[
+				"ir5functions",
+				"wp-content/themes/ir5/functions.php"
+			],
+			[
+				"searchjs",
+				"wp-content/themes/ir5/js/ir_search/ir_search.js"
+			],
+			[
+				"singlela",
+				"wp-content/themes/ir5/single-lawyers.php"
+			],
+			[
+				"cardgroup",
+				"imports/plugins/core/ui/client/components/cards/cardGroup.js"
+			],
+			[
+				"publishcontrols",
+				"imports/plugins/core/revisions/client/components/publishControls.js"
+			],
+			[
+				"variane",
+				"imports/plugins/included/product-variant/components/variantEdit.js"
+			],
+			[
+				"fron",
+				"front-page.php"
+			],
+			[
+				"functions",
+				"functions.php"
+			],
+			[
+				"javascript_",
+				"app_golha/views/programmes/javascript_view.php"
+			],
+			[
+				"javascripts",
+				"app_golha/views/common/javascripts_view.php"
+			],
+			[
+				"javascript_v",
+				"app_golha/views/faqs/javascript_view.php"
+			],
+			[
+				"base",
+				"vibezon/templates/base.html"
+			],
+			[
+				"req",
+				"requirements.txt"
+			],
+			[
+				"bas",
+				"vibezon/templates/base.html"
+			],
+			[
+				"heade",
+				"home/templates/parts/header.html"
+			],
+			[
+				"footer",
+				"home/templates/parts/footer.html"
+			],
+			[
+				"entry",
+				"home/templates/home/entry.html"
+			],
+			[
+				"model",
+				"home/models.py"
+			],
+			[
+				"jquery",
+				"vibezon/static/js/jquery.min.js"
+			],
+			[
+				"pop",
+				"home/templates/home/tags/popular.html"
+			],
+			[
+				"home",
+				"home/templates/home/home.html"
+			],
+			[
+				"hom",
+				"home/templates/home/home_page.html"
+			],
+			[
+				"de",
+				"vibezon/settings/dev.py"
+			],
+			[
+				"en",
+				"home/templates/home/entry.html"
+			],
+			[
+				"mod",
+				"home/models.py"
+			],
+			[
+				"svg",
+				"vibezon/static/fonts/icomoon/icomoon.svg"
+			],
+			[
+				"ama",
+				"home/templates/blocks/amazon_product.html"
+			],
+			[
+				"boot",
+				"vibezon/static/css/bootstrap.css"
+			],
+			[
+				"prod",
+				"vibezon/settings/production.py"
+			],
+			[
+				"routes",
+				"home/routes.py"
+			],
+			[
+				"form",
+				"post/forms.py"
+			],
+			[
+				"dash",
+				"static/js/paper-dashboard.js"
+			],
+			[
+				"list",
+				"templates/post/list.html"
+			],
+			[
+				"dem",
+				"static/css/demo.css"
+			],
+			[
+				"setting",
+				"xpost/settings.py"
+			],
+			[
+				"pap",
+				"static/js/paper-dashboard.js"
+			],
+			[
+				"edit",
+				"templates/post/edit.html"
+			],
+			[
+				"vie",
+				"post/views.py"
+			],
+			[
+				"ur",
+				"post/urls.py"
+			],
+			[
+				"demo",
+				"static/css/demo.css"
+			],
+			[
+				"da",
+				"static/css/paper-dashboard.css"
+			],
+			[
+				"imag",
+				"static/css/image-picker.css"
+			],
+			[
+				"minimalmain.css",
+				"minimalistico/affiliate/static/css/main.css"
+			],
+			[
+				"minimain",
+				"adriya-minimal-creative-one-page-bootstrap-template/css/main.css"
+			],
+			[
+				"affhommo",
+				"affiliate/home/models.py"
+			],
+			[
+				"alqhome",
+				"alqawaleb/home/templatetags/homecore_tags.py"
+			],
+			[
+				"alqtop",
+				"alqawaleb/home/templates/home/tags/top_menu.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Coding/python/misc/emailo/emailo.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
