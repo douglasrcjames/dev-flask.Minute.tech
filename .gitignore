@@ -6,3 +6,4 @@ minutetech/static/user_info/
 *.pyc
 *.log
 *.sublime-project
+*.sublime-workspace
