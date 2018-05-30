@@ -4,6 +4,90 @@
 		"selected_items":
 		[
 			[
+				"to",
+				"toISOString"
+			],
+			[
+				"to_",
+				"to_en_num"
+			],
+			[
+				"addc",
+				"addClass"
+			],
+			[
+				"fc-da",
+				"fc-day-clicked\t(font-taghvim.css)"
+			],
+			[
+				"rem",
+				"removeClass\t.removeClass()"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"full",
+				"fullCalendar"
+			],
+			[
+				"persian_t",
+				"persian_to_jd"
+			],
+			[
+				"event",
+				"events"
+			],
+			[
+				"button",
+				"button.fc-prevYear-button"
+			],
+			[
+				"fu",
+				"fullCalendar"
+			],
+			[
+				"first",
+				"first_name\t(routes.py)"
+			],
+			[
+				"html",
+				"html_message"
+			],
+			[
+				"room",
+				"roomMessages"
+			],
+			[
+				"if",
+				"if\tif"
+			],
+			[
+				"logged",
+				"logged_in\t(routes.py)"
+			],
+			[
+				"json",
+				"jsonify\tstatement"
+			],
+			[
+				"join",
+				"join_room"
+			],
+			[
+				"nav",
+				"navbar-search\t(header.php)"
+			],
+			[
+				"expo",
+				"explode"
+			],
+			[
+				"get_term_",
+				"get_term_link"
+			],
+			[
 				"init",
 				"init_app"
 			],
@@ -100,10 +184,6 @@
 				"address"
 			],
 			[
-				"first",
-				"first_name"
-			],
-			[
 				"sha",
 				"sha256_crypt"
 			],
@@ -146,10 +226,6 @@
 			[
 				"define",
 				"defineLocale\t(fa.js)"
-			],
-			[
-				"event",
-				"event_label"
 			],
 			[
 				"event_",
@@ -220,10 +296,6 @@
 				"fCalendar"
 			],
 			[
-				"rem",
-				"removeAttr\t.removeAttr()"
-			],
-			[
 				"index",
 				"indexOf"
 			],
@@ -286,10 +358,6 @@
 			[
 				"tra",
 				"transparent"
-			],
-			[
-				"full",
-				"fullcalendar\t(index.html)"
 			],
 			[
 				"mc",
@@ -446,123 +514,11 @@
 			[
 				"file",
 				"filename"
-			],
-			[
-				"ph",
-				"photos\t(__init__.py)"
-			],
-			[
-				"floor",
-				"floor_plans\t(content-single.php)"
-			],
-			[
-				"update_post",
-				"update_post_meta\tWP Function"
-			],
-			[
-				"get_po",
-				"get_post_type\t(content-single.php)"
-			],
-			[
-				"fil",
-				"filters\tmodule"
-			],
-			[
-				"pri",
-				"pricesheet"
-			],
-			[
-				"pr",
-				"pricesheet"
-			],
-			[
-				"floo",
-				"floorplan"
-			],
-			[
-				"if",
-				"if\t<?php if (…) ?> … <?php endif ?>"
-			],
-			[
-				"fl",
-				"floorplan"
-			],
-			[
-				"simple",
-				"simplemodal\t(index.html)"
-			],
-			[
-				"is_pa",
-				"is_paged\tWP Function"
-			],
-			[
-				"is_main",
-				"is_main_query\tWP Function"
-			],
-			[
-				"retr",
-				"retreive"
-			],
-			[
-				"Ide",
-				"IdeViewSet"
-			],
-			[
-				"_",
-				"_blank"
-			],
-			[
-				"project",
-				"projects_count"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "minutetech/main/templates/account/room.html",
-			"settings":
-			{
-				"buffer_size": 3656,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "run.py",
-			"settings":
-			{
-				"buffer_size": 588,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "minutetech/__init__.py",
-			"settings":
-			{
-				"buffer_size": 1044,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "minutetech/main/models.py",
-			"settings":
-			{
-				"buffer_size": 3682,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "minutetech/main/routes.py",
-			"settings":
-			{
-				"buffer_size": 27536,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -571,17 +527,17 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 128.0,
-		"last_filter": "jinj",
+		"height": 354.0,
+		"last_filter": "add",
 		"selected_items":
 		[
 			[
-				"jinj",
-				"Set Syntax: HTML (Jinja2)"
-			],
-			[
 				"add",
 				"Project: Add Folder"
+			],
+			[
+				"jinj",
+				"Set Syntax: HTML (Jinja2)"
 			],
 			[
 				"ut",
@@ -1109,23 +1065,34 @@
 	},
 	"expanded_folders":
 	[
-		"/home/yusuf/Coding/python/dev.Minute.tech",
-		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech"
 	],
 	"file_history":
 	[
-		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/header.html",
+		"/tmp/fz3temp-1/functions.php",
+		"/home/yusuf/Coding/python/taghvim/static/js/main.js",
+		"/home/yusuf/Coding/python/taghvim/static/js/calendar.min.js",
+		"/home/yusuf/Coding/python/taghvim/static/css/font-taghvim.css",
+		"/tmp/fz3temp-1/single-lawyers.php",
+		"/tmp/fz3temp-1/style.css",
+		"/tmp/fz3temp-1/ajax-search.php",
+		"/home/yusuf/Coding/python/taghvim/templates/index.html",
+		"/home/yusuf/Coding/python/taghvim/static/css/taghvim.css",
+		"/home/yusuf/Coding/python/taghvim/static/js/calendar.js",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/routes.py",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/room.html",
+		"/home/yusuf/Coding/python/dev.Minute.tech/run.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/__init__.py",
+		"/tmp/fz3temp-1/header.php",
+		"/tmp/fz3temp-1/front-page.php",
+		"/tmp/fz3temp-1/ir_search.js",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/models.py",
+		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/header.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/routes.py",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/room.old.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/answer.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/resolved.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech.sublime-project",
 		"/home/yusuf/Coding/python/dev.Minute.tech/.gitignore",
-		"/home/yusuf/Coding/python/dev.Minute.tech/run.py",
-		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/__init__.py",
-		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/models.py",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/account/pending.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/pending.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/account/resolved.html",
@@ -1144,11 +1111,8 @@
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/login.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/technician/templates/technician/register.html",
 		"/home/yusuf/Coding/python/dev.Minute.tech/minutetech/main/templates/login.html",
-		"/tmp/fz3temp-1/functions.php",
-		"/tmp/fz3temp-1/ir_search.js",
 		"/tmp/fz3temp-1/navigation-top.php",
 		"/tmp/fz3temp-1/header 2.php",
-		"/tmp/fz3temp-1/header.php",
 		"/tmp/fz3temp-1/all_lawyers.php",
 		"/home/yusuf/Coding/python/allthingsserver/servers/models.py",
 		"/home/yusuf/Coding/python/allthingsserver/mobile/serializers.py",
@@ -1160,7 +1124,6 @@
 		"/home/yusuf/Coding/python/allthingsserver/mobile/middleware.py",
 		"/home/yusuf/Coding/python/allthingsserver/mobile/views.py",
 		"/home/yusuf/Coding/python/allthingsserver/allthingsserver/urls.py",
-		"/tmp/fz3temp-1/style.css",
 		"/home/yusuf/Coding/python/allthingsserver/home/urls.py",
 		"/home/yusuf/Coding/python/selfhostedalt/mobile/views.py",
 		"/home/yusuf/Coding/python/selfhostedalt/mobile/serializers.py",
@@ -1172,7 +1135,6 @@
 		"/tmp/fz3temp-1/practice-areas-lawyers-grid-all-page.php",
 		"/tmp/fz3temp-1/home-all-lawyers.php",
 		"/tmp/fz3temp-1/single.php",
-		"/tmp/fz3temp-1/single-lawyers.php",
 		"/tmp/fz3temp-1/postratings-manager.php",
 		"/tmp/fz3temp-1/lawyer-post-type.php",
 		"/tmp/fz3temp-1/post-metabox.php",
@@ -1210,10 +1172,7 @@
 		"/home/yusuf/Coding/python/selfhostedalt/software/models.py",
 		"/home/yusuf/Coding/python/selfhostedalt/selfhosted/prod_settings.py",
 		"/home/yusuf/Coding/python/selfhostedalt/software/signals.py",
-		"/home/yusuf/Coding/python/taghvim/templates/index.html",
 		"/home/yusuf/Coding/python/taghvim/static/js/fullcalendar/fullcalendar.min.js",
-		"/home/yusuf/Coding/python/taghvim/static/js/calendar.min.js",
-		"/home/yusuf/Coding/python/taghvim/static/js/main.js",
 		"/tmp/fz3temp-1/functions 2.php",
 		"/home/yusuf/Coding/python/taghvim/static/css/fullcalendar/fullcalendar.min.css",
 		"/home/yusuf/.cache/.fr-GXZWL3/fullcalendar-master/dist/fullcalendar.js",
@@ -1236,12 +1195,7 @@
 		"/home/yusuf/Coding/python/allthingside/mobile/apps.py",
 		"/home/yusuf/Coding/python/allthingside/thirdparty/apps.py",
 		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/cache/decorators.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/bulk_operations/mixins.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/cache/mixins.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/compat_drf.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/etag/decorators.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/etag/mixins.py",
-		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/key_constructor/constructors.py"
+		"/home/yusuf/Coding/python/allthingside/thirdparty/rest_framework_extensions/bulk_operations/mixins.py"
 	],
 	"find":
 	{
@@ -1356,6 +1310,27 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"loadmore",
+			"<img",
+			"gotoYear",
+			"jalSelectCurrentYear",
+			"moment",
+			"show_events",
+			"console.log",
+			"persian_to_gre",
+			"fCalendar.fullCalendar('getDate')",
+			".fc-row .fc-bgevent-skeleton td, .fc-row .fc-highlight-skeleton td",
+			"gre_to_persian",
+			"generate_gregorian_dates",
+			"calendar.",
+			"range",
+			"current_date",
+			"datepickerSelectTrigger",
+			"/room/",
+			"ajax_search",
+			"search",
+			"<form",
+			"ta",
 			"order_by",
 			"allthingsserver",
 			"main.ask",
@@ -1462,28 +1437,7 @@
 			"gotoYear",
 			",",
 			"today",
-			"click",
-			"today",
-			"fc-today-button",
-			"timezone",
-			"ZONE",
-			"AR_DIGITS",
-			"persian_to_gre",
-			"#fa-today",
-			"fa-today",
-			"Month",
-			"t.Month",
-			"t.month",
-			".html(",
-			".text(",
-			"alert",
-			"signals",
-			"tiger",
-			"JSON",
-			"AsyncStorage",
-			"mobile",
-			"SimpleApp",
-			"authentication"
+			"click"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1530,959 +1484,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "minutetech/main/templates/account/room.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3656,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1945,
-								1945
-							]
-						],
-						"settings":
-						{
-							"SL.32.region_keys":
-							[
-								"SL.htmltidy.Highlights.|28017cb59fab8231616e5dcc6d8a44f8f07d95f2454871b698836ca413892f94|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|80324c6fbc4a6a9a1355c908babd73da9a489f71a0cc710e345b8307860b035a|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|64bea1c5b613129522bbf8dd5c7c415c120b4df6091f69282dc394edeabe6046|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|dad11fd30bb380a729ac5f19ef0da44ad56661742ddc7de61b936e4247ae6630|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Gutter.|region.redish markup.error.sublime_linter|dot",
-								"SL.htmltidy.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
-								"SL.htmltidy.Highlights.|270e4a6aa919b26469d7dfedbc4b8625058f432691f28afc8f646ec915ffbb0c|region.yellowish markup.warning.sublime_linter|32",
-								"sublime_linter.protected_regions",
-								"SL.htmltidy.Highlights.|75664cc6638ed56e9871432bf12ea68807d7ec4a7ae54e9c8b566313228f8d5a|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|7fb9118c133d2c201ded5023d45d43bef41076b3fc8610dee333ce81d153b41b|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|bbd646d83505642c4062aa0408e523d498c6b7898f0928ac84102c1f06e4e021|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|2b05b4dd89cd912263fa10ab38000315cf7469c1feb0b9771c0b814e082b5a1f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|7eb1f790fa77f3006d7e07f296b72e4785953c18fd0d411db8b3ce8c30ffa754|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|f538277150e5b789b9966a991d42cc21f2420026f0f61b6709426567ad195d2f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|af492b6ee493381959512a8ce94d0d52ef30e5fb7d97a5aa45b433dc95e76abe|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|b44191237e32be8b7efc1b1fb211a847eec47b8e33d8a98c1f0e6c863693eacf|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|7170cb2b4f80f175f69ecb59dc5313b4b08529d7dcb4e4a40aec5529af714a0e|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|42578be2cdd96aa3c8cd442a713ecdff7c13074950f9efbc7fee6000407468e7|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|47544e38131a7898af03b3ef8b6d7dc277988eba3e3e9051fa97b7e2a081448f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|d181f9195fb0cdaf8b5408be82a161114236a68681c9162b21db2e1bb5b6b39c|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|4ca267d19735a2611a46897d7103049f3125948bdc80cbb03a72573e5556cc2e|region.redish markup.error.sublime_linter|32",
-								"SL.htmltidy.Highlights.|da6dae2b0268c35e8fe8370ac89a6e49f2594a30793607b4c8307b304e241802|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|b29fcd89756d1914a67dd60e69f082d62e2a95321683a3f74a51a9dc37a9bbeb|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|36977891701a4f5fb03c20c68d1163bf946477391bb7ba239b9a67a0edcae8a1|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|5d88a897d78c08fd1b7a838697878b69ecde002de6ea3686452a216d91de1dbb|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|e1c690f19145b79d9e66a30a192be153f2ad07cad8810dcd588a7f599b12d1db|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|898afaa278df4640adc2ee48f9793888bd8b90b0e4dd79c55fbcce96c17f74d0|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|b03a3f63857ba6b030218173957a77ef41f39395f5850382df4a90419bcb09ec|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|3a277ec257f0b1f468b0a421f718ce7ddbf2d4e4bb4aba7e0877458451de5fed|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|96ee9972090025e833f0f1523ac21bc0e6aeabc2a3d73bfd0499e3e7b43a1376|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|b6ab120eb00d22266eb03ad888851e097055f2aa0897d6dce0489597f29dee33|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|7b360b000ee7a881c55bef15394e2aa23174e1ff658e6deca585bc196e596f6c|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|7d3b2af20c73607766ee7f3504550409608e694a8553d8a53fb22d7e7a98bf2f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|45ff1414602fbaf4c9c3c36b00fa7ead388b18fa1717aac441ebc75000b2d68f|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|a1fc6a3f184dfaf5ad3d2ace5bf37638f149436492f36b1495cd0dcd27a8da79|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|85e07a5388fbb232818812481ff51281183fed3dc1416e2376adc45fe967137a|region.yellowish markup.warning.sublime_linter|32",
-								"SL.htmltidy.Highlights.|c08f5ec43e240af9501a867c401e32e8873ec77fee72784b722a27e80289e045|region.yellowish markup.warning.sublime_linter|32"
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1416,
-										1417
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										1415,
-										1416
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1955,
-										1956
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										1945,
-										1946
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Jinja2/Syntaxes/HTML (Jinja2).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 432.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "run.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 588,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								523,
-								523
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": ".",
-									"selector": "source.python - string - comment - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								}
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "minutetech/__init__.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								523,
-								523
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": ".",
-									"selector": "source.python - string - comment - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								}
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										523,
-										524
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										519,
-										520
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "minutetech/main/models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3682,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2940,
-								2940
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": ".",
-									"selector": "source.python - string - comment - constant.numeric"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								}
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										2940,
-										2941
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										2879,
-										2880
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 792.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "minutetech/main/routes.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 27536,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14306,
-								14306
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6588.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -2554,6 +1557,46 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"calmi",
+				"static/js/calendar.min.js"
+			],
+			[
+				"taghvi",
+				"static/css/font-taghvim.css"
+			],
+			[
+				"font",
+				"static/css/font-taghvim.css"
+			],
+			[
+				"taghvim.css",
+				"static/css/taghvim.css"
+			],
+			[
+				"cal",
+				"static/js/calendar.min.js"
+			],
+			[
+				"ind",
+				"templates/index.html"
+			],
+			[
+				"calen",
+				"static/js/calendar.js"
+			],
+			[
+				"mai",
+				"static/js/main.js"
+			],
+			[
+				"route",
+				"minutetech/main/routes.py"
+			],
+			[
+				"room",
+				"minutetech/main/templates/account/room.html"
+			],
 			[
 				"mainrou",
 				"minutetech/main/routes.py"
@@ -2737,10 +1780,6 @@
 			[
 				"taghsett",
 				"taghvim/taghvim/settings.py"
-			],
-			[
-				"cal",
-				"taghvim/static/js/calendar.min.js"
 			],
 			[
 				"commo",
@@ -3029,42 +2068,6 @@
 			[
 				"vie",
 				"post/views.py"
-			],
-			[
-				"ur",
-				"post/urls.py"
-			],
-			[
-				"demo",
-				"static/css/demo.css"
-			],
-			[
-				"da",
-				"static/css/paper-dashboard.css"
-			],
-			[
-				"imag",
-				"static/css/image-picker.css"
-			],
-			[
-				"minimalmain.css",
-				"minimalistico/affiliate/static/css/main.css"
-			],
-			[
-				"minimain",
-				"adriya-minimal-creative-one-page-bootstrap-template/css/main.css"
-			],
-			[
-				"affhommo",
-				"affiliate/home/models.py"
-			],
-			[
-				"alqhome",
-				"alqawaleb/home/templatetags/homecore_tags.py"
-			],
-			[
-				"alqtop",
-				"alqawaleb/home/templates/home/tags/top_menu.html"
 			]
 		],
 		"width": 0.0
@@ -3098,7 +2101,7 @@
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 280.0,
 	"status_bar_visible": true,
 	"template_settings":
