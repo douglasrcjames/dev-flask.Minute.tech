@@ -26,9 +26,7 @@ main = Blueprint('main', __name__, template_folder='templates')
 s = URLSafeTimedSerializer(SECRET_KEY)  # For token
 count = 1
 
-
 # socketio events
-
 @socketio.on('join')
 def join(message):
     room = message.get('room')
@@ -38,7 +36,6 @@ def join(message):
              'msg': session.get('first_name') + ' joined the room ' + str(room)
          },
          room=room)
-
 
 @socketio.on('message')
 def messaging(message):
@@ -55,8 +52,6 @@ def messaging(message):
          room=room)
 
 # 1st Layer Pages (Visible to all visitors)
-
-
 @main.route('/logout/', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -210,6 +205,7 @@ def register():
                 # dont worry
                 session['cid'] = client.id
                 session['email'] = email
+                session['first_name'] = first_name
                 # Send confirmation email
                 token = s.dumps(email, salt='email-verify')
                 msg = Message("Minute.tech - Email Verification",

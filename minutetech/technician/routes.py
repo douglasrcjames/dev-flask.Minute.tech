@@ -6,15 +6,11 @@ from flask import (render_template, flash, request,
                    Blueprint)
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt  # To encrypt the password
-# from MySQLdb import escape_string as thwart  # To prevent SQL injection
 from sqlalchemy import or_, and_
 from sqlalchemy import desc
 from flask_mail import Message
 # Email confirmation link that has a short lifespan
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-# from functools import wraps  # For login_required
-# Custom f(x)
-from minutetech.dbconnect import connection
 from forms import (TechRegistrationForm, TechEditAccountForm,
                    TechPasswordResetForm,
                    TechEmailResetForm, TechPhoneResetForm, TechSignatureForm)
