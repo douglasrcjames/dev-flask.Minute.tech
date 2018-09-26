@@ -25,7 +25,10 @@ from minutetech.technician.routes import technician
 app.register_blueprint(main)
 app.register_blueprint(technician, url_prefix="/technician")
 
+
 # Error Handlers
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
